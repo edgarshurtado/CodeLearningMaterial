@@ -1,0 +1,7 @@
+Author: Edgar S. Hurtado (@HUR74D0)
+
+
+
+In order to run this programs you have to paste the code in http://www.codeskulptor.org
+
+All this programas were made for the miniprojects in the course Introduction to Interactive Programming in Python. A course from Rice University in https://www.coursera.org.
