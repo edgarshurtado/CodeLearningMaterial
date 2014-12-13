@@ -302,26 +302,30 @@ int main(){
 			printf("Selecciona una ficha: Q (reina), K (rey), T (torre), B (alfil), H (caballo): ");
 			while(getchar() != '\n');
 			scanf("%c", &piece);
-			printf("\nPosición para la ficha:\n");
-			piecePosition[0] = intrPos("fila");
-			piecePosition[1] = intrPos("columna");
 
 			//Change lowercase into uppercase (error control)
 			if(piece > 'T'){
 				piece -= ('a'-'A');
 			}
-			//Add piece and movements
+
 			if(piece == 'Q' || piece == 'K' || piece == 'T' || piece == 'B' || piece == 'H'){
+				printf("\nPosición para la ficha:\n");
+				piecePosition[0] = intrPos("fila");
+				piecePosition[1] = intrPos("columna");
+
+				//Add piece and movements
 				deleteMovs();
 				addPieceAndMov(piece, piecePosition);
 				lastPieceAdded = piece;
 				lastPiecePosition[0] = piecePosition[0];
 				lastPiecePosition[1] = piecePosition[1];
+
 			}
 			else{
-				printf("\nNo has introducido una ficha válida.\n");
+				printf("\nNo has introducido una ficha válida.\n\n");
 			}
 			break;
+
 		case 2:
 			printf("\nPoner impedimento\n");
 			deleteMovs();
