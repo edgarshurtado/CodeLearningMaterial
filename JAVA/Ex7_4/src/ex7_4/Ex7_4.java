@@ -47,13 +47,7 @@ public class Ex7_4 {
         
         fullName = name + " " + c1 + " " + c2;
         System.out.println("Nombre completo: " + fullName);
-        
-//        fullNameLength = fullName.length();
-//        for(int letterPos = 0; letterPos < fullNameLength; letterPos++){
-//            if(fullName.charAt(letterPos) != ' '){
-//                charInFullName++;
-//            }
-//        }
+
         
         fullNameNWS = fullName.replaceAll(" ", "");
         charInFullName = fullNameNWS.length();
