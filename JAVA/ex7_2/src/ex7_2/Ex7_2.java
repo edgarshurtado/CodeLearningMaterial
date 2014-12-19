@@ -5,7 +5,6 @@
  */
 package ex7_2;
 import java.io.*;
-import java.util.Arrays;
 
 /**
  *
@@ -13,7 +12,8 @@ import java.util.Arrays;
  */
 public class Ex7_2 {
 
-    static BufferedReader dataIn = new BufferedReader (new InputStreamReader(System.in));
+    static BufferedReader dataIn = 
+            new BufferedReader (new InputStreamReader(System.in));
     static final int N = 10;
     
     public static void main(String[] args) {
@@ -35,7 +35,7 @@ public class Ex7_2 {
          
         }
         
-        System.out.println("\b.");
+        System.out.println("\b\b.");
     }
     
 }
