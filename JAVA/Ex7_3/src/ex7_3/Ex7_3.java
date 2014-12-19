@@ -27,14 +27,13 @@ public class Ex7_3 {
             for (int subject = 0; subject < SUBJECTS; subject++){
                 System.out.println("Escribe la nota " + (subject + 1));
                 
-                String input="";
+                
                 try {
-                    input = dataIn.readLine();
+                    academicRecord[student][subject] =
+                            Integer.parseInt(dataIn.readLine());
                     
                 } catch (Exception e) {
                 }
-                int mark = Integer.parseInt(input);
-                academicRecord[student][subject] = mark;
             }
         }
         
