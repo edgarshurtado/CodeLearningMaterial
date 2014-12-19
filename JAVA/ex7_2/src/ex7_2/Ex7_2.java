@@ -1,7 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ Programa que faça el següent:
+- Definir constant N amb valor 10
+- Definir un vector v de N enters.
+- Omplir el vector amb dades per teclat.
+- Mostrar el contingut del vector en 1 línia, separant amb comes. No ho implementes amb un for tradicional sinó amb l’altra forma que hem vist.
+
  */
 package ex7_2;
 import java.io.*;
