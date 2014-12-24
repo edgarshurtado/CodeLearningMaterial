@@ -63,7 +63,6 @@ public class Matrices_EdgarSanchezHurtado {
         System.out.print("Nº of rows for the new matrix: ");
         rows = Integer.parseInt(rawInput());
         matricesSizes[totalMatrices][0] = rows;
-        
         System.out.print("Nº of columns for the new matrix: ");
         cols = Integer.parseInt(rawInput());
         matricesSizes[totalMatrices][1] = cols;
@@ -73,7 +72,7 @@ public class Matrices_EdgarSanchezHurtado {
             for (int col = 0; col < cols; col++) {
                 System.out.print("Write a number: ");
                 number = Integer.parseInt(rawInput());
-                matricesVector[totalMatrices][col][row] = number;
+                matricesVector[totalMatrices][row][col] = number;
             }   
         }
         totalMatrices++;
@@ -87,6 +86,7 @@ public class Matrices_EdgarSanchezHurtado {
             for (int col = 0; col < cols; col++) {
                 System.out.print(matricesVector[matrixIndex][row][col] + " ");
             }
+            System.out.println("");
             
         }
     }
@@ -96,8 +96,9 @@ public class Matrices_EdgarSanchezHurtado {
        
         
        
-        
+       
        newMatrix();
+        printMatrix(0);
     }
 
 }
