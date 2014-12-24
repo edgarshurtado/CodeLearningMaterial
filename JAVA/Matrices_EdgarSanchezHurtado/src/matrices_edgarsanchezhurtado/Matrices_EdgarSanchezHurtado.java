@@ -14,15 +14,20 @@ import java.io.*;
 
 public class Matrices_EdgarSanchezHurtado {
     //GLOBAL VARIABLES
+        //Constants
     static final int maxMatrices = 100;
     static final int maxMatrixSize = 10;
-    static final int totalMatrices = 0;
+        //Nº of matrices introduced into matrices vector.
+    static int totalMatrices = 0;
+        //Vector where the matrices are stored.
     static int matricesVector[][][] = 
             new int[maxMatrices][maxMatrixSize][maxMatrixSize];
-    static int matricesSizes[][][] = new int[maxMatrices][1][1];
+        //Vector to know the dimensions of every matrix introduced.
+    static int matricesSizes[][]= new int[maxMatrices][2];
     
     //USEFUL FUNCTIONS
     static String rawInput(){
+        //Function for allow keyboard inputs
         BufferedReader dataIn = new BufferedReader
                 (new InputStreamReader(System.in));
         String temp ="";
@@ -50,19 +55,43 @@ public class Matrices_EdgarSanchezHurtado {
         
     }
     static void newMatrix(){
-        int cols;
-        int rows;
-        int number;
+       int rows; 
+       int cols;
+       int number;
         
+       //Fix the matrix dimesion. The values are stored in a global variable
         System.out.print("Nº of rows for the new matrix: ");
         rows = Integer.parseInt(rawInput());
+        matricesSizes[totalMatrices][0] = rows;
         
         System.out.print("Nº of columns for the new matrix: ");
         cols = Integer.parseInt(rawInput());
+        matricesSizes[totalMatrices][1] = cols;
         
+        //Introduce numbers into the matrix
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                System.out.print("Write a number: ");
+                number = Integer.parseInt(rawInput());
+                matricesVector[totalMatrices][col][row] = number;
+            }   
+        }
+        totalMatrices++;
     }
     
-    //MAIN
+    static void printMatrix(int matrixIndex){
+        int rows = matricesSizes[matrixIndex][0];
+        int cols = matricesSizes[matrixIndex][1];
+        
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                System.out.print(matricesVector[matrixIndex][row][col] + " ");
+            }
+            
+        }
+    }
+    
+    //MAIN FUNCTION
     public static void main(String[] args) {
        
         
