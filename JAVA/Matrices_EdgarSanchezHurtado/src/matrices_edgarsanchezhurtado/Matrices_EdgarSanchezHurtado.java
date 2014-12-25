@@ -91,14 +91,18 @@ public class Matrices_EdgarSanchezHurtado {
         }
     }
     
+    static void matrixAddition(int matrix1[][], int matrix2[][]  ){
+        
+    }
+    
     //MAIN FUNCTION
     public static void main(String[] args) {
+        int matrix1[][] = {{1, 2},{3, 4}};
+        int matrix2[][] = {{3, 4},{1, 2}};
+        matricesVector[0] = matrix1;
+        matricesVector[1] = matrix2;
        
-        
        
-       
-       newMatrix();
-        printMatrix(0);
     }
 
 }
