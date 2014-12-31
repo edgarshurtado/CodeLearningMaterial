@@ -66,6 +66,9 @@ public class Matrices_EdgarSanchezHurtado {
             //Fix the matrix dimesion. The values are stored in a global variable
             System.out.print("Nº of rows for the new matrix: ");
             rows = intImput();
+            while (rows > maxMatrixSize){
+                System.out.println("");
+            }
             matricesSizes[totalMatrices][0] = rows;
             System.out.print("Nº of columns for the new matrix: ");
             cols = intImput();
