@@ -63,15 +63,23 @@ public class Matrices_EdgarSanchezHurtado {
        int number;
        
        if(totalMatrices < maxMatrices){
-            //Fix the matrix dimesion. The values are stored in a global variable
+            //Fix the matrix dimesion. Dimensional values stored in a global variable
             System.out.print("Nº of rows for the new matrix: ");
             rows = intImput();
             while (rows > maxMatrixSize){
-                System.out.println("");
+                System.out.println("Rows out of range. Try again: ");
+                System.out.print("Nº rows for the new matrix: ");
+                rows = intImput();
             }
             matricesSizes[totalMatrices][0] = rows;
+            
             System.out.print("Nº of columns for the new matrix: ");
             cols = intImput();
+            while (cols > maxMatrixSize){
+               System.out.println("Cols out of range. Try again: ");
+               System.out.print("Nº cols for the new matrix: ");
+               cols = intImput();
+            }
             matricesSizes[totalMatrices][1] = cols;
 
             //Introduce numbers into the matrix
