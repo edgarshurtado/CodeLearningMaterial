@@ -99,21 +99,70 @@ public class Matrices_EdgarSanchezHurtado {
        
     }
     
-    static void printMatrix(int matrixIndex){
-        int rows = matricesSizes[matrixIndex][0];
-        int cols = matricesSizes[matrixIndex][1];
+    static void printMatrix(int matrix[][], int dimension[]){
+        // The dimension vector has to have the nº of rows at the 0th position
+        //and the cols at the 1st position
         
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                System.out.print(matricesVector[matrixIndex][row][col] + " ");
+        for (int row = 0; row < dimension[0]; row++) {
+            for (int col = 0; col < dimension[1]; col++) {
+                System.out.print(matrix[row][col] + " ");
             }
             System.out.println("");
             
         }
     }
     
-    static void matrixAddition(int matrix1[][], int matrix2[][]  ){
+    static void matrixAddition(int matrix1[][], int matrix2[][],
+            int destinationMatrix[][]){
         
+        for (int row = 0; row < matrix1.length; row++) {
+            for (int col = 0; col < matrix1[0].length; col++) {
+                destinationMatrix[row][col] = matrix1[row][col] +
+                        matrix2[row][col];
+            }
+        }
+    }
+    
+    static void matrixSubstraction(int matrix1[][], int matrix2[][],
+            int destinationMatrix[][]){
+        
+        for (int row = 0; row < matrix1.length; row++) {
+            for (int col = 0; col < matrix1[0].length; col++) {
+                destinationMatrix[row][col] = matrix1[row][col] -
+                        matrix2[row][col];
+            }
+        }
+    }
+    
+    static void matrixByNumber(int matrix[][], int number, int destinationMatrix[][]){
+        
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[0].length; col++) {
+                destinationMatrix[row][col] = matrix[row][col] * number;
+            }
+        }
+    }
+    
+    static void matrixMultiplication(int matrix1[][], int matrix2[][],
+            int destinationMatrix[][]){
+        /*
+            Being A matrix size (m x n) and B matrix size (n x p). The result is
+            a C matrix with the size (m x p)
+        */
+        int m, n, p;
+        
+        //Cheking out A cols = B rows
+        if (matrix1[0].length == matrix2.length) {
+            m = matrix1.length;
+            p = matrix2[0].length;
+            n = matrix1[0].length;
+            for (int i = 0; i < 10; i++) {
+                
+            }
+        }
+        else{
+            System.out.println("Operation can't be done");
+        }
     }
     
     //MAIN FUNCTION
@@ -122,8 +171,10 @@ public class Matrices_EdgarSanchezHurtado {
         int number;
         int matrix1[][] = {{1, 2},{3, 4}};
         int matrix2[][] = {{3, 4},{1, 2}};
-        
-        newMatrix();
+        int tempMatrix[][] = new int[maxMatrixSize][maxMatrixSize];
+        int tempMatrixSize[] = {2, 2};
+        matrixByNumber(matrix2, 2, tempMatrix);
+        printMatrix(tempMatrix, tempMatrixSize);
        
     }
 
