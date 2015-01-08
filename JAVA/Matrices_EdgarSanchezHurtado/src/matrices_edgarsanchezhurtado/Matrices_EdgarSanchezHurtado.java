@@ -156,8 +156,14 @@ public class Matrices_EdgarSanchezHurtado {
             m = matrix1.length;
             p = matrix2[0].length;
             n = matrix1[0].length;
-            for (int i = 0; i < 10; i++) {
-                
+            
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < p; j++) {
+                    destinationMatrix[i][j] = 0;
+                    for (int k = 0; k < n; k++) {
+                        destinationMatrix[i][j] = matrix1[i][k] * matrix2[k][j];
+                    }
+                }
             }
         }
         else{
@@ -165,17 +171,23 @@ public class Matrices_EdgarSanchezHurtado {
         }
     }
     
+    static void matrixTransposition(int originMatrix[][],
+            int destinationMatrix[][]){
+        
+        for (int i = 0; i < originMatrix.length; i++) {
+            for (int j = 0; j < originMatrix[0].length; j++) {
+                destinationMatrix[j][i] = originMatrix[i][j];
+            }
+        }
+    }
+    
     //MAIN FUNCTION
     public static void main(String[] args) {
         
-        int number;
-        int matrix1[][] = {{1, 2},{3, 4}};
-        int matrix2[][] = {{3, 4},{1, 2}};
         int tempMatrix[][] = new int[maxMatrixSize][maxMatrixSize];
-        int tempMatrixSize[] = {2, 2};
-        matrixByNumber(matrix2, 2, tempMatrix);
-        printMatrix(tempMatrix, tempMatrixSize);
-       
+        int tempMatrixSize[];
+        
+        menu();
     }
 
 }
