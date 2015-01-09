@@ -5,7 +5,7 @@
 package matrices_edgarsanchezhurtado;
 
 import java.io.*;
-
+import java.util.Random;
 /**
  *
  * @author Edgar S. Hurtado
@@ -15,15 +15,15 @@ import java.io.*;
 public class Matrices_EdgarSanchezHurtado {
     //GLOBAL VARIABLES
         //Constants
-    static final int maxMatrices = 100;
+    static final int matrixMaxSize = 100;
     static final int maxMatrixSize = 10;
         //Nº of matrices introduced into matrices vector.
-    static int totalMatrices = 0;
+//    static int totalMatrices = 0;
         //Vector where the matrices are stored.
-    static int matricesVector[][][] = 
-            new int[maxMatrices][maxMatrixSize][maxMatrixSize];
+//    static int matricesVector[][][] = 
+//            new int[maxMatrices][maxMatrixSize][maxMatrixSize];
         //Vector to know the dimensions of every matrix introduced.
-    static int matricesSizes[][]= new int[maxMatrices][2];
+    static int matricesSizes[][]= new int[matrixMaxSize][2];
     
     //USEFUL FUNCTIONS
     static int intImput(){
@@ -36,67 +36,60 @@ public class Matrices_EdgarSanchezHurtado {
             try {
                 tempInt = Integer.parseInt(dataIn.readLine());
                 correctInput = true;
-            } catch (Exception e) {
+            } catch (IOException | NumberFormatException e) {
                 System.out.println("Bad input, try again");
             }
         }
         return tempInt;
     } 
-
-    //PROGRAM LOGIC
-    static void menu() {
-        System.out.println("-------------MENU------------");
-        System.out.println("");
-        System.out.println("1. New Matrix");
-        System.out.println("2. View matrix");
-        System.out.println("3. Matrix addition");
-        System.out.println("4. Matrix substraction");
-        System.out.println("5. Matrix product by a number");
-        System.out.println("6. Matrix product");
-        System.out.println("7. Transposed matrix");
-        System.out.println("8. Exit");
+    
+    static int randomNumber(){
+        int randomNumber;
         
+        Random randomGenerator = new Random();
+        
+        randomNumber = randomGenerator.nextInt(10);
+        
+        return randomNumber;
     }
-    static void newMatrix(){
+    
+    
+    
+    static void newMatrix(int[][][] destinationMatricesVector, int matrixSize[],
+            int totalMatrices){
+        
        int rows; 
        int cols;
        int number;
        
-       if(totalMatrices < maxMatrices){
-            //Fix the matrix dimesion. Dimensional values stored in a global variable
+ 
             System.out.print("Nº of rows for the new matrix: ");
             rows = intImput();
-            while (rows > maxMatrixSize){
+            while (rows > destinationMatricesVector[0].length){
                 System.out.println("Rows out of range. Try again: ");
                 System.out.print("Nº rows for the new matrix: ");
                 rows = intImput();
             }
-            matricesSizes[totalMatrices][0] = rows;
+            matrixSize[0] = rows;
             
             System.out.print("Nº of columns for the new matrix: ");
             cols = intImput();
-            while (cols > maxMatrixSize){
+            while (cols > destinationMatricesVector[0][0].length){
                System.out.println("Cols out of range. Try again: ");
                System.out.print("Nº cols for the new matrix: ");
                cols = intImput();
             }
-            matricesSizes[totalMatrices][1] = cols;
+            matrixSize[1] = cols;
 
-            //Introduce numbers into the matrix
+            System.out.println("");
+            
+            //Introducction of numbers into the matrix
             for (int row = 0; row < rows; row++) {
                 for (int col = 0; col < cols; col++) {
-                    System.out.print("Write a number: ");
-                    number = intImput();
-                    matricesVector[totalMatrices][row][col] = number;
+                    number = randomNumber();
+                    destinationMatricesVector[totalMatrices][row][col] = number;
                 }   
             }
-            totalMatrices++; 
-       }
-       else{
-           System.out.println("You've reached the maximum amount of matrices"
-                   + " allowed");
-       }
-       
     }
     
     static void printMatrix(int matrix[][], int dimension[]){
@@ -181,13 +174,119 @@ public class Matrices_EdgarSanchezHurtado {
         }
     }
     
-    //MAIN FUNCTION
+    //PROGRAM SPECIFIC FUNCTIONS
+    
+    static void showMatricesSizes(int totalMatrices, int matricesSizes[][]){
+        for (int i = 0; i < totalMatrices; i++) {
+                        System.out.println("Matrix " + (i+1) + ": "
+                                + matricesSizes[i][0] +" x "+ matricesSizes[i][1]);
+                    } 
+    }
+
+    static void menu() {
+        System.out.println("-------------MENU------------");
+        System.out.println("");
+        System.out.println("1. New Matrix");
+        System.out.println("2. View matrix");
+        System.out.println("3. Matrix addition");
+        System.out.println("4. Matrix substraction");
+        System.out.println("5. Matrix product by a number");
+        System.out.println("6. Matrix multiplication");
+        System.out.println("7. Transposed matrix");
+        System.out.println("8. Exit");
+        System.out.println("");
+        System.out.print("Enter your option: "); 
+    }
+    
+    static void case1IntroNewMatrix(int[][][] destinationMatricesVector, int matrixSize[],
+            int totalMatrices){
+        
+        newMatrix(destinationMatricesVector, matrixSize, totalMatrices);
+        printMatrix(destinationMatricesVector[0], matrixSize);
+    }
+    
+    static void case2ShowMatrix(int totalMatrices, int matricesVector[][][],
+            int matricesSizes[][]){
+        int matrixSelection;
+        
+        System.out.println("Select the matrix you want to display:");
+        showMatricesSizes(totalMatrices, matricesSizes);
+        System.out.print("Enter the number of the matrix: ");
+        matrixSelection = intImput();
+        
+        if (matrixSelection <= totalMatrices && totalMatrices != 0) {
+            printMatrix(matricesVector[matrixSelection-1], 
+                    matricesSizes[matrixSelection-1]);
+        }
+    }
+    
+    static void case3AddingMatrices(int matricesVector[][][], int totalMatrices){
+        int matrixSelected1;
+        int matrixSelected2;
+        
+        System.out.println("Availabe matrices");
+//        showMatricesSizes();
+        System.out.println("\nSelect the matrices for the addition:");
+        System.out.println("(remember they both should have the same size)\n");
+        System.out.print("Matrix 1: ");
+        matrixSelected1 = intImput();
+        System.out.println("\nMatrix 2: ");
+        matrixSelected2 = intImput();
+        
+        
+    }
+            
     public static void main(String[] args) {
-        
         int tempMatrix[][] = new int[maxMatrixSize][maxMatrixSize];
-        int tempMatrixSize[];
+        int tempMatrixSize[] = new int[2];
+        int totalMatrices = 0;
+        int option = -1;
+        int matricesVector[][][] = 
+            new int[matrixMaxSize][maxMatrixSize][maxMatrixSize];
+
         
-        menu();
+        while (option < 8) {
+            
+            menu();
+            option = intImput();
+            System.out.println("");
+            
+
+            switch (option) {
+                case 1:
+//                    if (newMatrix(matricesVector)){
+//                    totalMatrices++;
+//                    System.out.println("Generated matrix: \n");
+//                    printMatrix(matricesVector[totalMatrices - 1],
+//                            matricesSizes[totalMatrices - 1]);              
+//                    }
+                    case1IntroNewMatrix(matricesVector, tempMatrixSize, totalMatrices);
+                    break;
+
+                case 2:
+                    case2ShowMatrix(totalMatrices, matricesVector, matricesSizes);
+                    break;
+                case 3:
+                    System.out.println("Select the matrices for the addition:");
+                    System.out.println("(remember they both should have same size)\n");
+//                    showMatricesSizes(totalMatrices, );
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;                              
+                case 8:
+                    break;
+                default:
+                    System.out.println("Bad input");
+            }
+            System.out.println("");
+
+        }
     }
 
 }
