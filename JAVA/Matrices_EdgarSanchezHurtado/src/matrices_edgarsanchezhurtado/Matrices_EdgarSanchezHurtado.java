@@ -47,7 +47,7 @@ public class Matrices_EdgarSanchezHurtado {
     
     
     
-    static void newMatrix(int[][] destinationMatrixVector, int matrixSize[]){
+    static void newMatrix(int[][] outputMatrix, int[] matrixSize){
        
         /*
         Fills a given matrix with random numbers storing its dimensions in a 
@@ -61,7 +61,7 @@ public class Matrices_EdgarSanchezHurtado {
             //Fixing of the matrix dimensions
             System.out.print("Nº of rows for the new matrix: ");
             rows = intImput();
-            while (rows > destinationMatrixVector.length){
+            while (rows > outputMatrix.length){
                 System.out.println("Rows out of range. Try again: ");
                 System.out.print("Nº rows for the new matrix: ");
                 rows = intImput();
@@ -70,7 +70,7 @@ public class Matrices_EdgarSanchezHurtado {
             
             System.out.print("Nº of columns for the new matrix: ");
             cols = intImput();
-            while (cols > destinationMatrixVector[0].length){
+            while (cols > outputMatrix[0].length){
                System.out.println("Cols out of range. Try again: ");
                System.out.print("Nº cols for the new matrix: ");
                cols = intImput();
@@ -83,21 +83,20 @@ public class Matrices_EdgarSanchezHurtado {
             for (int row = 0; row < rows; row++) {
                 for (int col = 0; col < cols; col++) {
                     number = randomNumber();
-                    destinationMatrixVector[row][col] = number;
+                    outputMatrix[row][col] = number;
                 }   
             }
     }
     
-    static void printMatrix(int matrix[][], int dimension[]){
+    static void printMatrix(int[][] matrix, int[] matrixSize){
         // The dimension vector has to have the nº of rows at the 0th position
         //and the cols at the 1st position
         
-        for (int row = 0; row < dimension[0]; row++) {
-            for (int col = 0; col < dimension[1]; col++) {
+        for (int row = 0; row < matrixSize[0]; row++) {
+            for (int col = 0; col < matrixSize[1]; col++) {
                 System.out.print(matrix[row][col] + " ");
             }
             System.out.println("");
-            
         }
     }
     
@@ -130,8 +129,9 @@ public class Matrices_EdgarSanchezHurtado {
         }
     }
     
-    static void matrixMultiplication(int matrix1[][], int matrix2[][],
-            int destinationMatrix[][]){
+    static void matrixMultiplication(int[][] matrix1, int[] matrix1Size,
+            int[][] matrix2, int[] matrix2Size,
+            int[][] outputMatrix, int[] outputMatrixSize){
         /*
             Being A matrix size (m x n) and B matrix size (n x p). The result is
             a C matrix with the size (m x p)
@@ -139,16 +139,18 @@ public class Matrices_EdgarSanchezHurtado {
         int m, n, p;
         
         //Cheking out A cols = B rows
-        if (matrix1[0].length == matrix2.length) {
-            m = matrix1.length;
-            p = matrix2[0].length;
-            n = matrix1[0].length;
+        if (matrix1Size[0] == matrix2Size[1]) {
+            m = matrix1Size[0];
+            p = matrix2Size[1];
+            n = matrix1Size[1];
+            outputMatrixSize[0] = m;
+            outputMatrixSize[1] = p;
             
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < p; j++) {
-                    destinationMatrix[i][j] = 0;
+                    outputMatrix[i][j] = 0;
                     for (int k = 0; k < n; k++) {
-                        destinationMatrix[i][j] = matrix1[i][k] * matrix2[k][j];
+                        outputMatrix[i][j] = matrix1[i][k] * matrix2[k][j];
                     }
                 }
             }
@@ -158,19 +160,19 @@ public class Matrices_EdgarSanchezHurtado {
         }
     }
     
-    static void matrixTransposition(int originMatrix[][],
-            int destinationMatrix[][]){
+    static void matrixTransposition(int[][] originMatrix,
+            int[][] outputMatrix){
         
         for (int i = 0; i < originMatrix.length; i++) {
             for (int j = 0; j < originMatrix[0].length; j++) {
-                destinationMatrix[j][i] = originMatrix[i][j];
+                outputMatrix[j][i] = originMatrix[i][j];
             }
         }
     }
     
     //PROGRAM SPECIFIC FUNCTIONS
     
-    static void showMatricesSizes(int totalMatrices, int matricesSizes[][]){
+    static void showMatricesSizes(int totalMatrices, int[][] matricesSizes){
         for (int i = 0; i < totalMatrices; i++) {
                         System.out.println("Matrix " + (i+1) + ": "
                                 + matricesSizes[i][0] +" x "+ matricesSizes[i][1]);
@@ -184,7 +186,7 @@ public class Matrices_EdgarSanchezHurtado {
         System.out.println("2. View matrix");
         System.out.println("3. Matrix addition");
         System.out.println("4. Matrix substraction");
-        System.out.println("5. Matrix product by a number");
+        System.out.println("5. Matrix by a number");
         System.out.println("6. Matrix multiplication");
         System.out.println("7. Transposed matrix");
         System.out.println("8. Exit");
@@ -193,39 +195,39 @@ public class Matrices_EdgarSanchezHurtado {
     }
     
     static void saveMatrix(int[][] originMatrix, int[] originMatrixSize,
-            int[][] destinationMatricesVector, int[] destinationMatricesSizesVector){
+            int[][] outputMatrix, int[] outputMatrixSize){
         /*
         Copies a matrix and the array where is its size.
         */
         
         //Copy the matrix
         for (int i = 0; i < originMatrixSize[0]; i++) {
-            System.arraycopy(originMatrix[i], 0, destinationMatricesVector[i],
+            System.arraycopy(originMatrix[i], 0, outputMatrix[i],
                     0, originMatrixSize[1]);
         }
         //Copy the size array
-        System.arraycopy(originMatrixSize, 0, destinationMatricesSizesVector,
+        System.arraycopy(originMatrixSize, 0, outputMatrixSize,
                 0, originMatrixSize.length); 
     }
     
-    static boolean case1IntroNewMatrix(int[][] destinationMatrix, 
-            int[] destinationMatrixSize){
+    static boolean case1IntroNewMatrix(int[][] outputMatrix, 
+            int[] outputMatrixSize){
         /*
         Introduces a new matrix in destinationMatrix if it's possible. 
         The dimesion of the new matrix is stored in the vector destinationMatrixSize.
         */
        
         try {
-            newMatrix(destinationMatrix,destinationMatrixSize);
-            printMatrix(destinationMatrix, destinationMatrixSize);
+            newMatrix(outputMatrix,outputMatrixSize);
+            printMatrix(outputMatrix, outputMatrixSize);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
     
-    static void case2ShowMatrix(int totalMatrices, int matricesVector[][][],
-            int matricesSizes[][]){
+    static void case2ShowMatrix(int totalMatrices, int[][][] matricesVector,
+            int[][] matricesSizes){
         int matrixSelection;
         
         System.out.println("Select the matrix you want to display:");
@@ -306,7 +308,42 @@ public class Matrices_EdgarSanchezHurtado {
         
         printMatrix(outputMatrix, outputMatrixSize);
     }
-            
+    
+    static void case6MatrixMultiplication(int[][][] matricesVector, int[][] matricesSizes,
+            int[][] outputMatrix, int[] outputMatrixSize){
+        
+        int matrix1Index;
+        int matrix2Index;
+        
+        System.out.print("Select matrix 1: ");
+        matrix1Index = intImput() - 1;
+        System.out.print("\nSelect matrix 2: ");
+        matrix2Index = intImput() - 1;
+        
+        
+        matrixMultiplication(matricesVector[matrix1Index],matricesSizes[matrix1Index],
+                matricesVector[matrix2Index], matricesSizes[matrix2Index],
+                 outputMatrix, outputMatrixSize);
+        
+        printMatrix(outputMatrix, outputMatrixSize);
+    }
+    
+    static void case7MatrixTranspose(int[][][] matricesVector, int[][] matricesSizes,
+            int[][] outputMatrix, int[] outputMatrixSize){
+        
+        int matrixIndex;
+        
+        System.out.print("Select a matrix to transpose: ");
+        matrixIndex = intImput() - 1;
+        
+        matrixTransposition(matricesVector[matrixIndex], outputMatrix);
+        
+        outputMatrixSize[0] = matricesSizes[matrixIndex][1];
+        outputMatrixSize[1] = matricesSizes[matrixIndex][0];
+        
+        printMatrix(outputMatrix, outputMatrixSize);
+    }
+    
     public static void main(String[] args) {
         //Array to store all the matrices.
         int matricesVector[][][] = 
@@ -366,11 +403,25 @@ public class Matrices_EdgarSanchezHurtado {
                     System.out.println("");
                     break;
                 case 5:
-                    
+                    System.out.println("Availabe matrices\n");
+                    showMatricesSizes(totalMatrices, matricesSizes);
+                    case5MatrixByNumber(matricesVector, matricesSizes,
+                            tempMatrix, tempMatrixSize);
+                    System.out.println("");
                     break;
                 case 6:
+                    System.out.println("Availabe matrices\n");
+                    showMatricesSizes(totalMatrices, matricesSizes);
+                    case6MatrixMultiplication(matricesVector, matricesSizes,
+                            tempMatrix, tempMatrixSize);
+                    System.out.println("");
                     break;
                 case 7:
+                    System.out.println("Availabe matrices\n");
+                    showMatricesSizes(totalMatrices, matricesSizes);
+                    case7MatrixTranspose(matricesVector, matricesSizes,
+                            tempMatrix, tempMatrixSize);
+                    System.out.println("");
                     break;                              
                 case 8:
                     break;
