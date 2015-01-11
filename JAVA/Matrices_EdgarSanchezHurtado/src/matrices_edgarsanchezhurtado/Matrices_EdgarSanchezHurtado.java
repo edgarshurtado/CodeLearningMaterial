@@ -88,10 +88,7 @@ public class Matrices_EdgarSanchezHurtado {
             }
     }
     
-    static void printMatrix(int[][] matrix, int[] matrixSize){
-        // The dimension vector has to have the nº of rows at the 0th position
-        //and the cols at the 1st position
-        
+    static void printMatrix(int[][] matrix, int[] matrixSize){        
         for (int row = 0; row < matrixSize[0]; row++) {
             for (int col = 0; col < matrixSize[1]; col++) {
                 System.out.print(matrix[row][col] + " ");
@@ -102,21 +99,35 @@ public class Matrices_EdgarSanchezHurtado {
     
     static void matrixAddition(int[][] matrix1, int[][] matrix2, 
             int[] matricesSize, int[][] outputMatrix){
-        
-        for (int row = 0; row < matricesSize[0]; row++) {
-            for (int col = 0; col < matricesSize[1]; col++) {
-                outputMatrix[row][col] = matrix1[row][col] + matrix2[row][col];
+        /*
+        Sum of 2 matrices with the same size
+        */
+        try {
+            for (int row = 0; row < matricesSize[0]; row++) {
+                for (int col = 0; col < matricesSize[1]; col++) {
+                    outputMatrix[row][col] = matrix1[row][col] + matrix2[row][col];
+                }
             }
+        } catch (Exception e) {
+            System.out.println("operation can't be done");
         }
+        
     }
     
     static void matrixSubstraction(int matrix1[][], int matrix2[][],
             int[] matricesSize,int[][] outputMatrix){
+        /*
+        Substraction of 2 matrices with the same size
+        */
         
-        for (int row = 0; row < matricesSize[0]; row++) {
-            for (int col = 0; col < matricesSize[1]; col++) {
-                outputMatrix[row][col] = matrix1[row][col] - matrix2[row][col];
+        try {
+            for (int row = 0; row < matricesSize[0]; row++) {
+                for (int col = 0; col < matricesSize[1]; col++) {
+                    outputMatrix[row][col] = matrix1[row][col] - matrix2[row][col];
+                }
             }
+        } catch (Exception e) {
+            System.out.println("operation can't be done");
         }
     }
     
@@ -129,7 +140,7 @@ public class Matrices_EdgarSanchezHurtado {
         }
     }
     
-    static void matrixMultiplication(int[][] matrix1, int[] matrix1Size,
+    static boolean matrixMultiplication(int[][] matrix1, int[] matrix1Size,
             int[][] matrix2, int[] matrix2Size,
             int[][] outputMatrix, int[] outputMatrixSize){
         /*
@@ -154,9 +165,12 @@ public class Matrices_EdgarSanchezHurtado {
                     }
                 }
             }
+            
+            return true;
         }
         else{
             System.out.println("Operation can't be done");
+            return false;
         }
     }
     
@@ -174,23 +188,37 @@ public class Matrices_EdgarSanchezHurtado {
     
     static void showMatricesSizes(int totalMatrices, int[][] matricesSizes){
         for (int i = 0; i < totalMatrices; i++) {
-                        System.out.println("Matrix " + (i+1) + ": "
-                                + matricesSizes[i][0] +" x "+ matricesSizes[i][1]);
-                    } 
+            System.out.println("Matrix " + (i + 1) + ": "
+                    + matricesSizes[i][0] + " x " + matricesSizes[i][1]);
+        }
+        System.out.println("");
+    }
+    
+    static int selectMatrixIndex(int totalMatrices){
+        /*
+        Take a number from the user, converts it to a vector index and cheks out
+        if the index matches with any matrix.
+        */
+        int number;
+        
+        number = intImput()-1;
+        while(number >= totalMatrices) {
+            System.out.println("The matrix selected doesn't exist. Try again");
+            number = intImput()-1;
+        }
+        return number;
     }
 
     static void menu() {
         System.out.println("-------------MENU------------");
-        System.out.println("");
-        System.out.println("1. New Matrix");
+        System.out.println("\n1. New Matrix");
         System.out.println("2. View matrix");
         System.out.println("3. Matrix addition");
         System.out.println("4. Matrix substraction");
         System.out.println("5. Matrix by a number");
         System.out.println("6. Matrix multiplication");
         System.out.println("7. Transposed matrix");
-        System.out.println("8. Exit");
-        System.out.println("");
+        System.out.println("8. Exit\n");
         System.out.print("Enter your option: "); 
     }
     
@@ -254,46 +282,17 @@ public class Matrices_EdgarSanchezHurtado {
     
     static void case2ShowMatrix(int[][][] matricesVector, int[][] matricesSizes,
             int totalMatrices){
+        
         int matrixIndex;
         
         System.out.println("Select the matrix you want to display:");
         showMatricesSizes(totalMatrices, matricesSizes);
         System.out.print("Enter the number of the matrix: ");
-        matrixIndex = intImput() - 1;
+        matrixIndex = selectMatrixIndex(totalMatrices);
         
-        if (matrixIndex < totalMatrices && totalMatrices != 0) {
-            printMatrix(matricesVector[matrixIndex], 
-                    matricesSizes[matrixIndex]);
-        } else{
-            System.out.println("The matrix nº " + (matrixIndex+1) + " can't be "
-                    + "shown");
-        }
+        printMatrix(matricesVector[matrixIndex],matricesSizes[matrixIndex]);
+
     }
-    
-//    static void case3AddingMatrices(int[][][] matricesVector, 
-//            int[][] outputMatrix, int[] outputMatrixSize, int[][] matricesSizes){
-//        int matrix1;
-//        int matrix2;
-//     
-//        //Selection of the matrices. intImput is decreased by one in order to get
-//        //the matrix index for use it in matricesVector.
-//        System.out.print("Matrix 1: ");
-//        matrix1 = (intImput() -1);
-//        System.out.print("\nMatrix 2: ");
-//        matrix2 = (intImput() - 1);
-//        
-//        if (matricesSizes[matrix1][0] == matricesSizes[matrix2][0]
-//                && matricesSizes[matrix1][1] == matricesSizes[matrix2][1]) {
-//            
-//            System.arraycopy(matricesSizes[matrix1], 0, 
-//                    outputMatrixSize, 0, outputMatrixSize.length);
-//            
-//            matrixAddition(matricesVector[matrix1], matricesVector[matrix2],
-//                    outputMatrixSize, outputMatrix);
-//            
-//            printMatrix(outputMatrix, outputMatrixSize);
-//        }
-//    }
     
     static boolean case3AddingMatrices(int[][][] matricesVector, int[][] matricesSizes, 
             int totalMatrices){
@@ -312,10 +311,11 @@ public class Matrices_EdgarSanchezHurtado {
         System.out.println("(remember that both should have the same size)\n");
         
         System.out.print("Matrix 1: ");
-        matrix1Index = (intImput() -1);
+        matrix1Index = selectMatrixIndex(totalMatrices);
         System.out.print("\nMatrix 2: ");
-        matrix2Index = (intImput() - 1);
+        matrix2Index = selectMatrixIndex(totalMatrices);
         
+        //Matrices adition logic
         if (matricesSizes[matrix1Index][0] == matricesSizes[matrix2Index][0]
                 && matricesSizes[matrix1Index][1] == matricesSizes[matrix2Index][1]) {
             
@@ -326,11 +326,15 @@ public class Matrices_EdgarSanchezHurtado {
                     tempMatrixSize, tempMatrix);
             
             printMatrix(tempMatrix, tempMatrixSize);
-        }
-        save = saveMatrix(tempMatrix, tempMatrixSize, 
+            
+            save = saveMatrix(tempMatrix, tempMatrixSize, 
                     matricesVector[totalMatrices], matricesSizes[totalMatrices]);
+            return save;
+        }else {
+            System.out.println("The matrices doesn't have the same size");
+            return false;
+        }
         
-        return save;
     }
     
     static boolean case4SubstractingMatrices(int[][][] matricesVector, 
@@ -356,6 +360,7 @@ public class Matrices_EdgarSanchezHurtado {
         System.out.print("\nMatrix 2: ");
         matrix2Index = (intImput() - 1);
         
+        //Matrices substraction logic
         if (matricesSizes[matrix1Index][0] == matricesSizes[matrix2Index][0]
                 && matricesSizes[matrix1Index][1] == matricesSizes[matrix2Index][1]) {
             
@@ -366,11 +371,15 @@ public class Matrices_EdgarSanchezHurtado {
                     tempMatrixSize, tempMatrix);
             
             printMatrix(tempMatrix, tempMatrixSize);
-        }
-        save = saveMatrix(tempMatrix, tempMatrixSize, 
+            save = saveMatrix(tempMatrix, tempMatrixSize, 
                     matricesVector[totalMatrices], matricesSizes[totalMatrices]);
         
-        return save;
+            return save;
+        }else{
+            System.out.println("The matrices doesn't have the same size");
+            return false;
+        }
+        
     }
     
 
@@ -412,30 +421,35 @@ public class Matrices_EdgarSanchezHurtado {
         int tempMatrix[][] = new int[maxMatrixSize][maxMatrixSize];
         int tempMatrixSize[] = new int[2];
         boolean save;
+        boolean operationDone;
      
         //Selection of the matrices. intImput is decreased by one in order to get
         //the matrix index for use it in matricesVector.
         System.out.println("Availabe matrices\n");
         showMatricesSizes(totalMatrices, matricesSizes);
-        System.out.println("\nSelect the matrices for the addition:");
-        System.out.println("(remember that both should have the same size)\n");
+        System.out.println("\nSelect the 2 matrices you want to multiply:");
+        System.out.println("(remember that the 1st has to have the same"
+                + " columns as rows has the 2nd)\n");
         
         System.out.print("Matrix 1: ");
         matrix1Index = (intImput() -1);
         System.out.print("\nMatrix 2: ");
         matrix2Index = (intImput() - 1);
         
+        operationDone = matrixMultiplication(matricesVector[matrix1Index],
+                matricesSizes[matrix1Index],matricesVector[matrix2Index], 
+                matricesSizes[matrix2Index], tempMatrix, tempMatrixSize);
         
-        matrixMultiplication(matricesVector[matrix1Index],matricesSizes[matrix1Index],
-                matricesVector[matrix2Index], matricesSizes[matrix2Index],
-                 tempMatrix, tempMatrixSize);
-        
-        printMatrix(tempMatrix, tempMatrixSize);
-        
-        save = saveMatrix(tempMatrix, tempMatrixSize, 
+        if (operationDone) {
+            printMatrix(tempMatrix, tempMatrixSize);
+            save = saveMatrix(tempMatrix, tempMatrixSize,
                     matricesVector[totalMatrices], matricesSizes[totalMatrices]);
+
+            return save;
+        }else{
+            return false;
+        }
         
-        return save;
     }
     
     static boolean case7MatrixTranspose(int[][][] matricesVector, int[][] matricesSizes,
@@ -450,6 +464,8 @@ public class Matrices_EdgarSanchezHurtado {
         
         //Selection of the matrix. intImput is decreased by one in order to get
         //the matrix index for use it in matricesVector.
+        System.out.println("Availabe matrices\n");
+        showMatricesSizes(totalMatrices, matricesSizes);
         System.out.print("Select the matrix : ");
         matrixIndex = intImput() -1;
         
@@ -489,59 +505,84 @@ public class Matrices_EdgarSanchezHurtado {
  
             switch (option) {
                 case 1:
-                    newMatrix=case1IntroNewMatrix(matricesVector, matricesSizes,
-                            totalMatrices);
+                    newMatrix=case1IntroNewMatrix(matricesVector, 
+                            matricesSizes, totalMatrices);
                     if (newMatrix) {
                         totalMatrices++;
                     }
                     break;
 
                 case 2:
-                    case2ShowMatrix(matricesVector, matricesSizes, totalMatrices);
+                    if (totalMatrices > 0) {
+                        case2ShowMatrix(matricesVector, matricesSizes, totalMatrices);
+                    }else{
+                        System.out.println("There's no matrices stored");
+                    }
                     System.out.println("");
+
                     break;
                     
                 case 3:
-                    
-                    newMatrix=case3AddingMatrices(matricesVector, matricesSizes, 
-                            totalMatrices);
-                    if (newMatrix) {
-                        totalMatrices++;
+                    if (totalMatrices >= 2) {
+                        newMatrix = case3AddingMatrices(matricesVector,
+                                matricesSizes, totalMatrices);
+                        if (newMatrix) {
+                            totalMatrices++;
+                        }
+                    } else {
+                        System.out.println("There's no enought matrices stored");
                     }
+                    
                     
                     break;
                     
                 case 4:
-                    newMatrix=case4SubstractingMatrices(matricesVector, matricesSizes, 
-                            totalMatrices);
-                    if (newMatrix) {
-                        totalMatrices++;
+                    if (totalMatrices >= 2) {
+                        newMatrix = case4SubstractingMatrices(matricesVector,
+                                matricesSizes, totalMatrices);
+                        if (newMatrix) {
+                            totalMatrices++;
+                        }
+                    } else {
+                        System.out.println("There's no enought matrices stored");
                     }
                     break;
                     
                 case 5:
-                    newMatrix=case5MatrixByNumber(matricesVector, matricesSizes, 
-                            totalMatrices);
-                    if (newMatrix) {
-                        totalMatrices++;
+                    if (totalMatrices > 0) {
+                        newMatrix = case5MatrixByNumber(matricesVector, matricesSizes,
+                                totalMatrices);
+                        if (newMatrix) {
+                            totalMatrices++;
+                        }
+                    } else {
+                        System.out.println("There's no matrices stored");
                     }
                     break;
                     
                 case 6:
-                    newMatrix=case6MatrixMultiplication(matricesVector, matricesSizes, 
-                            totalMatrices);
-                    if (newMatrix) {
-                        totalMatrices++;
+                    if (totalMatrices >= 2) {
+                        newMatrix = case6MatrixMultiplication(matricesVector,
+                                matricesSizes, totalMatrices);
+                        if (newMatrix) {
+                            totalMatrices++;
+                        }
+                    } else {
+                        System.out.println("There's no enought matrices stored");
                     }
                     break;
                     
                 case 7:
-                    newMatrix=case7MatrixTranspose(matricesVector, matricesSizes, 
-                            totalMatrices);
-                    if (newMatrix) {
-                        totalMatrices++;
+                    if (totalMatrices > 0) {
+                        newMatrix = case7MatrixTranspose(matricesVector, matricesSizes,
+                                totalMatrices);
+                        if (newMatrix) {
+                            totalMatrices++;
+                        }
+                    } else {
+                        System.out.println("There's no matrices stored");
                     }
-                    break;   
+                    break; 
                     
                 case 8:
                     break;
