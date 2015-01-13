@@ -124,27 +124,46 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
     
     static String tresDigitsEnLletres(int q3){
         
-        String unitats;
-        String desenes;
-        String centenes;
-        
-        unitats = digitEnLletres(digitUnitats(q3));
-        desenes = desenaEnLletres(digitDesenes(q3));
-        centenes = digitEnLletres(digitCentenes(q3));
-        if(centenes.equals("ù")){
-            centenes = "cent";
+        String unitatsLletra;
+        String desenesLletra;
+        String centenesLletra;
+        int unitatsNumero;
+        int desenesNumero;
+        int centenesNumero;
+
+        unitatsNumero = digitUnitats(q3);
+        desenesNumero = digitDesenes(q3);
+        centenesNumero = digitCentenes(q3);
+
+        if (centenesNumero != 0) {
+            if (centenesNumero == 1) {
+                centenesLletra = "cent";
+            } else {
+                centenesLletra = digitEnLletres(centenesNumero) + "-cents ";
+            }
         }else{
-            centenes += "-cent"; 
-        }
+                centenesLletra = "";
+                }
         
-        return centenes + " " + desenes + "-i-" + unitats;
+        if (desenesNumero != 0) {
+            if (desenesNumero == 1) {
+                
+            } 
+        
+        return centenesLletra;
     }
     
     public static void main(String[] args) {
         
-        for (int i = 0; i < 10; i++) {
-            System.out.println(desenaEnLletres(i));
-        }
+       System.out.println(tresDigitsEnLletres(321)); 
+        
+        System.out.println(tresDigitsEnLletres(300));
+        System.out.println(tresDigitsEnLletres(303));
+        System.out.println(tresDigitsEnLletres(330));
+        System.out.println(tresDigitsEnLletres(30));
+        System.out.println(tresDigitsEnLletres(3));
+        System.out.println(tresDigitsEnLletres(067));
+        
        
     }
 
