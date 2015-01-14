@@ -122,11 +122,55 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
         return digit;
     }
     
+    static String deuDeneu(int q){
+        String numero;
+        
+        switch (q) {
+            case 0:
+                numero = "deu";
+                break;
+            case 1:
+                numero = "onze";
+                break;
+            case 2:
+                numero = "dotze";
+                break;
+            case 3:
+                numero = "tretze";
+                break;
+            case 4:
+                numero = "catortze";
+                break;
+            case 5:
+                numero = "quinze";
+                break;
+            case 6:
+                numero = "setze";
+                break;
+            case 7:
+                numero = "deset";
+                break;
+            case 8:
+                numero = "dihuit";
+                break;
+            case 9:
+                numero = "déneu";
+                break;
+            default:
+                throw new AssertionError();
+        }
+        
+        return numero;
+        
+    }
+    
     static String tresDigitsEnLletres(int q3){
         
         String unitatsLletra;
         String desenesLletra;
         String centenesLletra;
+        String numeroSencer;
+        
         int unitatsNumero;
         int desenesNumero;
         int centenesNumero;
@@ -134,30 +178,39 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
         unitatsNumero = digitUnitats(q3);
         desenesNumero = digitDesenes(q3);
         centenesNumero = digitCentenes(q3);
+        
+        numeroSencer = "";
 
         if (centenesNumero != 0) {
             if (centenesNumero == 1) {
                 centenesLletra = "cent";
             } else {
-                centenesLletra = digitEnLletres(centenesNumero) + "-cents ";
+                numeroSencer += digitEnLletres(centenesNumero) + "-cents ";
             }
         }else{
-                centenesLletra = "";
-                }
-        
+            centenesLletra = "";
+        }
+
         if (desenesNumero != 0) {
             if (desenesNumero == 1) {
-                
-            } 
-        }   
-        return centenesLletra;
+                numeroSencer += deuDeneu(unitatsNumero);
+            } else {
+                numeroSencer += desenaEnLletres(desenesNumero);
+                if (unitatsNumero != 0) {
+                    numeroSencer += "-i-" + digitEnLletres(unitatsNumero);
+                }
+            }
+        }else {
+            numeroSencer += digitEnLletres(unitatsNumero);
+        }
+        return numeroSencer;
     }
     
     
     public static void main(String[] args) {
         
-       System.out.println(tresDigitsEnLletres(321)); 
-        
+        System.out.println(tresDigitsEnLletres(321));
+        System.out.println(tresDigitsEnLletres(313));
         System.out.println(tresDigitsEnLletres(300));
         System.out.println(tresDigitsEnLletres(303));
         System.out.println(tresDigitsEnLletres(330));
