@@ -67,9 +67,17 @@ public class SubirEscaleras {
         }
     }
     
+    static void upDown2(int n, int m) {
+    System.out.println(n);
+    if (n < m) {
+        upDown(n+1, m);
+        System.out.println(n);
+    }
+}
+    
    
     public static void main(String[] args) {
-        upDown(-1, 6);
+        upDown2(1, 6);
     }
 
 }
