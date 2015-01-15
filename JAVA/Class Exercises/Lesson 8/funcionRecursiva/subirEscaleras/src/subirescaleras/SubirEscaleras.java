@@ -71,8 +71,8 @@ public class SubirEscaleras {
     System.out.println(n);
     if (n < m) {
         upDown(n+1, m);
-        System.out.println(n);
     }
+    System.out.println(n);
 }
     
    
