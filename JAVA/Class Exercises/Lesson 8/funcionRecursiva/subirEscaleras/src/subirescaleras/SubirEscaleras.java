@@ -79,16 +79,12 @@ public class SubirEscaleras {
     }
     
     static int fibonacci(int position){
-        int n;
-
         if (position-1 > 1) {
-            n = fibonacci(position - 1) + fibonacci(position - 2);
+            return fibonacci(position - 1) + fibonacci(position - 2);
         } else {
-            n = 1;
+            return 1;
         }
-        return n; 
     }
-    
     static void printFibonacci(int positions){
         for (int i = 1; i <= positions; i++) {
             System.out.print(fibonacci(i) + " ");
