@@ -66,22 +66,38 @@ public class SubirEscaleras {
             System.out.println(n);
         }
     }
-    
+   
     static void trambolika(int n, int m) {
-    /*
-    Función que sabe subí y bajá    
-    */
+        /*
+         Función que sabe subí y bajá    
+         */
         System.out.println(n);
-    if (n < m) {
-        upDown(n+1, m);
-        System.out.println(n);
+        if (n < m) {
+            upDown(n + 1, m);
+            System.out.println(n);
+        }
     }
     
-}
+    static int fibonacci(int position){
+        int n;
+
+        if (position-1 > 1) {
+            n = fibonacci(position - 1) + fibonacci(position - 2);
+        } else {
+            n = 1;
+        }
+        return n; 
+    }
     
+    static void printFibonacci(int positions){
+        for (int i = 1; i <= positions; i++) {
+            System.out.print(fibonacci(i) + " ");
+        }
+    }
+
    
     public static void main(String[] args) {
-        trambolika(1, 6);
+        printFibonacci(5);
     }
 
 }
