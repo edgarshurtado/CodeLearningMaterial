@@ -67,8 +67,11 @@ public class SubirEscaleras {
         }
     }
     
-    static void upDown2(int n, int m) {
-    System.out.println(n);
+    static void trambolika(int n, int m) {
+    /*
+    Función que sabe subí y bajá    
+    */
+        System.out.println(n);
     if (n < m) {
         upDown(n+1, m);
         System.out.println(n);
@@ -78,7 +81,7 @@ public class SubirEscaleras {
     
    
     public static void main(String[] args) {
-        upDown2(1, 6);
+        trambolika(1, 6);
     }
 
 }

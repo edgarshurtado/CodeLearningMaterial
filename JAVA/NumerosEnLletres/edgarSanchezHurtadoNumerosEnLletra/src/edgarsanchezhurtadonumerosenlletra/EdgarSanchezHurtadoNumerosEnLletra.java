@@ -222,40 +222,43 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
         int unitatsNumero;
         int desenesNumero;
         int centenesNumero;
-
-        unitatsNumero = digitUnitats(q3);
-        desenesNumero = digitDesenes(q3);
-        centenesNumero = digitCentenes(q3);
         
-        numeroSencer = "";
+        //Construcciò del nº en lletres
+        if (q3 == 0) {
+            numeroSencer = "zero";
+        } else {
+            //Descomposiciò del número
+            unitatsNumero = digitUnitats(q3);
+            desenesNumero = digitDesenes(q3);
+            centenesNumero = digitCentenes(q3);
+            numeroSencer = "";
 
-        if (centenesNumero != 0) {
-            if (centenesNumero == 1) {
-                numeroSencer += "cent ";
-            } else {
-                numeroSencer += digitEnLletres(centenesNumero) + "-cents ";
-            }
-        }
-
-        if (desenesNumero != 0) {
-            if (desenesNumero == 1) {
-                numeroSencer += digitEnLletres(10 + unitatsNumero);
-            } else {
-                numeroSencer += desenaEnLletres(desenesNumero);
-                if (unitatsNumero != 0) {
-                    if (desenesNumero == 2) {
-                        numeroSencer += "-i-";
-                    }else{
-                        numeroSencer += "-";
-                    }
-                    numeroSencer += digitEnLletres(unitatsNumero);
+            //Lògica de construcción de la cadena resultat.
+            if (q3 < 0) numeroSencer += "menys "; //Per si es negatiu
+            if (centenesNumero != 0) {
+                if (centenesNumero == 1) {
+                    numeroSencer += "cent ";
+                } else {
+                    numeroSencer += digitEnLletres(centenesNumero) + "-cents ";
                 }
             }
-        }else {
-            if (unitatsNumero != 0) {
+            if (desenesNumero != 0) {
+                if (desenesNumero == 1) {
+                    numeroSencer += digitEnLletres(10 + unitatsNumero);
+                } else {
+                    numeroSencer += desenaEnLletres(desenesNumero);
+                    if (unitatsNumero != 0) {
+                        if (desenesNumero == 2) {
+                            numeroSencer += "-i-";
+                        } else {
+                            numeroSencer += "-";
+                        }
+                        numeroSencer += digitEnLletres(unitatsNumero);
+                    }
+                }
+            } else if (unitatsNumero != 0) {
                 numeroSencer += digitEnLletres(unitatsNumero);
             }
-            
         }
         return numeroSencer;
     }
@@ -275,7 +278,7 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
         // Línea per a testejar
         System.out.println(cents + " " + milers + " " + milions);
         
-        
+        //Creaciò de la cadena a retornar
         if (milions != 0) {
             if (milions == 1) {
                 numeroSencer += "1 milió";
@@ -297,8 +300,10 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
     
     public static void main(String[] args) {
         int numero;
-        numero = 123456789;
+        numero = 300;
         System.out.println(nouDigitsEnLletres(numero));
+        
+       
 //        System.out.print("Introduixca el número per a pasar-lo a lletres: ");
 //        numero = intImput();
 //        System.out.println(tresDigitsEnLletres(numero));
