@@ -1,42 +1,54 @@
 #body{
-	
+	margin: 0;
+	padding: 0;
 }
 #header{
 	background-color: red;
-	height: 6em;
+	height: 250pt;
 	width: 100%;
 	/*Flexbox properties*/
-	display: flex;
-	align-content: center;
-	justify-content: center;
+	display: -webkit-box;   /* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */
+   	display: -moz-box;      /* OLD: Firefox (buggy) */
+   	display: -ms-flexbox;   /* MID: IE 10 */
+   	display: -webkit-flex;  /* NEW, Chrome 21–28, Safari 6.1+ */
+   	display: flex;          /* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */
+
+   	-webkit-box-align: center; -moz-box-align: center; /* OLD… */
+   	-ms-flex-align: center; /* You know the drill now… */
+   	-webkit-align-items: center;
+   	align-items: center;
+
+   	-webkit-justify-content: center;
+   	justify-content: center;
 }
 
 #header p{
-	margin: 0;
-	padding: 0;
-	background-color: black;
-	font-size: 3em;
+	font-size: 25pt;
 }
 
 #content{
-	display: flex;
+	display: -webkit-box;   /* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */
+   	display: -moz-box;      /* OLD: Firefox (buggy) */
+   	display: -ms-flexbox;   /* MID: IE 10 */
+   	display: -webkit-flex;  /* NEW, Chrome 21–28, Safari 6.1+ */
+   	display: flex;          /* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */
 	flex-direction: row;
+
 }
 
 .column{
 	margin: 10px;
-	background-color: yellow;
 	flex:1;
-
+	-webkit-flex:1; /*For Safari*/
 }
 
 .biggercolumn{
 	background-image: url("Unknown.png");
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-size: 100%;
 	margin: 10px;
-	background-color: green;
 	flex:1;
+	-webkit-flex:1; /*For Safari*/
 
 }
 
