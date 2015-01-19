@@ -1,0 +1,43 @@
+#body{
+	
+}
+#header{
+	background-color: red;
+	height: 6em;
+	width: 100%;
+	/*Flexbox properties*/
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+
+#header p{
+	margin: 0;
+	padding: 0;
+	background-color: black;
+	font-size: 3em;
+}
+
+#content{
+	display: flex;
+	flex-direction: row;
+}
+
+.column{
+	margin: 10px;
+	background-color: yellow;
+	flex:1;
+
+}
+
+.biggercolumn{
+	background-image: url("Unknown.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	margin: 10px;
+	background-color: green;
+	flex:1;
+
+}
+
+
