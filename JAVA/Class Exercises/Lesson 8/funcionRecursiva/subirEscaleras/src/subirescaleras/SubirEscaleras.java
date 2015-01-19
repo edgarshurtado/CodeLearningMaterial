@@ -98,10 +98,30 @@ public class SubirEscaleras {
             return 1;
         }
     }
-
+    static int multiplication(int a, int b){
+        if (b > 0) {
+            return a + multiplication(a, b-1);  
+        } else {
+            return 0;
+        }
+    }
+    
+    static boolean palindrom(String sentence, int initIndex){
+        char a = sentence.charAt(initIndex);
+        char b = sentence.charAt(sentence.length()-initIndex);
+        if (initIndex < (sentence.length()/2)) {
+            if (palindrom(sentence, initIndex+1)) {
+                return a == b;
+            } else {
+                return false;
+            }
+        } else {
+            return a == b;
+        }
+    }
    
     public static void main(String[] args) {
-        System.out.println(pow(2, 6));
+        System.out.println(multiplication(0, 5));
     }
 
 }
