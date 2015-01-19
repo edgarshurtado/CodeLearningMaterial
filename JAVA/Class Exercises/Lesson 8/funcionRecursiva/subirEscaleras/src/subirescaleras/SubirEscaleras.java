@@ -106,11 +106,11 @@ public class SubirEscaleras {
         }
     }
     
-    static boolean palindrom(String sentence, int initIndex){
+    static boolean palindrome(String sentence, int initIndex){
         char a = sentence.charAt(initIndex);
-        char b = sentence.charAt(sentence.length()-initIndex);
+        char b = sentence.charAt((sentence.length()-initIndex)-1);
         if (initIndex < (sentence.length()/2)) {
-            if (palindrom(sentence, initIndex+1)) {
+            if (palindrome(sentence, initIndex+1)) {
                 return a == b;
             } else {
                 return false;
@@ -119,9 +119,17 @@ public class SubirEscaleras {
             return a == b;
         }
     }
+    
+    static boolean palindrome1arg(String sentence){
+        //TODO returning each time a minor sentence
+    }
    
     public static void main(String[] args) {
-        System.out.println(multiplication(0, 5));
+        if (palindrome("abccba", 0)) {
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
     }
 
 }
