@@ -38,7 +38,6 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
         unitat = q % 10;
         
         return unitat;
-        
     }
     
     static int digitDesenes(int q){
@@ -94,7 +93,6 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
             default:
                 throw new AssertionError();
         }
-        
         return desena;
     }
     
@@ -166,7 +164,6 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
             default:
                 throw new AssertionError();
         }
-        
         return digit;
     }
     
@@ -207,9 +204,7 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
             default:
                 throw new AssertionError();
         }
-        
         return numero;
-        
     }
     
     static String tresDigitsEnLletres(int q3){
@@ -288,12 +283,9 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
         }
         
         if (milers != 0) {
-            
             numeroSencer += tresDigitsEnLletres(milers) + " mil ";
         }
-        
         numeroSencer += tresDigitsEnLletres(cents);
-        
         return numeroSencer;
     }
     
