@@ -79,7 +79,7 @@ public class SubirEscaleras {
     }
     
     static int fibonacci(int position){
-        if (position-1 > 1) {
+        if (position > 2) {
             return fibonacci(position - 1) + fibonacci(position - 2);
         } else {
             return 1;
