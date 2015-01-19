@@ -90,10 +90,18 @@ public class SubirEscaleras {
             System.out.print(fibonacci(i) + " ");
         }
     }
+    
+    static int pow(int base, int exponent){
+        if (exponent > 0) {
+            return base * pow(base, exponent - 1);
+        } else {
+            return 1;
+        }
+    }
 
    
     public static void main(String[] args) {
-        printFibonacci(5);
+        System.out.println(pow(2, 6));
     }
 
 }
