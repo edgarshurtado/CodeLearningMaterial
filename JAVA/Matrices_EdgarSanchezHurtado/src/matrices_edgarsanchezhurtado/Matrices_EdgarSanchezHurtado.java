@@ -47,7 +47,7 @@ public class Matrices_EdgarSanchezHurtado {
     
     
     
-    static void newMatrix(int[][] outputMatrix, int[] matrixSize){
+    static void newMatrix(int[][] outputMatrix, int[] outputMatrixSize){
        
         /*
         Fills a given matrix with random numbers storing its dimensions in a 
@@ -66,7 +66,7 @@ public class Matrices_EdgarSanchezHurtado {
                 System.out.print("Nº rows for the new matrix: ");
                 rows = intImput();
             }
-            matrixSize[0] = rows;
+            outputMatrixSize[0] = rows;
             
             System.out.print("Nº of columns for the new matrix: ");
             cols = intImput();
@@ -75,7 +75,7 @@ public class Matrices_EdgarSanchezHurtado {
                System.out.print("Nº cols for the new matrix: ");
                cols = intImput();
             }
-            matrixSize[1] = cols;
+            outputMatrixSize[1] = cols;
 
             System.out.println("");
             
@@ -88,7 +88,8 @@ public class Matrices_EdgarSanchezHurtado {
             }
     }
     
-    static void printMatrix(int[][] matrix, int[] matrixSize){        
+    static void printMatrix(int[][] matrix, int[] matrixSize){     
+        //Prints a matrix in rows and cols
         for (int row = 0; row < matrixSize[0]; row++) {
             for (int col = 0; col < matrixSize[1]; col++) {
                 System.out.print(matrix[row][col] + " ");
@@ -100,7 +101,7 @@ public class Matrices_EdgarSanchezHurtado {
     static void matrixAddition(int[][] matrix1, int[][] matrix2, 
             int[] matricesSize, int[][] outputMatrix){
         /*
-        Sum of 2 matrices with the same size
+        Sum of 2 matrices with the same size.
         */
         try {
             for (int row = 0; row < matricesSize[0]; row++) {
@@ -132,7 +133,9 @@ public class Matrices_EdgarSanchezHurtado {
     }
     
     static void matrixByNumber(int[][] matrix, int number, int[][] outputMatrix){
-        
+        /*
+        Multiplies each number of the matrix by a given number.
+        */
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[0].length; col++) {
                 outputMatrix[row][col] = matrix[row][col] * number;
@@ -156,7 +159,7 @@ public class Matrices_EdgarSanchezHurtado {
             n = matrix1Size[1];
             outputMatrixSize[0] = m;
             outputMatrixSize[1] = p;
-            
+            //Multiplication logic
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < p; j++) {
                     outputMatrix[i][j] = 0;
@@ -176,7 +179,9 @@ public class Matrices_EdgarSanchezHurtado {
     
     static void matrixTransposition(int[][] originMatrix,
             int[][] outputMatrix){
-        
+        /*
+        Stores in a vector the transposed matrix of a given matrix.
+        */
         for (int i = 0; i < originMatrix.length; i++) {
             for (int j = 0; j < originMatrix[0].length; j++) {
                 outputMatrix[j][i] = originMatrix[i][j];
@@ -389,7 +394,7 @@ public class Matrices_EdgarSanchezHurtado {
         
         int matrixIndex;
         int number;
-        
+        // The matrix size remains the same in this operation
         int tempMatrix[][] = new int[maxMatrixSize][maxMatrixSize];
         boolean save;
         
@@ -460,6 +465,7 @@ public class Matrices_EdgarSanchezHurtado {
         
         int tempMatrix[][] = new int[maxMatrixSize][maxMatrixSize];
         int tempMatrixSize[] = new int[2];
+        
         boolean save;
         
         //Selection of the matrix. intImput is decreased by one in order to get
@@ -470,7 +476,7 @@ public class Matrices_EdgarSanchezHurtado {
         matrixIndex = intImput() -1;
         
         matrixTransposition(matricesVector[matrixIndex], tempMatrix);
-        
+        //Size of the transposed matrix
         tempMatrixSize[0] = matricesSizes[matrixIndex][1];
         tempMatrixSize[1] = matricesSizes[matrixIndex][0];
         
