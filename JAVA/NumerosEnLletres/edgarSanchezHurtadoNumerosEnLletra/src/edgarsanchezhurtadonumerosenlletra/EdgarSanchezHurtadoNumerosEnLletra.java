@@ -271,28 +271,37 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
         milers =(int) ((q9 % Math.pow(10, 6)) / Math.pow(10, 3));
         milions = (int) (q9 / Math.pow(10, 6));
         // Línea per a testejar
-        System.out.println(cents + " " + milers + " " + milions);
+        //System.out.println(cents + " " + milers + " " + milions);
         
         //Creaciò de la cadena a retornar
         if (milions != 0) {
             if (milions == 1) {
-                numeroSencer += "1 milió";
+                numeroSencer += "1 milió ";
             } else {
                 numeroSencer += tresDigitsEnLletres(milions) + " milions ";
             }
         }
         
         if (milers != 0) {
+            if (milers == 1) {
+                numeroSencer += " mil ";
+            } else {
             numeroSencer += tresDigitsEnLletres(milers) + " mil ";
+            }
         }
-        numeroSencer += tresDigitsEnLletres(cents);
+        
+        if (milions == 0 & milers == 0) {
+            //evita escriure la paraula zero quan no cal
+            numeroSencer += tresDigitsEnLletres(cents);
+        } else if (cents != 0) {
+            numeroSencer += tresDigitsEnLletres(cents);
+        }
         return numeroSencer;
     }
     
-    
     public static void main(String[] args) {
         int numero;
-        numero = 300;
+        numero = 1011000;
         System.out.println(nouDigitsEnLletres(numero));
         
        
