@@ -45,8 +45,6 @@ public class Matrices_EdgarSanchezHurtado {
         return randomNumber;
     }
     
-    
-    
     static void newMatrix(int[][] outputMatrix, int[] outputMatrixSize){
        
         /*
@@ -176,12 +174,13 @@ public class Matrices_EdgarSanchezHurtado {
             return false;
         }
     }
-    
+    /**
+     *Stores in a vector the transposed matrix of a given matrix.
+     * @param originMatrix
+     * @param outputMatrix 
+     */
     static void matrixTransposition(int[][] originMatrix,
             int[][] outputMatrix){
-        /*
-        Stores in a vector the transposed matrix of a given matrix.
-        */
         for (int i = 0; i < originMatrix.length; i++) {
             for (int j = 0; j < originMatrix[0].length; j++) {
                 outputMatrix[j][i] = originMatrix[i][j];
