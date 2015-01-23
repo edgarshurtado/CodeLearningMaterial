@@ -6,6 +6,7 @@ package edgarsanchezhurtadonumerosenlletra;
 
 import java.io.*;
 import static java.lang.Math.round;
+import java.util.Random;
 
 /**
  *
@@ -31,6 +32,16 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
         }
         return tempInt;
     } 
+    
+    static int randomNumber(int maxNum){
+        int randomNumber;
+        
+        Random randomGenerator = new Random();
+        
+        randomNumber = randomGenerator.nextInt(maxNum);
+        
+        return randomNumber;
+    }
     
     static int digitUnitats(int q){
         int unitat;
@@ -301,8 +312,11 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
     
     public static void main(String[] args) {
         int numero;
-        numero = 1011000;
-        System.out.println(nouDigitsEnLletres(numero));
+        for (int i = 0; i < 10; i++) {
+            numero = randomNumber(1000000000);
+            System.out.println(numero + " " + nouDigitsEnLletres(numero));
+        }
+        
         
        
 //        System.out.print("Introduixca el número per a pasar-lo a lletres: ");
