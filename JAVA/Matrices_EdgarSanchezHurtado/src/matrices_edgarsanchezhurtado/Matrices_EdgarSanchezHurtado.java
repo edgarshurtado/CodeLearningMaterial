@@ -140,7 +140,16 @@ public class Matrices_EdgarSanchezHurtado {
             }
         }
     }
-    
+    /**
+     * Multiplies 2 matrices being A matrix size (m x n) and B matrix size (n x p).
+     * @param matrix1
+     * @param matrix1Size
+     * @param matrix2
+     * @param matrix2Size
+     * @param outputMatrix
+     * @param outputMatrixSize
+     * @return Saves the result in outputMatrix
+     */
     static boolean matrixMultiplication(int[][] matrix1, int[] matrix1Size,
             int[][] matrix2, int[] matrix2Size,
             int[][] outputMatrix, int[] outputMatrixSize){
@@ -524,7 +533,6 @@ public class Matrices_EdgarSanchezHurtado {
                         System.out.println("There's no matrices stored");
                     }
                     System.out.println("");
-
                     break;
                     
                 case 3:
@@ -537,8 +545,6 @@ public class Matrices_EdgarSanchezHurtado {
                     } else {
                         System.out.println("There's no enought matrices stored");
                     }
-                    
-                    
                     break;
                     
                 case 4:
