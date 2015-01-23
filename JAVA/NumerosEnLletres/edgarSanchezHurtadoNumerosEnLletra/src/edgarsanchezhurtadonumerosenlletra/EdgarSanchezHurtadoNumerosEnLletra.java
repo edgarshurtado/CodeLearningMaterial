@@ -229,18 +229,17 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
         int desenesNumero;
         int centenesNumero;
         
-        //Construcciò del nº en lletres
+        //Construcció del nº en lletres
         if (q3 == 0) {
             numeroSencer = "zero";
         } else {
-            //Descomposiciò del número
+            //Descomposició del número
             unitatsNumero = digitUnitats(q3);
             desenesNumero = digitDesenes(q3);
             centenesNumero = digitCentenes(q3);
             numeroSencer = "";
 
             //Lògica de construcción de la cadena resultat.
-            if (q3 < 0) numeroSencer += "menys "; //Per si es negatiu
             if (centenesNumero != 0) {
                 if (centenesNumero == 1) {
                     numeroSencer += "cent ";
@@ -270,21 +269,25 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
     }
     
     static String nouDigitsEnLletres(int q9){
+        //Evitar la introducció de nº iguals o més grans de 10^9.
         if ((int) (q9 / (Math.pow(10, 9))) != 0) throw new IllegalArgumentException();
-
+        
         int cents;
         int milers;
         int milions;
         String numeroSencer = "";
         
-        //Descomposiciò del número
+        if (q9 < 0){ //Per si es negatiu
+            numeroSencer += "menys ";
+            q9 *= -1; //Per evitar que se escriguen mes voltes la paraula menys
+        } 
+        //Descomposició del número
         cents = (int) (q9 % Math.pow(10, 3));
         milers =(int) ((q9 % Math.pow(10, 6)) / Math.pow(10, 3));
         milions = (int) (q9 / Math.pow(10, 6));
-        // Línea per a testejar
-        //System.out.println(cents + " " + milers + " " + milions);
         
-        //Creaciò de la cadena a retornar
+        //Creació de la cadena a retornar
+        
         if (milions != 0) {
             if (milions == 1) {
                 numeroSencer += "1 milió ";
@@ -312,27 +315,15 @@ public class EdgarSanchezHurtadoNumerosEnLletra {
     
     public static void main(String[] args) {
         int numero;
+        //Generació de números aleatoris
         for (int i = 0; i < 10; i++) {
             numero = randomNumber(1000000000);
             System.out.println(numero + " " + nouDigitsEnLletres(numero));
         }
-        
-        
-       
-//        System.out.print("Introduixca el número per a pasar-lo a lletres: ");
-//        numero = intImput();
-//        System.out.println(tresDigitsEnLletres(numero));
-        
-//        System.out.println(tresDigitsEnLletres(321));
-//        System.out.println(tresDigitsEnLletres(313));
-//        System.out.println(tresDigitsEnLletres(300));
-//        System.out.println(tresDigitsEnLletres(303));
-//        System.out.println(tresDigitsEnLletres(330));
-//        System.out.println(tresDigitsEnLletres(30));
-//        System.out.println(tresDigitsEnLletres(3));
-//        System.out.println(tresDigitsEnLletres(67));
-        
-       
+        //Introducció del nº per l'usuari.
+        System.out.println("Introduix un número: ");
+        numero = intImput();
+        System.out.println(nouDigitsEnLletres(numero));       
     }
 
 }
