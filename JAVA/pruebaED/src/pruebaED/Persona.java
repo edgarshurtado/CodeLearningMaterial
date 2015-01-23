@@ -14,11 +14,21 @@ public class Persona {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.edad = 0;
+		this.altura = 0;
+		this.peso = 0;
+		this.genero = 'u';
+		this.nif = "";
+		this.colorPelo = "unknown";
 	}
 	
 	public Persona(String nombre, String apellidos, int edad){
 		this(nombre, apellidos);
 		this.edad = edad;
+	}
+	
+	public Persona(String nombre, String apellidos, char genero){
+		this(nombre, apellidos);
+		this.genero = genero;
 	}
 
 	public void mostrar() {
