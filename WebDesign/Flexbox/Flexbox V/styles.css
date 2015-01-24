@@ -53,11 +53,5 @@ a {
 	-webkit-flex-direction: row;
 
 	flex-wrap: wrap;
-}
-
-.rotoImage{
-	background-image: url("roto2.png");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
-
+	-webkit-flex-wrap: wrap;
 }
