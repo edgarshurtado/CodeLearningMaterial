@@ -51,9 +51,13 @@ a {
 	
 	flex-direction: row;
 	-webkit-flex-direction: row;
+
+	flex-wrap: wrap;
 }
 
-.imageSection img{
-	flex-grow: 1;
-	-webkit-flex-grow: 1;
+.rotoImage{
+	background-image: url("roto2.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+
 }
