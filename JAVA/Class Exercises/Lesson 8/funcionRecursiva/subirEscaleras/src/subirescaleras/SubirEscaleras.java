@@ -121,15 +121,21 @@ public class SubirEscaleras {
     }
     
     static boolean palindrome1arg(String sentence){
-        //TODO returning each time a minor sentence
+        char a = sentence.charAt(0);
+        char b = sentence.charAt(sentence.length()-1);
+        if (sentence.length() > 2) {
+            if (palindrome1arg(sentence.substring(1, sentence.length()-1))) {
+                return a == b;
+            } else {
+                return false;
+            }
+        } else {
+            return a == b;
+        }
     }
    
     public static void main(String[] args) {
-        if (palindrome("abccba", 0)) {
-            System.out.println("true");
-        } else {
-            System.out.println("false");
-        }
+        String sentence;
+        System.out.println(palindrome1arg("abccba"));
     }
-
 }
