@@ -37,5 +37,37 @@ public class Persona {
 		if (this.edad > 0) {
 			System.out.println("Edad: " + this.edad);
 		}
+		if (this.nif.length() > 0){
+			System.out.println("NIF: " + this.nif);
+		}
+	}
+	
+	public void setNif(String nif){
+		try {
+			int numero = Integer.parseInt(nif.substring(0, nif.length() - 1));
+			char letra = nif.charAt(nif.length() - 1);
+			int resto = numero % 23;
+
+			// tabla equivalencias
+			char[] equivalencias;
+			equivalencias = new char[] { 'T', 'R', 'W', 'A', 'G', 'M', 'Y',
+					'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H',
+					'L', 'C', 'K', 'E' };
+
+			// Comprobación de si coincide
+			if (equivalencias[resto] == letra) {
+				this.nif = nif;
+			} else {
+				System.out.println("El número no coincide con la letra");
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("Formato incorrecto");
+		} catch (Exception e){
+			System.out.println("Error desconocideo. Compruebe que el formato sea: 200000000A");
+		}
+	}
+	
+	public String getNif(){
+		return this.nif;
 	}
 }

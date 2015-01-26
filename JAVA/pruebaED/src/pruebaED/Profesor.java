@@ -19,7 +19,7 @@ public class Profesor extends Persona {
 	public void mostrar(){
 		super.mostrar();
 		System.out.println("Departamento: " + this.departamento);
-		System.out.print("Asignaturas que da: " + this.departamento);
+		System.out.print("Asignaturas que da: ");
 		for(String asignatura: this.asignaturas){
 			System.out.print(asignatura + ", ");
 		}

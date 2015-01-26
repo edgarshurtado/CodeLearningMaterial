@@ -7,8 +7,11 @@ public class Main {
 		Persona persona2 = new Persona("Edgar", "SH", 25);
 		String[] asignaturas = {"ED", "Programación"};
 		Persona persona3 = new Profesor("Germán", "Gascón", "Jaume el just",
-				"informática", asignaturas);
+				"informática", new String[]{"ED", "programación"});
+		persona3.setNif("20056399P");
 		persona3.mostrar();
+		
+		System.out.println(persona3.getNif());
 	}
 
 }
