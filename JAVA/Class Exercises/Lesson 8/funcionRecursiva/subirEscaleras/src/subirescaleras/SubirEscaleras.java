@@ -121,16 +121,15 @@ public class SubirEscaleras {
     }
     
     static boolean palindrome1arg(String sentence){
-        char a = sentence.charAt(0);
-        char b = sentence.charAt(sentence.length()-1);
         if (sentence.length() > 2) {
             if (palindrome1arg(sentence.substring(1, sentence.length()-1))) {
-                return a == b;
+                return sentence.charAt(0) == sentence.charAt(sentence.length()-1);
             } else {
                 return false;
             }
         } else {
-            return a == b;
+            //if sentence has a odd number of chars
+            return true;
         }
     }
    
