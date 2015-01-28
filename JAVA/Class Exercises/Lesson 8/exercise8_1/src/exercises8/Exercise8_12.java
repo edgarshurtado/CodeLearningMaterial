@@ -9,9 +9,12 @@ package exercises8;
  *
  * @author Rumil
  */
-public class Main {
-    
-    public static void main(String[] args){
-        
+public class Exercise8_12 {
+    public static int factorial(int num){
+        int result = 1;
+        for (int i = num; i > 0; i--) {
+            result *= i;
+        }
+        return result;
     }
 }

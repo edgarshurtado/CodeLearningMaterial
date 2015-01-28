@@ -16,6 +16,11 @@ public class Exercise8_10 {
     }
     
     public static String triangleType(int a, int b, int c){
+        if (a == b && b == c) {
+            return "Equilateral";
+        } else if (a == b ^ b == c ^ a == c) {
+            return "Isosceles";
+        } else return "Scalene";
         
     }
 }
