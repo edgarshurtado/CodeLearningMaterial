@@ -2,9 +2,8 @@
     Exercise description
 */
 
-package exercise8_1;
+package exercises8;
 
-import java.io.*;
 
 /**
  *
@@ -22,15 +21,8 @@ public class Exercise8_1 {
     }
     
     static void printMatrixInt(int [][] matrix){
-        for (int i = 0; i < matrix.length; i++) {
-            printVectInt(matrix[i]);
+        for (int[] row : matrix) {
+            printVectInt(row);
         }
     }
-    
-    public static void main(String[] args) {
-       int [][] matrix = {{1,2,3},{4,5,6}};
-       
-        printMatrixInt(matrix);
-    }
-
 }
