@@ -10,13 +10,16 @@ package minesweeper;
  * @author Rumil
  */
 public class Board {
-    private Square[][] boardMatrix;
-    int numberOfMines;
-    int[][] positionsAround = 
-        {{1,-1},{1,0},{1,1},{0,-1},{0,1},{-1,-1},{-1,0},{-1,1}};
+    private final Square[][] boardMatrix;
+    private int numberOfMines;
+    private boolean minesExploded;
+    private final int[][] positionsAround; 
     
     public Board(int numberOfMines){
         int[][] minesPositions;
+        positionsAround = 
+                new int[][]{{1,-1},{1,0},{1,1},{0,-1},{0,1},{-1,-1},{-1,0},{-1,1}};
+        minesExploded = false;
         this.boardMatrix = new Square[8][8];
         for (int row = 0; row < this.boardMatrix.length; row++) {
             for (int col = 0; col < this.boardMatrix[0].length; col++) {
@@ -24,8 +27,49 @@ public class Board {
             }
         }
         minesPositions = generateMinesPositions(numberOfMines);
-        setMines(minesPositions);
+        plantMines(minesPositions);
         calcMinesAround(minesPositions);      
+    }
+    
+    public boolean getMinesExploded(){
+        return this.minesExploded;
+    }
+    
+    public void flipSquare(int[] position){
+        try {
+            if ("M".equals(this.boardMatrix[position[0]][position[1]].getValue())) {
+            this.minesExploded = true;
+        }else{
+            flipCascade(position);
+        }
+            
+        } catch (ArrayIndexOutOfBoundsException e) {
+        }        
+    }
+    
+    public void printBoard(){
+        for (int row = 0; row < this.boardMatrix.length; row++) {
+            for (int col = 0; col < this.boardMatrix[0].length; col++) {
+                //The condition makes available print the matrix if we still
+                //on game or if we've exploded a mine
+                if (this.boardMatrix[row][col].getShowValue() || this.minesExploded) {
+                    System.out.print(this.boardMatrix[row][col].getValue() + "|");
+                } else {
+                    if (this.boardMatrix[row][col].getFlagged()) {
+                        System.out.print("F|");
+                    } else {
+                        System.out.print("X|");
+                    }
+                }
+            }//Print the row number at the left of the board
+            System.out.println(" " + (row + 1) + " ");
+        }
+        System.out.println("");
+        //Print the cols number at the bottom of the board
+        for (int col = 0; col < this.boardMatrix[0].length; col++) {
+            System.out.print((col + 1) + " ");
+        }
+        System.out.println("");
     }
     
     private int[][] generateMinesPositions(int numberMines){
@@ -68,7 +112,7 @@ public class Board {
         return minesPositions;
     }
     
-    private void setMines(int[][] positions){
+    private void plantMines(int[][] positions){
         int row;
         int col;
         
@@ -79,8 +123,12 @@ public class Board {
         }
     }
     
-    private void calcMinesAround(int[][] minesPositions){
-        
+    /**
+     * Given a matrix with all the mines positions, calculates the number of mines
+     * each square of the board is in touch. The resulting values are stored in each square.
+     * @param minesPositions Matrix with the positions of the mines.
+     */
+    private void calcMinesAround(int[][] minesPositions){        
         int tempValue;
         for(int[] minePos : minesPositions){
             for(int[] posAr: this.positionsAround){
@@ -92,40 +140,38 @@ public class Board {
         }
     }
     
-    public void flipCascade (int[] initialPosition){
+    public boolean newFlag(int[] position){
+        if (!this.boardMatrix[position[0]][position[1]].getShowValue()){
+            this.boardMatrix[position[0]][position[1]].flag();
+        }
+        return true;
+    }
+    
+    private void flipCascade (int[] initialPosition){
         int[] newPos;
+        boolean flagged;
+        boolean squareAlreadyFlipped;
         try {
-            boolean squareAlreadyFlipped = 
-                this.boardMatrix[initialPosition[0]][initialPosition[1]].getShowValue();
+            squareAlreadyFlipped
+                    = this.boardMatrix[initialPosition[0]][initialPosition[1]].getShowValue();
+            flagged = this.boardMatrix[initialPosition[0]][initialPosition[1]].getFlagged();
             String squareValue
-                    = this.boardMatrix[initialPosition[0]][initialPosition[1]].getValue();
-            if (squareValue != "0" && squareAlreadyFlipped == false) {
+                    = this.boardMatrix[initialPosition[0]][initialPosition[1]].getValue();            
+            //Conditions to flip the square.
+            if (!squareAlreadyFlipped && !"M".equals(squareValue) && !flagged) {
                 this.boardMatrix[initialPosition[0]][initialPosition[1]].flipSquare();
-                for (int[] posAr : this.positionsAround) {
-                    newPos = new int[]{posAr[0] + initialPosition[0],
-                        posAr[1] + initialPosition[1]};
-                    flipCascade(newPos);
+                //Recursiveness
+                if ("0".equals(squareValue)) {
+                    for (int[] posAr : this.positionsAround) {
+                        newPos = new int[]{posAr[0] + initialPosition[0],
+                            posAr[1] + initialPosition[1]};
+                        flipCascade(newPos);
+                    }
                 }
-            }
+        }
         } catch (Exception e) {
         }
     }
     
-    public void printBoard(){
-        for(int row = 0; row < this.boardMatrix.length; row++){            
-            for(int col = 0; col < this.boardMatrix[0].length; col++){                
-                if (this.boardMatrix[row][col].getShowValue()) {
-                    System.out.print(this.boardMatrix[row][col].getValue() + "|");
-                } else{
-                    System.out.print("X|");
-                }
-            }
-            System.out.println(" " + (row+1) + " ");
-        }
-        System.out.println("");
-        for (int col = 0; col < this.boardMatrix[0].length; col++) {
-            System.out.print((col+1) + " ");
-        }
-        System.out.println("");
-    }
+    
 }
