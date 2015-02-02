@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package minesweeper;
 
 /**
  *
- * @author Rumil
+ * @author Edgar S. Hurtado
  */
 public class Square {
     private int minesAround;
@@ -15,8 +11,25 @@ public class Square {
     private boolean showValue;
     
     public Square(){
-        this.value = " ";
+        this.value = "0";
         this.showValue = false;
+    }
+    public void mine(){
+        this.value = "M";
+    }
+    
+    public void flag(){
+        this.value = "F";
+    }
+    
+    public void increaseValueBy1(){
+        if (this.value != "M" && this.value != "F") {
+            this.value = Integer.toString(Integer.parseInt(this.value) + 1);
+        }
+    }
+    
+    public void flipSquare(){
+        this.showValue = true;
     }
     
     public boolean getShowValue(){
