@@ -7,17 +7,22 @@ package minesweeper;
  */
 public class Square {
     private int minesAround;
-    private String value;
-    private boolean showValue;
+    private int value;
+    private boolean flippedSquare;
     private boolean flagged;
+    private boolean isMined;
     
     public Square(){
-        this.value = "0";
-        this.showValue = false;
+        this.value = 0;
+        this.flippedSquare = false;
         this.flagged = false;
     }
-    public void mine(){
-        this.value = "M";
+    public void newMine(){
+        this.isMined = true;
+    }
+    
+    public boolean isMined(){
+        return this.isMined;
     }
     
     public void flag(){
@@ -25,24 +30,24 @@ public class Square {
     }
     
     public void increaseValueBy1(){
-        if (!"M".equals(this.value)) {
-            this.value = Integer.toString(Integer.parseInt(this.value) + 1);
+        if (!this.isMined) {
+            this.value++;
         } else {
         }
     }
     
     public void flipSquare(){
-        this.showValue = true;
+        this.flippedSquare = true;
     }
     
-    public boolean getShowValue(){
-        return this.showValue;
+    public boolean isFlipped(){
+        return this.flippedSquare;
     }
     
-    public boolean getFlagged(){
+    public boolean isFlagged(){
         return this.flagged;
     }
-    public String getValue(){
+    public int getValue(){
         return this.value;
     }    
 }
