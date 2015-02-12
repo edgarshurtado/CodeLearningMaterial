@@ -43,4 +43,38 @@ public class UsefulFunctions {
         }
         return tempInt;
     } 
+    
+    static int[][] randomPositions(int sizeOfGrid, int numberOfPositions) {
+        int vectorIndex = 0;
+        int[][] grid = new int[sizeOfGrid][sizeOfGrid];
+        int[][] tempVector = new int[grid.length][2];
+        int[][] positionsArray = new int[numberOfPositions][2];
+        int[] transponserVector = new int[2];
+        int maxIndex = numberOfPositions;
+        int coordIndex;
+        //Generate a vector with all the possible positions
+        for (int row = 0; row < grid.length; row++) {
+            for (int col = 0; col < grid[0].length; col++) {
+                tempVector[vectorIndex][0] = row;
+                tempVector[vectorIndex][1] = col;
+                vectorIndex++;
+            }
+        }
+        //Select the positions
+        for (int positionIndex = 0;
+                positionIndex < positionsArray.length; positionIndex++) {
+            coordIndex = UsefulFunctions.randomNumber(maxIndex);
+            //Copy chosen values to the final vector
+            positionsArray[positionIndex][0] = tempVector[coordIndex][0];
+            positionsArray[positionIndex][1] = tempVector[coordIndex][1];
+            //Save last position, copy to the used index, reduce the vector max index
+            transponserVector[0] = tempVector[maxIndex - 1][0];
+            transponserVector[1] = tempVector[maxIndex - 1][1];
+            tempVector[coordIndex][0] = transponserVector[0];
+            tempVector[coordIndex][1] = transponserVector[1];
+            maxIndex--;
+
+        }
+        return positionsArray;
+    }
 }
