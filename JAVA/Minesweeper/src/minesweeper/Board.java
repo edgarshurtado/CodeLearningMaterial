@@ -116,7 +116,9 @@ public class Board {
         }
         System.out.println(""); //scape line
     }
-    
+    /**
+     * When the game is over, prints if we have won or if we have lost.
+     */
     public void printGameOver(){
         printBoard(false);
         if (minesExploded) {
@@ -125,7 +127,12 @@ public class Board {
             System.out.println("You've won");            
         }          
     }
-    
+    /**
+     * Given a number of mines, generates that amount of random positions on the
+     * board.
+     * @param numberMines the number of mines we want to create for the game.
+     * @return a matrix with the generated positions
+     */
     private int[][] generateMinesPositions(int numberMines){
         int vectorIndex = 0;
         int[][] tempMinesVector = new int[this.numberOfHidedSquares][2];
@@ -157,7 +164,12 @@ public class Board {
         }
         return minesPositions;
     }
-    
+    /**
+     * Function that plant mines on the positions given by the parameter positions
+     * @param positions array of arrays where each positionas has an array where
+     * the first item is the mine row position and the second one is the mine
+     * column position.
+     */
     private void plantMines(int[][] positions){
         int row;
         int col;
@@ -185,27 +197,39 @@ public class Board {
             }
         }
     }
-    
-    public boolean newFlag(int[] position){
+    /**
+     * Sets a square as flagged
+     * @param position the position enetered by the player where he or she 
+     * wants to set the flag.
+     * @return 
+     */
+    public void newFlag(int[] position){
         if (!this.boardMatrix[position[0]][position[1]].isFlipped()){
-            this.boardMatrix[position[0]][position[1]].flag();
+            this.boardMatrix[position[0]][position[1]].setFlag();
         }
-        return true;
     }
     
+    /**
+     * Recursive function with the logic for the response of the player moves.
+     * This function flips the initial square and all the surrounding sqares that
+     * doesn't have mines. The recursiveness stops in the squares in touch with
+     * some mine.
+     * @param initialPosition The position to start flipp every square recursively.
+     */
     private void flipCascade (int[] initialPosition){
         int[] newPos;
         boolean isFlagged;
         boolean isMined;
         boolean squareAlreadyFlipped;
         try {
+            //Store some values to use them lately with a simplier sintax.
             squareAlreadyFlipped
                     = this.boardMatrix[initialPosition[0]][initialPosition[1]].isFlipped();
             isFlagged = 
                     this.boardMatrix[initialPosition[0]][initialPosition[1]].isFlagged();
             isMined =
                     this.boardMatrix[initialPosition[0]][initialPosition[1]].isMined();
-            int squareValue =                    
+            int minesAround =                    
                     this.boardMatrix[initialPosition[0]][initialPosition[1]].getValue();
             
             //Conditions to flip the square.
@@ -213,7 +237,7 @@ public class Board {
                 this.boardMatrix[initialPosition[0]][initialPosition[1]].flipSquare();
                 this.numberOfHidedSquares--;
                 //Recursiveness
-                if (squareValue == 0) {
+                if (minesAround == 0) {
                     for (int[] posAr : this.positionsAround) {
                         newPos = new int[]{posAr[0] + initialPosition[0],
                             posAr[1] + initialPosition[1]};
