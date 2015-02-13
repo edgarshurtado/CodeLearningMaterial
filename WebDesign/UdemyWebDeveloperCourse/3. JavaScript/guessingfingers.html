@@ -1,0 +1,41 @@
+<!--doctype HTML-->
+<HTML>
+<HEADER>
+	<title>Guessing Fingers</title>
+</HEADER>
+
+<BODY>
+	<p>How many fingers are you holding up?</p>
+
+	<input id="input" type="text" />
+	<button id="start">Guess!</button>
+
+	<script type="text/javascript">	
+
+		alert("prueba");
+
+		document.getElementById("start").onclick=function() {
+			var numberToGuess = document.getElementById("input").value;
+			var guessed = false;
+			var pcGuess = 0;
+			var attempts = 0;
+
+			while(guessed == false){
+				pcGuess = Math.random();
+				pcGuess = pcGuess * 6;
+				pcGuess = Math.floor(pcGuess);
+
+				if(pcGuess == numberToGuess){
+					guessed = true;
+				}
+
+				attempts++;
+			}
+
+			alert("Got it " + pcGuess + " in " + attempts + " attempts.");
+
+		}		
+	</script>
+</BODY>
+
+</HTML>

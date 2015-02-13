@@ -7,18 +7,20 @@ package minesweeper;
 
 /**
  *
- * @author Rumil
+ * @author Edgar S. Hurtado
  */
+
 public class Board {
     private final Square[][] boardMatrix;
     private int numberOfMines;
     private int numberOfHidedSquares;
     private boolean minesExploded;
-    private final int[][] positionsAround; 
-    
+    //Characters legend for the board.
     private final char MINE = '*';
     private final char FLAG = 'F';
     private final char HIDE_SQUARE = 'X';
+    //Helpful vector
+    private final int[][] positionsAround; 
     
     public Board(int numberOfMines, int matrixSize){
         //Atributes asignations
@@ -41,15 +43,30 @@ public class Board {
         plantMines(minesPositions);
         calcMinesAround(minesPositions);      
     }
-    
+    /**
+     * Function to now if the game is over either if we have exploded the mines
+     * or if we have won (flipped all the squares but the mines).
+     * @return a boolean value equal to True when the game is over and false 
+     * when the game stills.
+     */
     public boolean isGameOver(){
         return this.minesExploded || this.numberOfHidedSquares == this.numberOfMines;
     }
-    
-    public boolean getMinesExploded(){
+    /**
+     * Function that allows to know if the playar has explode the mines.
+     * @return boolean value equal to True if the mines are exploded or equal
+     * to false if the mines hasn't been exploded yet.
+     */
+    private boolean getMinesExploded(){
         return this.minesExploded;
     }
     
+    /**
+     * Function to flip a single square. If the player doesn't explode a mine
+     * doing this, the function calls the recursive function flipCascade.
+     * @param position array with the row as firt element and column as second.
+     * The up-left corner position is 0,0
+     */
     public void flipSquare(int[] position){
         try {
             if (this.boardMatrix[position[0]][position[1]].isMined()) {
@@ -66,7 +83,8 @@ public class Board {
      * unknown value.
      * 
      * If the game is over prints all the values.
-     * @param cheats True if the user wants to see the mines on the board
+     * @param cheats True if the user wants to see the mines position on the board
+     * while the game is on going. This feature was added for testing.
      */
     public void printBoard(boolean cheats){
         //Go through the board matrix
@@ -76,8 +94,8 @@ public class Board {
                     //Print the mines if the player have activated the cheats
                     System.out.print(MINE + "|");
                 }else {
-                //The condition makes available print the matrix if we still
-                    //on game or if we've exploded the mines
+                //Print logic without cheats.The condition allows to print
+                    //a diferent matrix wheter the game stills going or not.
                     if (this.boardMatrix[row][col].isFlipped() || this.minesExploded) {
                         System.out.print(this.boardMatrix[row][col].getValue() + "|");
                     } else {
@@ -137,15 +155,6 @@ public class Board {
             tempMinesVector[coordIndex][1] = transponserVector[1];
             maxIndex--;
         }
-//        //Print the selected positions for testing
-//        for (int i = 0; i < minesPositions.length; i++) {
-//            for (int j = 0; j < minesPositions[0].length; j++) {
-//                System.out.print(minesPositions[i][j] + " ");                
-//            }
-//            System.out.print("| ");
-//        }
-//        System.out.println("");
-        
         return minesPositions;
     }
     

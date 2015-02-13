@@ -1,0 +1,300 @@
+<!doctype HTML>
+
+<html>
+<head>
+	<title>Edgar's BBC</title>
+
+	<style type="text/css">
+		
+		body{
+			margin: 0;
+			font-family: arial, helvetica, sans-serif;
+		}
+
+		#topbar{
+			background-color: #7A0000;
+			width: 100%;
+			height: 40px;
+			color: white;
+		}
+
+		.fixedwidth{
+			width: 992px;
+			margin: 0 auto;
+		}
+
+		#logo{
+			height: 40px;
+			float:left;
+			padding-right: 5px; 
+			border-right: 1px solid #990000;
+		}
+
+		#logo img{
+			position: relative;
+			top:5px;
+		}
+
+		#login{
+			height: 40px;
+			float:left;
+			padding-right: 100px; 
+			border-right: 1px solid #990000;
+		}
+
+		#login img{
+			position: relative;
+			float: left;
+			top: 12px;
+			left: 10px;
+			margin-right: 12px;
+		}
+
+		#login span{
+			position: relative;
+			top: 13px;
+		}
+
+		#topmenubar{
+		}
+
+		#topmenubar ul{
+			margin: 0;
+			list-style: none;
+			
+		}
+
+		#topmenubar li{
+			border-right: 1px solid #990000;
+			float: left;
+			padding: 12px 15px 11px 10px;
+			font-size: 0.9em;
+		}
+		
+		#searchbox{
+			float:left;
+			padding: 7px 0 0 10px;	
+		}
+
+		#searchbox input{
+			background-image: url("images/magnify.jpg");
+			background-repeat: no-repeat;
+			background-position: right center;
+			width: 125px;
+			font-size: 0.9em;
+			padding-left: 10px
+		}
+
+		.breakdiv{
+			clear:both;
+		}
+
+		#menubar{
+			background-color: #990000;
+			height: 100px;
+		}
+
+		#menubar p{
+			margin: 0;
+			font-size: 3em;
+			padding: 10px 0 0 0;
+
+		}
+
+		#menubar span{
+			font-size: 0.5em;
+		}
+
+		#sections{
+			background-color: #3E0C0D;
+			height: 30px;
+			margin: 5px 0 0 0;
+		}
+
+		#sections ul{
+			position: relative;
+			top: 9px;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			font-size: 0.7em;
+		}
+
+		#sections li{
+			float: left;
+			padding: 0 10px 0 10px;
+			border-right: 1px solid #7A0000;
+		}
+
+		#sections li:hover{
+			text-decoration: underline;
+		}
+
+		#homesection{
+			background-color: white;
+			height: 20px;
+			position: relative;
+			top: -9px;
+			padding-top: 10px !important;
+			color: black;
+			padding: 6px 0 6px 0;
+			border-right: none;
+		}
+
+		#content{
+			color: grey;
+		}
+
+		a {
+			color: #1F4F82;
+			text-decoration: none;
+		}
+
+		a:hover{
+			text-decoration: underline;
+		}
+
+		.article{
+			width: 650px;
+			float:left;
+		}
+
+		.article img{
+			width: 350px;
+			float: left;
+			margin-right: 10px;
+		}
+
+		.videolink{
+			background-repeat: no-repeat;
+			background-position: left 12%;
+			background-size: 20px;
+			background-image: url("images/videoicon.png");
+			padding-left: 20px;
+		}
+
+		#magazinebox{
+			background-color: #E8E8E8;
+			width: 340px;
+			float: right;
+			margin-top: 10px;
+		}
+
+		.magazinearticle{
+			position: relative;
+			top: -12px;
+			font-size: 0.8em;
+		}
+
+		#magazinebox h2{
+			margin: 10px 0 0 0;
+		}
+
+		.magazinearticle img{
+			float: left;
+			width: 100px;
+			margin-right: 10px;
+		}
+
+		.magazinearticle p{
+			position: relative;
+			top:-10px;
+		}
+
+	</style>
+</head>
+
+<body>
+
+	<div id="container">
+
+		<div id="topbar">
+
+			<div class="fixedwidth">
+
+				<div id="logo">
+					<img src="images/bbclogo.jpg" />
+				</div>
+
+				<div id="login">
+					<img src="images/login.jpg" /> <span>Log in</span>
+				</div>
+
+				<div id="topmenubar">
+					<ul>
+						<li>News</li>
+						<li>Sport</li>
+						<li>Weather</li>
+						<li>Earth</li>
+						<li>Future</li>
+						<li>Shop</li>
+						<li>TV</li>
+						<li>Radio</li>
+						<li>More...</li>
+					</ul>
+				</div>
+				<div id="searchbox">
+					<input type="text" placeholder="Search"/>
+				</div>
+
+			</div>
+			<div class="breakdiv"></div>
+
+			<div id="menubar">
+				<div class="fixedwidth">
+					<p>News <span>UK</span></p>
+					<div id="sections">
+						<ul>
+							<li id="homesection">Home</li>
+							<li>World</li>
+							<li>UK</li>
+							<li>England</li>
+							<li>N. Ireland</li>
+							<li>Scotland</li>
+							<li>Wales</li>
+							<li>Business</li>
+							<li>Politics</li>
+							<li>Health</li>
+							<li>Education</li>
+							<li>Sci/Enviroment</li>
+							<li>Technology</li>
+							<li style=border-right:none;>Entertainment &amp Arts</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		<div id="content">
+			<div class="fixedwidth">
+				<div class="article">
+					<h2><a href="">CIA report prompts US security alert</a></h2>
+					<img src="images/image.jpg" />
+					<p>CIA Director John Brennan defends his agency's past interrogation programme but admits some techniques used against detainees were "abhorrent".</p>
+					<p class="links">
+						<a class="videolink" href="">'Unknowable' if CIA tactics worked Watch Washington's 'worst kept secret'
+						</a>
+					</p>
+				</div>
+
+				<div id="magazinebox">
+					<h2><a href="">Magazine</a></h2>
+					<div class="magazinearticle">
+						<img src="images/mag1.png">
+						<h3><a href="">Under Water</a></h3>
+						<p>Will freak rainstorms and floods help ease California drought?</p>
+					</div>
+
+					<div class="breakdiv"></div>
+
+					<div class="magazinearticle">
+						<img src="images/mag2.png">
+						<h3><a href="">Magic fingers</a></h3>
+						<p>The intricate fabric that takes months to make</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+</html>
