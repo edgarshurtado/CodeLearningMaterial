@@ -23,6 +23,7 @@ public class EdgarSanchezHurtado_buscaminas {
         while (true) {
         System.out.println("1. Flip square");
         System.out.println("2. New flag");
+        System.out.println("3. Remove flag");
         System.out.print("Please, select an option: ");
         option = UsefulFunctions.intImput();
             if (option >= 1 && option <= 3) {
@@ -80,8 +81,8 @@ public class EdgarSanchezHurtado_buscaminas {
                     board.newFlag(enterPosition());
                     break;
                 case 3:
-                    System.out.println("Show the mines");
-                    board.printBoard(true);
+                    System.out.println("Remove a flag");
+                    board.removeFlag(enterPosition());
                     break;
                 default:
                     throw new AssertionError();
