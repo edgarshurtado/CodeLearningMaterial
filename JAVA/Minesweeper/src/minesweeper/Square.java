@@ -27,6 +27,9 @@ public class Square {
     public void setFlag(){
         this.flagged = true;
     }
+    public void removeFlag(){
+        this.flagged = false;
+    }    
     public void increaseValueBy1(){
         if (!this.isMined) {
             this.minesAround++;

@@ -97,7 +97,11 @@ public class Board {
                 //Print logic without cheats.The condition allows to print
                     //a diferent matrix wheter the game stills going or not.
                     if (this.boardMatrix[row][col].isFlipped() || this.minesExploded) {
-                        System.out.print(this.boardMatrix[row][col].getValue() + "|");
+                        if (this.boardMatrix[row][col].isMined()) {
+                            System.out.print(MINE + "|");
+                        } else {
+                            System.out.print(this.boardMatrix[row][col].getValue() + "|");
+                        }
                     } else {
                         if (this.boardMatrix[row][col].isFlagged()) {
                             System.out.print(FLAG + "|");
@@ -205,6 +209,12 @@ public class Board {
      */
     public void newFlag(int[] position){
         if (!this.boardMatrix[position[0]][position[1]].isFlipped()){
+            this.boardMatrix[position[0]][position[1]].setFlag();
+        }
+    }
+    
+    public void removeFlag(int[] position){
+        if (!this.boardMatrix[position[0]][position[1]].isFlagged()){
             this.boardMatrix[position[0]][position[1]].setFlag();
         }
     }
