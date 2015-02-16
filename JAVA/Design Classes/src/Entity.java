@@ -3,10 +3,16 @@ public class Entity {
 	private float[] position;
 	private boolean isStatic;
 	private boolean isVisible;
-	private long ID;
 	private boolean isKinematic;
-	
+	private long ID;
+	private static long nObjects = 0; //class attribute, not object attribute
 	public Entity(){
+		this.position[0]=0;
+		this.position[1]=0;
+		this.isStatic = true;
+		this.isKinematic = true;
+		Entity.nObjects = Entity.nObjects + 1;
+		this.ID = Entity.nObjects;
 		
 	}
 	
