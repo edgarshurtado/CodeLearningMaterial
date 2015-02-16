@@ -6,3 +6,10 @@ What do you think are the pros and cons of manually choosing when to create a co
 
 Why do you think some version control systems, like Git, allow saving multiple files in one commit, while others, like Google Docs, treat each file separately?
 	Because it was develop thinking in coding. And in coding we tend to use multiple files related each other.
+
+How can you use the commands git log and git diff to view the history of files?
+	log for seeing the commits of the repo
+	diff for seeing the changes made in the first commit to make the second commit
+
+How might using version control make you more confident to make changes that could break something?
+	Because I can go back to a previous version to see what I broke
