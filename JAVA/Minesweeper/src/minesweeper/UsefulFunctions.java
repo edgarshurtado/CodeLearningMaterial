@@ -15,6 +15,7 @@ import java.util.Random;
  * @author Rumil
  */
 public class UsefulFunctions {
+    
     static BufferedReader dataIn = new BufferedReader
         (new InputStreamReader(System.in));
     
@@ -43,6 +44,20 @@ public class UsefulFunctions {
         }
         return tempInt;
     } 
+    
+    static String strInput(){
+        String tempInput = "";
+        boolean correctInput = false;
+        while(!correctInput){
+            try {
+                tempInput = dataIn.readLine();
+                correctInput = true;
+            } catch (IOException | NumberFormatException e) {
+                System.out.println("Bad input, try again");
+            }
+        }
+        return tempInput;
+    }
     
     static int[][] randomPositions(int sizeOfGrid, int numberOfPositions) {
         int vectorIndex = 0;
