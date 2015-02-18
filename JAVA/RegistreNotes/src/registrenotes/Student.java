@@ -5,6 +5,7 @@
  */
 package registrenotes;
 
+
 /**
  *
  * @author Rumil
@@ -19,8 +20,8 @@ public class Student {
     private Transcript transcript;
     
     public Student(){
-        System.out.print("Nombre de alumno: ");
         
     }
+   
     
 }

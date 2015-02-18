@@ -5,6 +5,7 @@
 package registrenotes;
 
 import java.io.*;
+import es.edgarsh.usefulfunctions.KeyboardInput;
 
 /**
  *
