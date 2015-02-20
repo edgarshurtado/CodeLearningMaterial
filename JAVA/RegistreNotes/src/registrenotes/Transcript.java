@@ -10,10 +10,12 @@ package registrenotes;
  * @author Rumil
  */
 public class Transcript {
-    private static String[] subjects = {"PRG", "BDA", "EDD"};
-    private int[][] transcript = new int[3][3];
+    private static final String[] subjects = {"PRG", "BDA", "EDD"};
+    private int[][] transcript;
     
     public Transcript(){
+        this.transcript = new int[Transcript.subjects.length][3];
+        
         for (int i = 0; i < subjects.length; i++) {
             for (int j = 0; j < 10; j++) {
                 this.transcript[i][j] = -1;    
