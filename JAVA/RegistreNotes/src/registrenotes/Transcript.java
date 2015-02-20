@@ -53,6 +53,11 @@ public class Transcript {
         this.transcript[subjectIndex][evalIndex] = newMark;
     }
     
+    /**
+     * getter for the transcript
+     * @return A matrix with the marks. Each row represents a subject and each
+     * column represents an evaluation
+     */
     public int[][] getTranscript (){
         return this.transcript;
     }
