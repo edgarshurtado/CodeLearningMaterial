@@ -15,7 +15,7 @@ public class Student {
     private String name;
     private int telef;
     private String adress;
-    private int number;
+    private int adressNumber;
     private int cp;
 
     public int getTelef() {
@@ -35,11 +35,11 @@ public class Student {
     }
 
     public int getNumber() {
-        return number;
+        return adressNumber;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setAdressNumber(int number) {
+        this.adressNumber = number;
     }
 
     public int getCp() {
