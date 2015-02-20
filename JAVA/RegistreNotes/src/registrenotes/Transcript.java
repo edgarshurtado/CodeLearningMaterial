@@ -52,4 +52,8 @@ public class Transcript {
         // Value assignment
         this.transcript[subjectIndex][evalIndex] = newMark;
     }
+    
+    public int[][] getTranscript (){
+        return this.transcript;
+    }
 }
