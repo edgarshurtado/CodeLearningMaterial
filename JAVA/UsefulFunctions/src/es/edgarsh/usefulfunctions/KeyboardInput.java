@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 
 /**
  *
- * @author Rumil
+ * @author Edgar S. Hurtado
  */
 public class KeyboardInput {
     

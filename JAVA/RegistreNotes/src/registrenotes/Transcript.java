@@ -7,7 +7,7 @@ package registrenotes;
 
 /**
  *
- * @author Rumil
+ * @author Edgar S. Hurtado
  */
 public class Transcript {
     private static final String[] subjects = {"PRG", "BDA", "EDD"};

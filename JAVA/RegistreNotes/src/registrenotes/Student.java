@@ -8,7 +8,7 @@ package registrenotes;
 
 /**
  *
- * @author Rumil
+ * @author Edgar S. Hurtado
  */
 public class Student {
     
@@ -63,5 +63,8 @@ public class Student {
         return this.name;
     }
    
+    public void setMark(int newMark, int eval, String Subject) {
+        this.transcript.setSingleMark(newMark, eval, Subject);
+    }
     
 }
