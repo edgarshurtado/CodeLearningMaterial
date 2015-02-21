@@ -71,6 +71,21 @@ public class Transcript {
     }
     
     /**
+     * Ask for a trimester between 1 and 3.
+     * @return a valid trimester.
+     */
+    public static int trimesterInput() {
+        int trimester = KeyboardInput.intImput();
+        while (trimester < 1 || trimester > 3) {
+            System.out.println("Error.");
+            System.out.println("Trimester range is between 1 and 3.");
+            System.out.print("Try again: ");
+            trimester = KeyboardInput.intImput();
+        }
+        return trimester;
+    }
+    
+    /**
      * getter for the transcript
      * @return A matrix with the marks. Each row represents a subject and each
      * column represents an evaluation
