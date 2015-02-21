@@ -88,6 +88,29 @@ public class RegistreNotesEdgarSanchezHurtado {
     }
     
     /**
+     * Prints the student personal data and his/her transcript
+     * @param students 
+     */
+    static void showStudentData(Student[] students) {
+        
+        System.out.print("Please, insert a student's name: ");
+        
+        String student = KeyboardInput.strInput();
+        int studentIndex = searchStudent(student, students);
+        
+        if (studentIndex >= 0) {
+            System.out.println("Name: " + students[studentIndex].getName());;
+            System.out.println("Adress: " + students[studentIndex].getAdress() +
+                    " nº " + students[studentIndex].getNumber() + 
+                    " cp " + students[studentIndex].getCp());
+            System.out.println("");
+            students[studentIndex].printTranscript();
+        } else {
+            System.out.println("Student wasn't found");
+        }
+    }
+    
+    /**
      * Testing set of students.
      * @return 
      */
@@ -121,6 +144,7 @@ public class RegistreNotesEdgarSanchezHurtado {
     public static void main(String[] args) {
         Student[] students = testStudents();
         
+        showStudentData(students);
         
     }
 }

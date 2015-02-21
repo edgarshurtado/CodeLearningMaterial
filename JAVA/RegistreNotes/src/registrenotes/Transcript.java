@@ -116,4 +116,8 @@ public class Transcript {
     public int[][] getTranscript (){
         return this.transcript;
     }
+    
+    public static String[] getSubjects () {
+        return subjects;
+    }
 }

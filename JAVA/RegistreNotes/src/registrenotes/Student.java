@@ -18,6 +18,7 @@ public class Student {
     private String adress;
     private int adressNumber;
     private int cp;
+    private Transcript transcript;
 
     public int getTelef() {
         return telef;
@@ -59,7 +60,6 @@ public class Student {
     public void setCp(int cp) {
         this.cp = cp;
     }
-    private Transcript transcript;
     
     public Student(){
         this.transcript = new Transcript();
@@ -77,4 +77,28 @@ public class Student {
         this.transcript.setSingleMark(newMark, eval, Subject);
     }
     
+    public int[][] getTranscript() {
+        return this.transcript.getTranscript();
+    }
+    
+    /**
+     * Prints the student transcript formated.
+     */
+    public void printTranscript() {
+        int[][] studentTranscript = this.getTranscript();
+        String[] subjects = Transcript.getSubjects();
+        
+        for (int subjectIndex = 0; subjectIndex < subjects.length 
+                ; subjectIndex++) {
+            System.out.print(subjects[subjectIndex] + " ");
+            for (int mark : studentTranscript[subjectIndex]) {
+                if (mark == -1 ) {
+                    System.out.print("NP ");
+                } else {
+                    System.out.print(mark + " ");
+                }                
+            }
+            System.out.println("");
+        }
+    }
 }
