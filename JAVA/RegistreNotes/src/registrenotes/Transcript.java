@@ -17,7 +17,7 @@ public class Transcript {
         this.transcript = new int[Transcript.subjects.length][3];
         
         for (int i = 0; i < subjects.length; i++) {
-            for (int j = 0; j < 10; j++) {
+            for (int j = 0; j < subjects.length; j++) {
                 this.transcript[i][j] = -1;    
             }
         }
