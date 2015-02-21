@@ -88,14 +88,17 @@ public class Student {
         int[][] studentTranscript = this.getTranscript();
         String[] subjects = Transcript.getSubjects();
         
+        System.out.println("Subject \t1 Trimester\t2 Trimester\t3 Trimester");
+        System.out.println("--------------------------------------------------"
+                + "----------");
         for (int subjectIndex = 0; subjectIndex < subjects.length 
                 ; subjectIndex++) {
-            System.out.print(subjects[subjectIndex] + " ");
+            System.out.print(subjects[subjectIndex] + " \t\t");
             for (int mark : studentTranscript[subjectIndex]) {
                 if (mark == -1 ) {
-                    System.out.print("NP ");
+                    System.out.print("NP \t\t");
                 } else {
-                    System.out.print(mark + " ");
+                    System.out.print(mark + " \t\t");
                 }                
             }
             System.out.println("");

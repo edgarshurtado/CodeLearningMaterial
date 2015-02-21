@@ -99,10 +99,15 @@ public class RegistreNotesEdgarSanchezHurtado {
         int studentIndex = searchStudent(student, students);
         
         if (studentIndex >= 0) {
+            System.out.println("");
             System.out.println("Name: " + students[studentIndex].getName());;
             System.out.println("Adress: " + students[studentIndex].getAdress() +
                     " nº " + students[studentIndex].getNumber() + 
                     " cp " + students[studentIndex].getCp());
+            System.out.println("Phone number: " + 
+                    students[studentIndex].getTelef());
+            System.out.println("");
+            System.out.println("Transcript");
             System.out.println("");
             students[studentIndex].printTranscript();
         } else {
@@ -132,10 +137,10 @@ public class RegistreNotesEdgarSanchezHurtado {
         students[1].setCp(46701);
         //Student 3
         students[2] = new Student();
-        students[2].setName("Aida Hurtado Ortí");
-        students[2].setAdress("C/ Ferrocaril");
+        students[2].setName("Niko");
+        students[2].setAdress("C/ Falsa");
         students[2].setTelef(987123654);
-        students[2].setAdressNumber(5);
+        students[2].setAdressNumber(123);
         students[2].setCp(36000);
         
         return students;
