@@ -64,10 +64,10 @@ public class Transcript {
      * @return a int within 0-10
      */
     private int markInput () {
-        int mark = KeyboardInput.intImput();
+        int mark = KeyboardInput.intInput();
         while (mark > 10 || mark < 0) {
             System.out.println("Invalid mark. Try again: ");
-            mark = KeyboardInput.intImput();
+            mark = KeyboardInput.intInput();
         }
         return mark;
     }
@@ -77,12 +77,12 @@ public class Transcript {
      * @return a valid trimester.
      */
     public static int trimesterInput() {
-        int trimester = KeyboardInput.intImput();
+        int trimester = KeyboardInput.intInput();
         while (trimester < 1 || trimester > 3) {
             System.out.println("Error.");
             System.out.println("Trimester range is between 1 and 3.");
             System.out.print("Try again: ");
-            trimester = KeyboardInput.intImput();
+            trimester = KeyboardInput.intInput();
         }
         return trimester;
     }
@@ -98,11 +98,11 @@ public class Transcript {
             System.out.println((i+1) + ". " + subjects[i]); //i + 1 for the options
         }
         
-        int option = KeyboardInput.intImput();
+        int option = KeyboardInput.intInput();
         
         while (option < 1 || option > subjects.length ){
             System.out.print("Bad input. Try again: ");
-            option = KeyboardInput.intImput();
+            option = KeyboardInput.intInput();
         }
         
         return subjects[option - 1]; // option - 1 to use subjects index

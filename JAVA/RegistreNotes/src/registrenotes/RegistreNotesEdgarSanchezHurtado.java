@@ -29,7 +29,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         while (true) {
             try {
                 System.out.print("Student phone number: ");
-                student.setTelef(KeyboardInput.intImput());
+                student.setTelef(KeyboardInput.intInput());
                 break;
             } catch (Error e) {
                 System.out.println("Error in number. It should have 9 digits");
@@ -41,10 +41,10 @@ public class RegistreNotesEdgarSanchezHurtado {
         student.setAdress(KeyboardInput.strInput());
         System.out.println("");
         System.out.print("Student adress number: ");
-        student.setAdressNumber(KeyboardInput.intImput());
+        student.setAdressNumber(KeyboardInput.intInput());
         System.out.println("");
         System.out.print("Student cp: ");
-        student.setCp(KeyboardInput.intImput());
+        student.setCp(KeyboardInput.intInput());
         
         return student;
     }
@@ -61,7 +61,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         
         for (Student student : students){
             System.out.print("Mark for " + student.getName() + " : ");
-            mark = KeyboardInput.intImput();
+            mark = KeyboardInput.intInput();
             student.setMark(mark, trimester, subject);
         }
     }

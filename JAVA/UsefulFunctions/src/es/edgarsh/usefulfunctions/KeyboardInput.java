@@ -18,7 +18,7 @@ public class KeyboardInput {
     static BufferedReader dataIn = new BufferedReader
         (new InputStreamReader(System.in));
     
-    public static int intImput(){
+    public static int intInput(){
         //Function for allow keyboard integer inputs
         
         int tempInt = 0;
