@@ -49,6 +49,11 @@ public class RegistreNotesEdgarSanchezHurtado {
         return student;
     }
     
+    /**
+     * Promps the user for a subject and trimester and changes the mark of
+     * every student on that combination.
+     * @param students 
+     */
     static void evaluateTrimester(Student[] students) {
         int trimester;
         String subject;
@@ -61,12 +66,32 @@ public class RegistreNotesEdgarSanchezHurtado {
         
         for (Student student : students){
             System.out.print("Mark for " + student.getName() + " : ");
-            mark = KeyboardInput.intInput();
+            mark = Transcript.markInput();
             student.setMark(mark, trimester, subject);
         }
     }
+    /**
+     * Scan an array for a student's name
+     * @param name
+     * @return int index of the array where's the student. Returns -1 if the
+     * student hasn't been found
+     */
+    static int searchStudent(String name, Student[] students) {
+        
+        for (int i = 0; i < students.length; i++) {
+            if (name.equals(students[i].getName())) {
+                return i; //If the student name is in the array
+            }
+        }
+        
+        return -1; //If the student isn't in the array
+    }
     
-     static Student[] testStudents() {
+    /**
+     * Testing set of students.
+     * @return 
+     */
+    static Student[] testStudents() {
         Student[] students = new Student[3];
         //Student 1
         students[0] = new Student();
@@ -96,7 +121,6 @@ public class RegistreNotesEdgarSanchezHurtado {
     public static void main(String[] args) {
         Student[] students = testStudents();
         
-        evaluateTrimester(students);
+        
     }
-
 }

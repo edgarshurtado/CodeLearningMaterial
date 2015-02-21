@@ -63,7 +63,7 @@ public class Transcript {
      * user for another value.
      * @return a int within 0-10
      */
-    private int markInput () {
+    public static int markInput () {
         int mark = KeyboardInput.intInput();
         while (mark > 10 || mark < 0) {
             System.out.println("Invalid mark. Try again: ");
