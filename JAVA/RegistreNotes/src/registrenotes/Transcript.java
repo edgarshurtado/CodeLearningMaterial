@@ -61,7 +61,6 @@ public class Transcript {
     /**
      * Waits for the user input. If the mark isn't within 0-10, prompts the 
      * user for another value.
-     * @param mark int
      * @return a int within 0-10
      */
     private int markInput () {
