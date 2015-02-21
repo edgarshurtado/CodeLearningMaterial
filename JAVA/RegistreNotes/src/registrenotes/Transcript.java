@@ -5,6 +5,8 @@
  */
 package registrenotes;
 
+import es.edgarsh.usefulfunctions.KeyboardInput;
+
 /**
  *
  * @author Edgar S. Hurtado
@@ -36,7 +38,7 @@ public class Transcript {
         int evalIndex = eval -1;
         
         //Error control
-        if (newMark < -1) throw new Error();
+        newMark = evaluateMark(newMark);
         
         if (evalIndex < 0 || evalIndex >= Transcript.subjects.length) {
             throw new Error();
@@ -51,6 +53,21 @@ public class Transcript {
         
         // Value assignment
         this.transcript[subjectIndex][evalIndex] = newMark;
+    }
+    
+    /**
+     * Evaluates whether the mark isn't lower than 0 or greater than 10. If the 
+     * mark parameter isn't within this range, prompts the user for another 
+     * value.
+     * @param mark int
+     * @return a int within 0-10
+     */
+    private int evaluateMark (int mark) {
+        while (mark > 10 || mark < 0) {
+            System.out.println("Invalid mark. Try again: ");
+            mark = KeyboardInput.intImput();
+        }
+        return mark;
     }
     
     /**

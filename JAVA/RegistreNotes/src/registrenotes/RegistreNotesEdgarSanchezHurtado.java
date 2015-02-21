@@ -54,13 +54,13 @@ public class RegistreNotesEdgarSanchezHurtado {
         String subject;
         int mark;
         
-        System.out.println("Wich subject: ");
+        System.out.print("Wich subject: ");
         subject = KeyboardInput.strInput();
-        System.out.println("Wich trimester: ");
+        System.out.print("Wich trimester: ");
         trimester = KeyboardInput.intImput();
         
         for (Student student : students){
-            System.out.println("Mark for " + student.getName() + " : ");
+            System.out.print("Mark for " + student.getName() + " : ");
             mark = KeyboardInput.intImput();
             student.setMark(mark, trimester, subject);
         }
@@ -96,6 +96,7 @@ public class RegistreNotesEdgarSanchezHurtado {
     public static void main(String[] args) {
         Student[] students = testStudents();
         
+        evaluateTrimester(students);
     }
 
 }
