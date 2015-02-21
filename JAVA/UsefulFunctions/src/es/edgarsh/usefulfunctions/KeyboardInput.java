@@ -48,5 +48,7 @@ public class KeyboardInput {
         return tempInput;
     }
     
-    
+    public static boolean validateTelef(int telef) {
+        return (telef / 100000000) > 0 && (telef / 100000000) < 10; 
+    }
 }

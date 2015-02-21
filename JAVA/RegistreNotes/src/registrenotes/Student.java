@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package registrenotes;
+import es.edgarsh.usefulfunctions.KeyboardInput;
 
 
 /**
@@ -22,8 +23,17 @@ public class Student {
         return telef;
     }
 
+    /**
+     * Set the telef if the phone number parameter is valid.
+     * @param telef int
+     * @throws Error if the number isn't valid
+     */
     public void setTelef(int telef) {
-        this.telef = telef;
+        if (KeyboardInput.validateTelef(telef)) {
+            this.telef = telef;
+        } else {
+            throw new Error();
+        }
     }
 
     public String getAdress() {

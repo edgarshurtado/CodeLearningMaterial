@@ -15,13 +15,27 @@ import es.edgarsh.usefulfunctions.KeyboardInput;
 
 public class RegistreNotesEdgarSanchezHurtado {
 
+    /**
+     * Creates a new Student instance and ask the user to introduce the student
+     * personal data
+     * @return a Student object with the values inicialiced.
+     */
     static Student altaAlumne() {
         Student student = new Student();
         System.out.print("Student name (first name and surnames): ");
         student.setName(KeyboardInput.strInput());
         System.out.println("");
-        System.out.print("Student phone number: ");
-        student.setTelef(KeyboardInput.intImput());
+        
+        while (true) {
+            try {
+                System.out.print("Student phone number: ");
+                student.setTelef(KeyboardInput.intImput());
+                break;
+            } catch (Error e) {
+                System.out.println("Error in number. It should have 9 digits");
+            }
+        }
+        
         System.out.println("");
         System.out.print("Student street: ");
         student.setAdress(KeyboardInput.strInput());
@@ -36,8 +50,8 @@ public class RegistreNotesEdgarSanchezHurtado {
     }
     
     public static void main(String[] args) {
-       Student student1 = altaAlumne();
-        System.out.println(student1.getName());
+        Student student1 = altaAlumne();
+        
     }
 
 }
