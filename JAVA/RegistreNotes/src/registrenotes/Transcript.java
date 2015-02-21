@@ -39,7 +39,9 @@ public class Transcript {
         int evalIndex = eval -1;
         
         //Error control
-        newMark = evaluateMark(newMark);
+        if (newMark > 10 || newMark < 0) {
+            throw new Error();
+        }
         
         if (evalIndex < 0 || evalIndex >= Transcript.subjects.length) {
             throw new Error();
@@ -57,13 +59,13 @@ public class Transcript {
     }
     
     /**
-     * Evaluates whether the mark isn't lower than 0 or greater than 10. If the 
-     * mark parameter isn't within this range, prompts the user for another 
-     * value.
+     * Waits for the user input. If the mark isn't within 0-10, prompts the 
+     * user for another value.
      * @param mark int
      * @return a int within 0-10
      */
-    private int evaluateMark (int mark) {
+    private int markInput () {
+        int mark = KeyboardInput.intImput();
         while (mark > 10 || mark < 0) {
             System.out.println("Invalid mark. Try again: ");
             mark = KeyboardInput.intImput();
