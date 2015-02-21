@@ -49,9 +49,31 @@ public class RegistreNotesEdgarSanchezHurtado {
         return student;
     }
     
-    public static void main(String[] args) {
-        Student student1 = altaAlumne();
+    static void evaluateTrimester(Student[] students) {
+        int trimester;
+        String subject;
+        int mark;
         
+        System.out.println("Wich subject: ");
+        subject = KeyboardInput.strInput();
+        System.out.println("Wich trimester: ");
+        trimester = KeyboardInput.intImput();
+        
+        for (Student student : students){
+            System.out.println("Mark for " + student.getName() + " : ");
+            mark = KeyboardInput.intImput();
+            student.setMark(mark, trimester, subject);
+        }
+    }
+    
+    public static void main(String[] args) {
+        Student[] students = new Student[3];
+        for (int i = 0; i < students.length; i++) {
+            students[i] = altaAlumne();
+        }
+        
+        System.out.println("Testing new function");
+        evaluateTrimester(students);
     }
 
 }
