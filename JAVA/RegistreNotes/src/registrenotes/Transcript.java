@@ -12,6 +12,7 @@ import es.edgarsh.usefulfunctions.KeyboardInput;
  * @author Edgar S. Hurtado
  */
 public class Transcript {
+    
     private static final String[] subjects = {"PRG", "BDA", "EDD"};
     private int[][] transcript;
     
@@ -28,7 +29,7 @@ public class Transcript {
     /**
      * Changes a single mark in the transcript
      * @param eval A value between 1 and 3.
-     * @param subject The code of a subject. Choose between PRG, BDA or EDD
+     * @param subject The code of a subject.
      * @param newMark The mark to add.
      * @throws Error if the newMark es negative or either eval or subject are 
      * incorrect.
@@ -83,6 +84,27 @@ public class Transcript {
             trimester = KeyboardInput.intImput();
         }
         return trimester;
+    }
+    
+    /**
+     * Prompts the diferent subjects available and asks the user to insert 1 
+     * option until it's correct.
+     * @return String of a subject in subjects
+     */
+    public static String subjectInput() {
+        System.out.println("---Select a subject--");
+        for (int i = 0; i < subjects.length; i++) {
+            System.out.println((i+1) + ". " + subjects[i]); //i + 1 for the options
+        }
+        
+        int option = KeyboardInput.intImput();
+        
+        while (option < 1 || option > subjects.length ){
+            System.out.print("Bad input. Try again: ");
+            option = KeyboardInput.intImput();
+        }
+        
+        return subjects[option - 1]; // option - 1 to use subjects index
     }
     
     /**

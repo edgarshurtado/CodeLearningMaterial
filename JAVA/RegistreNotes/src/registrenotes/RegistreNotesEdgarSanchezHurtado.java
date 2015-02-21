@@ -55,9 +55,9 @@ public class RegistreNotesEdgarSanchezHurtado {
         int mark;
         
         System.out.print("Wich subject: ");
-        subject = KeyboardInput.strInput();
+        subject = Transcript.subjectInput();
         System.out.print("Wich trimester: ");
-        trimester = KeyboardInput.intImput();
+        trimester = Transcript.trimesterInput();
         
         for (Student student : students){
             System.out.print("Mark for " + student.getName() + " : ");
