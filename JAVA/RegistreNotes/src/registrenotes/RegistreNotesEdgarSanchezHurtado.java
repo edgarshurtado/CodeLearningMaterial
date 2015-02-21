@@ -66,14 +66,32 @@ public class RegistreNotesEdgarSanchezHurtado {
         }
     }
     
-    public static void main(String[] args) {
+     static Student[] testStudents() {
         Student[] students = new Student[3];
-        for (int i = 0; i < students.length; i++) {
-            students[i] = altaAlumne();
-        }
+        //Student 1
+        students[0].setName("Edgar Sánchez Hurtado");
+        students[0].setAdress("C/ Benicanena");
+        students[0].setTelef(123456789);
+        students[0].setAdressNumber(32);
+        students[0].setCp(46702);
+        //Student 2
+        students[1].setName("Mari Hurtado Segura");
+        students[1].setAdress("C/ Rotova");
+        students[1].setTelef(987654321);
+        students[1].setAdressNumber(12);
+        students[1].setCp(46701);
+        //Student 3
+        students[2].setName("Aida Hurtado Ortí");
+        students[2].setAdress("C/ Ferrocaril");
+        students[2].setTelef(987123654);
+        students[2].setAdressNumber(5);
+        students[2].setCp(36000);
         
-        System.out.println("Testing new function");
-        evaluateTrimester(students);
+        return students;
+    }
+    
+    public static void main(String[] args) {
+        
     }
 
 }
