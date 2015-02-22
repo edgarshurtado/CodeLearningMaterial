@@ -1,0 +1,45 @@
+DESCRIBE TIPUS_CULTIUS;
+#Ejercici 3
+INSERT INTO TIPUS_CULTIUS(codi, nom) VALUES("ARR", "Arròs");
+
+#Ejercici 4
+DESCRIBE PAISOS;
+INSERT INTO PAISOS(codi, continent) VALUES("ESP", "Europa");
+
+#Ejercici 5
+ALTER TABLE PROVINCIES ADD COLUMN n_habit INT;
+DESCRIBE PROVINCIES;
+
+INSERT INTO PROVINCIES(nom, pais, n_habit) VALUES("VAL", "ESP", POW(10, 6));
+INSERT INTO PROVINCIES(nom, pais, n_habit) VALUES("ALA", "ESP", 7 * POW(10, 5));
+INSERT INTO PROVINCIES(nom, pais, n_habit) VALUES("CAS", "ESP", 5* POW(10, 5));
+INSERT INTO PROVINCIES(nom, pais, n_habit) VALUES("MAD", "ESP", 2* POW(10, 6));
+
+#Ejercicii 6
+DESCRIBE COMARQUES;
+INSERT INTO COMARQUES(codi, nom) VALUES("RB", "Ribera Baixa");
+
+#Ejercici 7
+DESCRIBE PROVINCIES;
+DELETE FROM PROVINCIES
+	WHERE nom = "MAD";
+	
+#Ejercici 8 
+UPDATE PROVINCIES
+	SET n_habit = n_habit + (n_habit * 0.1);
+	
+#Ejercici 9
+SHOW DATABASES;
+USE cultius;
+DESCRIBE COMARQUES;
+UPDATE COMARQUES
+	SET nom = CONCAT("La ", nom)
+	WHERE codi = "RB";
+
+#Ejercici 10
+SELECT * FROM PROVINCIES INTO OUTFILE '/tmp/provincies.txt';
+
+#Ejercici 11
+DELETE FROM PROVINCIES;
+LOAD DATA INFILE '/tmp/provincies.txt' INTO TABLE PROVINCIES;
+
