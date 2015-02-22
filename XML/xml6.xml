@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<actividades>
+	<pelicula>
+		<fecha>25/12/2008</fecha>
+		<hora>18h</hora>
+		<titulo>La vida de Ryan</titulo>
+		<desc>Version original</desc>
+		<reflugar codigo="Los Prados"/>
+	</pelicula>
+	<pelicula>
+		<fecha>22/02/2015</fecha>
+		<hora>18h</hora>
+		<titulo>The Avengers 2</titulo>
+		<desc>VOS</desc>
+		<reflugar codigo="Los Prados"/>
+	</pelicula>
+	<concierto>
+		<fecha>28/12/2007</fecha>
+		<hora>22h</hora>
+		<grupo>Fito</grupo>
+		<reflugar codigo="Samboy"/>
+	</concierto>
+	<concierto>
+		<fecha>21/02/2015</fecha>
+		<hora>23h</hora>
+		<grupo>Megadeth</grupo>
+		<reflugar codigo="LasVentas"/>
+	</concierto>
+	<lugares>
+		<lugar codigo="LosCampos">
+			<nombre>Centro Comercial Los Campos	</nombre>
+			<coordenadas>-5.843868,43.360758,0</coordenadas>
+		</lugar>
+		<lugar codigo="SamBoy">
+			<nombre>SalaSamboy</nombre>
+			<direccion>C/RitaS/N</direccion>
+			<coordenadas>-5.847568,43.366019,0
+			</coordenadas>
+		</lugar>
+		<lugar codigo="LasVentas">
+			<nombre>Plaza de toros de las Ventas</nombre>
+			<direccion>C/Falsa 123</direccion>
+			<coordenadas>40.427220, -3.646756</coordenadas>
+		</lugar>
+	</lugares>
+</actividades>
