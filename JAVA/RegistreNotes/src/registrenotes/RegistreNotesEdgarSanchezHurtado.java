@@ -124,33 +124,35 @@ public class RegistreNotesEdgarSanchezHurtado {
     
     /**
      * Testing set of students.
-     * @return 
      */
-    static Student[] testStudents() {
-        Student[] students = new Student[3];
-        //Student 1
-        students[0] = new Student();
-        students[0].setName("Edgar Sánchez Hurtado");
-        students[0].setAdress("C/ Benicanena");
-        students[0].setTelef(123456789);
-        students[0].setAdressNumber(32);
-        students[0].setCp(46702);
-        //Student 2
-        students[1] = new Student();
-        students[1].setName("Mari Hurtado Segura");
-        students[1].setAdress("C/ Rotova");
-        students[1].setTelef(987654321);
-        students[1].setAdressNumber(12);
-        students[1].setCp(46701);
-        //Student 3
-        students[2] = new Student();
-        students[2].setName("Niko");
-        students[2].setAdress("C/ Falsa");
-        students[2].setTelef(987123654);
-        students[2].setAdressNumber(123);
-        students[2].setCp(36000);
+    static void testStudents(ArrayList<Student> students) {
+        Student tempStudent;
         
-        return students;
+        //Student 1
+        tempStudent = new Student();
+        tempStudent.setName("Edgar Sánchez Hurtado");
+        tempStudent.setAdress("C/ Benicanena");
+        tempStudent.setTelef(123456789);
+        tempStudent.setAdressNumber(32);
+        tempStudent.setCp(46702);
+        students.add(tempStudent);
+        //Student 2
+        tempStudent = new Student();
+        tempStudent.setName("Mari Hurtado Segura");
+        tempStudent.setAdress("C/ Rotova");
+        tempStudent.setTelef(987654321);
+        tempStudent.setAdressNumber(12);
+        tempStudent.setCp(46701);
+        students.add(tempStudent);
+        //Student 3
+        tempStudent = new Student();
+        tempStudent.setName("Niko");
+        tempStudent.setAdress("C/ Falsa");
+        tempStudent.setTelef(987123654);
+        tempStudent.setAdressNumber(123);
+        tempStudent.setCp(36000);
+        students.add(tempStudent);
+        
     }
     /**
      * Prints the posible options.
@@ -181,6 +183,7 @@ public class RegistreNotesEdgarSanchezHurtado {
     
     public static void main(String[] args) {
         ArrayList<Student> students = new ArrayList<>();
+        testStudents(students);
         
         int option;
         boolean exit = false;
