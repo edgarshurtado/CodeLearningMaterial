@@ -94,11 +94,12 @@ public class RegistreNotesEdgarSanchezHurtado {
     static void showStudentData(Student[] students) {
         
         System.out.print("Please, insert a student's name: ");
-        
+            
         String student = KeyboardInput.strInput();
         int studentIndex = searchStudent(student, students);
         
         if (studentIndex >= 0) {
+            //Personal data
             System.out.println("");
             System.out.println("Name: " + students[studentIndex].getName());;
             System.out.println("Adress: " + students[studentIndex].getAdress() +
@@ -145,11 +146,36 @@ public class RegistreNotesEdgarSanchezHurtado {
         
         return students;
     }
+    /**
+     * Prints the posible options.
+     */
+    static void menu() {
+        System.out.println("");
+        System.out.println("1. New Student");
+        System.out.println("2. Evaluate Trimester");
+        System.out.println("3. Buscar alumne");
+        System.out.println("0. Exit");
+    }
+    /**
+     * Asks the user for a int value in a range of values that corresponds to 
+     * the available options of the menu.
+     * @return int option value validated
+     */
+    static int selectOption() {
+        int option;
+        System.out.print("Select an option: ");
+        option = KeyboardInput.intInput();
+        while(option < 1 || option > 8) {
+            System.out.print("Bad option, try again");
+            option = KeyboardInput.intInput();
+        }
+        return option;        
+    }
     
     public static void main(String[] args) {
         Student[] students = testStudents();
+        int option;
         
-        showStudentData(students);
         
     }
 }
