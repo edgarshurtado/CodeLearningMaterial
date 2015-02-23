@@ -59,7 +59,6 @@ public class RegistreNotesEdgarSanchezHurtado {
         String subject;
         int mark;
         
-        System.out.println("Wich subject: ");
         subject = Transcript.subjectInput();
         System.out.print("Wich trimester: ");
         trimester = Transcript.trimesterInput();
@@ -155,6 +154,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         System.out.println("2. Evaluate Trimester");
         System.out.println("3. Buscar alumne");
         System.out.println("0. Exit");
+        System.out.println("");
     }
     /**
      * Asks the user for a int value in a range of values that corresponds to 

@@ -97,7 +97,7 @@ public class Transcript {
         for (int i = 0; i < subjects.length; i++) {
             System.out.println((i+1) + ". " + subjects[i]); //i + 1 for the options
         }
-        
+        System.out.print("> ");
         int option = KeyboardInput.intInput();
         
         while (option < 1 || option > subjects.length ){
