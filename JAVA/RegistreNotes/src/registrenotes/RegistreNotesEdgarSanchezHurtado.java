@@ -59,7 +59,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         String subject;
         int mark;
         
-        System.out.print("Wich subject: ");
+        System.out.println("Wich subject: ");
         subject = Transcript.subjectInput();
         System.out.print("Wich trimester: ");
         trimester = Transcript.trimesterInput();
@@ -175,7 +175,27 @@ public class RegistreNotesEdgarSanchezHurtado {
     public static void main(String[] args) {
         Student[] students = testStudents();
         int option;
+        boolean exit = false;
         
-        
+        while  (!exit) {  
+            menu();
+            option = selectOption();
+            switch (option) {
+                case 1:
+                    altaAlumne();
+                    break;
+                case 2:
+                    evaluateTrimester(students);
+                    break;
+                case 3:
+                    showStudentData(students);
+                    break;
+                case 0:
+                    exit = true;
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }
     }
 }
