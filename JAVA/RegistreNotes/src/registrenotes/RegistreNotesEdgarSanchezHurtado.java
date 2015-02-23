@@ -205,5 +205,6 @@ public class RegistreNotesEdgarSanchezHurtado {
                     throw new AssertionError();
             }
         }
+        System.out.println("prueba");
     }
 }
