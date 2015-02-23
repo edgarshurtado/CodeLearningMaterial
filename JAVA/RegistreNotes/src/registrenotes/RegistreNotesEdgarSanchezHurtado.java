@@ -174,7 +174,7 @@ public class RegistreNotesEdgarSanchezHurtado {
     
     public static void main(String[] args) {
         Student[] students = new Student[20];
-        int totalStudents = 0;
+        int totalStudents;
         
         Student[] testStudents = testStudents();
         for (totalStudents = 0; totalStudents < testStudents.length; 
