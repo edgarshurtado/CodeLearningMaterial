@@ -6,6 +6,7 @@ package registrenotes;
 
 import java.io.*;
 import es.edgarsh.usefulfunctions.KeyboardInput;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,7 +21,7 @@ public class RegistreNotesEdgarSanchezHurtado {
      * personal data
      * @return a Student object with the values inicialiced.
      */
-    static Student altaAlumne() {
+    static void newStudent(ArrayList<Student> students) {
         Student student = new Student();
         System.out.print("Student name (first name and surnames): ");
         student.setName(KeyboardInput.strInput());
@@ -46,7 +47,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         System.out.print("Student cp: ");
         student.setCp(KeyboardInput.intInput());
         
-        return student;
+        students.add(student);
     }
     
     /**
@@ -173,14 +174,7 @@ public class RegistreNotesEdgarSanchezHurtado {
     }
     
     public static void main(String[] args) {
-        Student[] students = new Student[20];
-        int totalStudents = 0;
-        
-        Student[] testStudents = testStudents();
-        for (totalStudents = 0; totalStudents < testStudents.length; 
-                totalStudents++) {
-            students[totalStudents] = testStudents[totalStudents];
-        }
+        ArrayList<Student> students = new ArrayList<>();
         
         int option;
         boolean exit = false;
@@ -190,13 +184,13 @@ public class RegistreNotesEdgarSanchezHurtado {
             option = selectOption();
             switch (option) {
                 case 1:
-                    students[totalStudents] = altaAlumne();
+                    newStudent(students);
                     break;
                 case 2:
-                    evaluateTrimester(students);
+//                    evaluateTrimester(students);
                     break;
                 case 3:
-                    showStudentData(students);
+//                    showStudentData(students);
                     break;
                 case 0:
                     exit = true;
@@ -205,6 +199,5 @@ public class RegistreNotesEdgarSanchezHurtado {
                     throw new AssertionError();
             }
         }
-        System.out.println("prueba");
     }
 }
