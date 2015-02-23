@@ -173,7 +173,15 @@ public class RegistreNotesEdgarSanchezHurtado {
     }
     
     public static void main(String[] args) {
-        Student[] students = testStudents();
+        Student[] students = new Student[20];
+        int totalStudents = 0;
+        
+        Student[] testStudents = testStudents();
+        for (totalStudents = 0; totalStudents < testStudents.length; 
+                totalStudents++) {
+            students[totalStudents] = testStudents[totalStudents];
+        }
+        
         int option;
         boolean exit = false;
         
@@ -182,7 +190,7 @@ public class RegistreNotesEdgarSanchezHurtado {
             option = selectOption();
             switch (option) {
                 case 1:
-                    altaAlumne();
+                    students[totalStudents] = altaAlumne();
                     break;
                 case 2:
                     evaluateTrimester(students);
