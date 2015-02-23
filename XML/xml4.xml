@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-7"?>
 	<EQUIPO>
 		<NOMBRE></NOMBRE>
-		<ENTRENADOR></ENTRENADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
-		<JUGADOR></JUGADOR>
+		<ENTRENADOR>
+			<nombre></nombre>
+		</ENTRENADOR>
+		<JUGADOR>
+			<nombre></nombre>
+			<dorsal></dorsal>
+			<posicion></posicion>
+		</JUGADOR>
 	</EQUIPO>
