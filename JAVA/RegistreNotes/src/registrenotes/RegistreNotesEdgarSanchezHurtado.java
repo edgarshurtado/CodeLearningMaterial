@@ -71,49 +71,55 @@ public class RegistreNotesEdgarSanchezHurtado {
         }
     }
     /**
-     * Scan an array for a student's name
-     * @param name
-     * @return int index of the array where's the student. Returns -1 if the
-     * student hasn't been found
+     * Search for a student name in an ArrayList.
+     * @param students
+     * @param searchString
+     * @return The position of the student in the array or -1 if the student
+     * isn't found.
      */
-    static int searchStudent(String name, Student[] students) {
+    static int searchStudent(ArrayList<Student> students, String searchString) {
+        int index = 0;
         
-        for (int i = 0; i < students.length; i++) {
-            if (name.equals(students[i].getName())) {
-                return i; //If the student name is in the array
+        for (Student student : students) {
+            if (searchString.equals(student.getName())) {
+                System.out.println(student.getName());
+                return index;
             }
+            index++;
         }
-        
-        return -1; //If the student isn't in the array
+        return -1;
     }
-    
+        
     /**
      * Prints the student personal data and his/her transcript
-     * @param students 
+     * @param students ArrayList of objects type Student
      */
-    static void showStudentData(Student[] students) {
+    static void showStudentData(ArrayList<Student> students) {
+        int studentIndex;
         
         System.out.print("Please, insert a student's name: ");
             
-        String student = KeyboardInput.strInput();
-        int studentIndex = searchStudent(student, students);
+        String searchingString = KeyboardInput.strInput();
         
-        if (studentIndex >= 0) {
-            //Personal data
+        studentIndex = searchStudent(students, searchingString);
+        
+        try {
+            Student studentObject = students.get(studentIndex);
+             //Personal data
             System.out.println("");
-            System.out.println("Name: " + students[studentIndex].getName());;
-            System.out.println("Adress: " + students[studentIndex].getAdress() +
-                    " nº " + students[studentIndex].getNumber() + 
-                    " cp " + students[studentIndex].getCp());
+            System.out.println("Name: " + studentObject.getName());;
+            System.out.println("Adress: " + studentObject.getAdress() +
+                    " nº " + studentObject.getNumber() + 
+                    " cp " + studentObject.getCp());
             System.out.println("Phone number: " + 
-                    students[studentIndex].getTelef());
+                    studentObject.getTelef());
             System.out.println("");
             System.out.println("Transcript");
             System.out.println("");
-            students[studentIndex].printTranscript();
-        } else {
-            System.out.println("Student wasn't found");
-        }
+            studentObject.printTranscript();
+        } catch (Exception e) {
+            System.out.println("Student " + searchingString + " didn't find");
+        } 
     }
     
     /**
@@ -190,7 +196,7 @@ public class RegistreNotesEdgarSanchezHurtado {
 //                    evaluateTrimester(students);
                     break;
                 case 3:
-//                    showStudentData(students);
+                    showStudentData(students);
                     break;
                 case 0:
                     exit = true;
