@@ -182,19 +182,9 @@ public class RegistreNotesEdgarSanchezHurtado {
     }
     
     public static void main(String[] args) {
-<<<<<<< HEAD
-        Student[] students = new Student[20];
-        int totalStudents;
-        
-        Student[] testStudents = testStudents();
-        for (totalStudents = 0; totalStudents < testStudents.length; 
-                totalStudents++) {
-            students[totalStudents] = testStudents[totalStudents];
-        }
-=======
+
         ArrayList<Student> students = new ArrayList<>();
         testStudents(students);
->>>>>>> ArrayList
         
         int option;
         boolean exit = false;
