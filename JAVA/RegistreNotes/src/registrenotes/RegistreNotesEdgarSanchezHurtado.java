@@ -214,28 +214,28 @@ public class RegistreNotesEdgarSanchezHurtado {
         ArrayList<Student> students = new ArrayList<>();
         testStudents(students);
    
-        int option;
-        boolean exit = false;
-
-        while  (!exit) {  
-            menu();
-            option = selectOption();
-            switch (option) {
-                case 1:
-                    newStudent(students);
-                    break;
-                case 2:
-                    evaluateTrimester(students);
-                    break;
-                case 3:
-                    showStudentData(students);
-                    break;
-                case 0:
-                    exit = true;
-                    break;
-                default:
-                    throw new AssertionError();
-            }
-        }
+//        int option;
+//        boolean exit = false;
+//
+//        while  (!exit) {  
+//            menu();
+//            option = selectOption();
+//            switch (option) {
+//                case 1:
+//                    newStudent(students);
+//                    break;
+//                case 2:
+//                    evaluateTrimester(students);
+//                    break;
+//                case 3:
+//                    showStudentData(students);
+//                    break;
+//                case 0:
+//                    exit = true;
+//                    break;
+//                default:
+//                    throw new AssertionError();
+//            }
+//        }
     }
 }
