@@ -181,14 +181,32 @@ public class RegistreNotesEdgarSanchezHurtado {
         return option;        
     }
     
+    static int[][] calcStatistics(ArrayList<Student> students) {
+        int[][] passExam = new int[3][3];
+        int[][] studentTranscript;
+        
+        for(Student student : students) {
+            studentTranscript = student.getTranscript();
+            for (int subj = 0; subj < 3; subj++) {
+                for (int trim = 0; trim < 3; trim++) {
+                    if (studentTranscript[subj][trim] >= 5) {
+                        passExam[subj][trim]+= (1/(float)students.size())*100;
+                    }
+                }
+            }
+        }
+        
+        return passExam;
+    }
+    
     public static void main(String[] args) {
 
         ArrayList<Student> students = new ArrayList<>();
         testStudents(students);
-        
+   
         int option;
         boolean exit = false;
-        
+
         while  (!exit) {  
             menu();
             option = selectOption();
