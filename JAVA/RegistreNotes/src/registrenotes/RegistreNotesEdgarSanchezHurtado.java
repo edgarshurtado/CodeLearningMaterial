@@ -55,7 +55,7 @@ public class RegistreNotesEdgarSanchezHurtado {
      * every student on that combination.
      * @param students 
      */
-    static void evaluateTrimester(Student[] students) {
+    static void evaluateTrimester(ArrayList<Student> students) {
         int trimester;
         String subject;
         int mark;
@@ -196,7 +196,7 @@ public class RegistreNotesEdgarSanchezHurtado {
                     newStudent(students);
                     break;
                 case 2:
-//                    evaluateTrimester(students);
+                    evaluateTrimester(students);
                     break;
                 case 3:
                     showStudentData(students);
