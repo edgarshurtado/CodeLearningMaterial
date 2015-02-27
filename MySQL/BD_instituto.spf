@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>instituto</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>name</key>
+			<string>root@127.0.0.1</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>latin1</string>
+			<key>contentFilter</key>
+			<dict/>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK8QDwcIFRYXGBkfICEoLDA0OFUkbnVs
+			bNMJCgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+A
+			AoADgASjERITgAWABoAKgA5UdHlwZVRyb3dzVGtleXNfECZTZWxl
+			Y3Rpb25EZXRhaWxUeXBlUHJpbWFyeUtleWVkRGV0YWlsc9MJCgsa
+			HB6hG4AHoR2ACIAJUTMJ0iIjJCVaJGNsYXNzbmFtZVgkY2xhc3Nl
+			c18QE05TTXV0YWJsZURpY3Rpb25hcnmjJCYnXE5TRGljdGlvbmFy
+			eVhOU09iamVjdNIKCykroSqAC4AN0gstLi9ZTlMuc3RyaW5ngAxU
+			Y29kadIiIzEyXxAPTlNNdXRhYmxlU3RyaW5nozEzJ1hOU1N0cmlu
+			Z9IiIzU2Xk5TTXV0YWJsZUFycmF5ozU3J1dOU0FycmF50iIjJjmi
+			JidfEA9OU0tleWVkQXJjaGl2ZXLRPD1UZGF0YYABAAgAEQAaACMA
+			LQAyADcASQBPAFYAXgBpAHAAdAB2AHgAegB+AIAAggCEAIYAiwCQ
+			AJUAvgDFAMcAyQDLAM0AzwDRANIA1wDiAOsBAQEFARIBGwEgASIB
+			JAEmASsBNQE3ATwBQQFTAVcBYAFlAXQBeAGAAYUBiAGaAZ0BogAA
+			AAAAAAIBAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAGk
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {1077, 572}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>#Crea BD instituto
+CREATE DATABASE instituto;
+USE instituto;
+
+#Crea la tabla alumnos = codigo + nombre + estudios
+CREATE TABLE alumnos (
+	codi INT AUTO_INCREMENT PRIMARY KEY,
+	nombre VARCHAR(20),
+	estudis VARCHAR(3)
+);
+
+#Introduce 9 alumnos: 3 de PQP, 3 de ESO y 3 de DAM
+INSERT INTO alumnos (nombre, estudis) VALUES ("Edgar", "DAM");
+INSERT INTO alumnos (nombre, estudis) VALUES ("Angel", "ESO");
+INSERT INTO alumnos (nombre, estudis) VALUES ("Adriana", "PQP");
+INSERT INTO alumnos (nombre, estudis) VALUES ("Igor", "ESO");  
+INSERT INTO alumnos (nombre, estudis) VALUES ("Diego", "DAM");
+INSERT INTO alumnos (nombre, estudis) VALUES ("Carlos", "PQP");
+INSERT INTO alumnos (nombre, estudis) VALUES ("Bernat", "DAM");
+INSERT INTO alumnos (nombre, estudis) VALUES ("Marc", "ESO");
+INSERT INTO alumnos (nombre, estudis) VALUES ("Isidro", "PQP");
+
+# A partir de la tabla alumnos crea la tabla a_dam con (codi y nombre) de DAM
+CREATE TABLE dam
+	SELECT * 
+		FROM alumnos
+		WHERE estudis = "DAM";
+# Igual pero con los de la eso
+DROP TABLE eso;
+CREATE TABLE eso (
+	codi INT PRIMARY KEY,
+	nombre VARCHAR(20),
+	estudis VARCHAR(3)
+);
+INSERT INTO eso
+	SELECT *
+		FROM alumnos
+		WHERE estudis = "ESO";
+
+
+#3 alumnos d'eso.
+INSERT INTO eso (codi, nombre) VALUES (10, "Adrianorbe");
+INSERT INTO eso (codi, nombre) VALUES (11, "Chismoll");
+INSERT INTO eso (codi, nombre) VALUES (12, "Botija");
+
+#Borrar datos de alumnos
+DELETE FROM alumnos;
+
+# Afegir camp nota a taula alumnes
+ALTER TABLE alumnos ADD COLUMN nota FLOAT;
+#Posem a tots una nota ficticia
+UPDATE alumnos
+	SET nota = 3;
+
+#11 Afegir altre camp nota2 a alumnes
+ALTER TABLE alumnos ADD COLUMN nota2 FLOAT;
+
+
+#12. Que la nota2 siga igual que la nota mÈs un 10%
+
+#13. Quants alumnes n'hi ha?
+
+#14. Quants alumnes no sÛn de PQPI?
+
+#15. Trau la nota mitja de tots el alumnes (camp nota)
+
+#16. Trau la nota mitja de l'alumne 1 (la mitja de les seues 2 notes)
+
+#17. Nota mitja de cada alumne
+
+#18. Nota m‡xima i mÌnima de tots els alumnes
+
+#19. Nota mitja de tots els alumnes aprovats
+
+#20. MOstra les diferentes notes suspeses que s'han tret
+</string>
+			<key>table</key>
+			<string>alumnos</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>202</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>ALTER TABLE alumnos CHANGE notas nota FLOAT</string>
+		<string>#Posem a tots una nota ficticia
+UPDATE alumnos
+	SET notas = 3</string>
+		<string>#Posem a tots una nota ficticia
+UPDATE alumnes
+	SET notas = 3</string>
+		<string>DELETE FROM alumnos
+	WHERE nombre IS NULL</string>
+		<string>#Posem a tots una nota ficticia
+INSERT INTO alumnos (notas) VALUES (3)</string>
+		<string># Afegir camp nota a taula alumnes
+ALTER TABLE alumnos ADD COLUMN notas FLOAT</string>
+		<string>INSERT INTO alumnos (nombre, estudis) VALUES ("Adriana", "PQP")</string>
+		<string>INSERT INTO alumnos (nombre, estudis) VALUES ("Carlos", "PQP")</string>
+		<string>INSERT INTO alumnos (nombre, estudis) VALUES ("Isidro", "PQP")</string>
+		<string>USE instituto</string>
+		<string>DELETE FROM alumnos</string>
+		<string>#
+SELECT * FROM alumnos</string>
+		<string>DELETE * FROM alumnos</string>
+		<string>INSERT INTO eso (codi, nombre) VALUES (10, "Adrianorbe");
+INSERT INTO eso (codi, nombre) VALUES (11, "Chismoll");
+INSERT INTO eso (codi, nombre) VALUES (12, "Botija")</string>
+		<string>SELECT * FROM eso</string>
+		<string>INSERT INTO eso
+	SELECT *
+		FROM alumnos
+		WHERE estudis = "ESO"</string>
+		<string>CREATE TABLE eso (
+	codi INT PRIMARY KEY,
+	nombre VARCHAR(20),
+	estudis VARCHAR(3)
+)</string>
+		<string>CREATE TABLE alumnos (
+	codi INT PRIMARY KEY,
+	nombre VARCHAR(20),
+	estudis VARCHAR(3)
+)</string>
+		<string>SHOW TABLES</string>
+		<string># Igual pero con los de la eso
+DROP TABLE eso</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.6.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

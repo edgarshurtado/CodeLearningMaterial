@@ -6,6 +6,7 @@ package registrenotes;
 
 import java.io.*;
 import es.edgarsh.usefulfunctions.KeyboardInput;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,7 +21,7 @@ public class RegistreNotesEdgarSanchezHurtado {
      * personal data
      * @return a Student object with the values inicialiced.
      */
-    static Student altaAlumne() {
+    static void newStudent(ArrayList<Student> students) {
         Student student = new Student();
         System.out.print("Student name (first name and surnames): ");
         student.setName(KeyboardInput.strInput());
@@ -46,7 +47,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         System.out.print("Student cp: ");
         student.setCp(KeyboardInput.intInput());
         
-        return student;
+        students.add(student);
     }
     
     /**
@@ -54,7 +55,7 @@ public class RegistreNotesEdgarSanchezHurtado {
      * every student on that combination.
      * @param students 
      */
-    static void evaluateTrimester(Student[] students) {
+    static void evaluateTrimester(ArrayList<Student> students) {
         int trimester;
         String subject;
         int mark;
@@ -70,80 +71,88 @@ public class RegistreNotesEdgarSanchezHurtado {
         }
     }
     /**
-     * Scan an array for a student's name
-     * @param name
-     * @return int index of the array where's the student. Returns -1 if the
-     * student hasn't been found
+     * Search for a student name in an ArrayList.
+     * @param students
+     * @param searchString
+     * @return The position of the student in the array or -1 if the student
+     * isn't found.
      */
-    static int searchStudent(String name, Student[] students) {
+    static int searchStudent(ArrayList<Student> students, String searchString) {
+        int index = 0;
         
-        for (int i = 0; i < students.length; i++) {
-            if (name.equals(students[i].getName())) {
-                return i; //If the student name is in the array
+        for (Student student : students) {
+            if (searchString.equals(student.getName())) {
+                System.out.println(student.getName());
+                return index;
             }
+            index++;
         }
-        
-        return -1; //If the student isn't in the array
+        return -1;
     }
-    
+        
     /**
      * Prints the student personal data and his/her transcript
-     * @param students 
+     * @param students ArrayList of objects type Student
      */
-    static void showStudentData(Student[] students) {
+    static void showStudentData(ArrayList<Student> students) {
+        int studentIndex;
         
         System.out.print("Please, insert a student's name: ");
             
-        String student = KeyboardInput.strInput();
-        int studentIndex = searchStudent(student, students);
+        String searchingString = KeyboardInput.strInput();
         
-        if (studentIndex >= 0) {
-            //Personal data
+        studentIndex = searchStudent(students, searchingString);
+        
+        try {
+            Student studentObject = students.get(studentIndex);
+             //Personal data
             System.out.println("");
-            System.out.println("Name: " + students[studentIndex].getName());;
-            System.out.println("Adress: " + students[studentIndex].getAdress() +
-                    " nº " + students[studentIndex].getNumber() + 
-                    " cp " + students[studentIndex].getCp());
+            System.out.println("Name: " + studentObject.getName());;
+            System.out.println("Adress: " + studentObject.getAdress() +
+                    " nº " + studentObject.getNumber() + 
+                    " cp " + studentObject.getCp());
             System.out.println("Phone number: " + 
-                    students[studentIndex].getTelef());
+                    studentObject.getTelef());
             System.out.println("");
             System.out.println("Transcript");
             System.out.println("");
-            students[studentIndex].printTranscript();
-        } else {
-            System.out.println("Student wasn't found");
-        }
+            studentObject.printTranscript();
+        } catch (Exception e) {
+            System.out.println("Student " + searchingString + " didn't find");
+        } 
     }
     
     /**
      * Testing set of students.
-     * @return 
      */
-    static Student[] testStudents() {
-        Student[] students = new Student[3];
-        //Student 1
-        students[0] = new Student();
-        students[0].setName("Edgar Sánchez Hurtado");
-        students[0].setAdress("C/ Benicanena");
-        students[0].setTelef(123456789);
-        students[0].setAdressNumber(32);
-        students[0].setCp(46702);
-        //Student 2
-        students[1] = new Student();
-        students[1].setName("Mari Hurtado Segura");
-        students[1].setAdress("C/ Rotova");
-        students[1].setTelef(987654321);
-        students[1].setAdressNumber(12);
-        students[1].setCp(46701);
-        //Student 3
-        students[2] = new Student();
-        students[2].setName("Niko");
-        students[2].setAdress("C/ Falsa");
-        students[2].setTelef(987123654);
-        students[2].setAdressNumber(123);
-        students[2].setCp(36000);
+    static void testStudents(ArrayList<Student> students) {
+        Student tempStudent;
         
-        return students;
+        //Student 1
+        tempStudent = new Student();
+        tempStudent.setName("Edgar Sánchez Hurtado");
+        tempStudent.setAdress("C/ Benicanena");
+        tempStudent.setTelef(123456789);
+        tempStudent.setAdressNumber(32);
+        tempStudent.setCp(46702);
+        students.add(tempStudent);
+        //Student 2
+        tempStudent = new Student();
+        tempStudent.setName("Mari Hurtado Segura");
+        tempStudent.setAdress("C/ Rotova");
+        tempStudent.setTelef(987654321);
+        tempStudent.setAdressNumber(12);
+        tempStudent.setCp(46701);
+        students.add(tempStudent);
+        //Student 3
+        tempStudent = new Student();
+        tempStudent.setName("Niko");
+        tempStudent.setAdress("C/ Falsa");
+        tempStudent.setTelef(987123654);
+        tempStudent.setAdressNumber(123);
+        tempStudent.setCp(36000);
+        students.add(tempStudent);
+        
     }
     /**
      * Prints the posible options.
@@ -173,6 +182,7 @@ public class RegistreNotesEdgarSanchezHurtado {
     }
     
     public static void main(String[] args) {
+<<<<<<< HEAD
         Student[] students = new Student[20];
         int totalStudents;
         
@@ -181,6 +191,10 @@ public class RegistreNotesEdgarSanchezHurtado {
                 totalStudents++) {
             students[totalStudents] = testStudents[totalStudents];
         }
+=======
+        ArrayList<Student> students = new ArrayList<>();
+        testStudents(students);
+>>>>>>> ArrayList
         
         int option;
         boolean exit = false;
@@ -190,7 +204,7 @@ public class RegistreNotesEdgarSanchezHurtado {
             option = selectOption();
             switch (option) {
                 case 1:
-                    students[totalStudents] = altaAlumne();
+                    newStudent(students);
                     break;
                 case 2:
                     evaluateTrimester(students);
