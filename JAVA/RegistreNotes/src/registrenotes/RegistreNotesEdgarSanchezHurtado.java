@@ -199,6 +199,16 @@ public class RegistreNotesEdgarSanchezHurtado {
         return passExam;
     }
     
+    static void printStatistics(int[][] rawStatistics) {
+  
+        for (int subject = 0; subject < 3; subject++) {
+            System.out.println(Transcript.getSingleSubject(subject) + " ");
+            for (int trimester = 0; trimester < 3; trimester++) {
+                System.out.println(rawStatistics[subject][trimester] + " ");
+            }
+        }
+    }
+    
     public static void main(String[] args) {
 
         ArrayList<Student> students = new ArrayList<>();

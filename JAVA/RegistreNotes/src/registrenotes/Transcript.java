@@ -120,4 +120,13 @@ public class Transcript {
     public static String[] getSubjects () {
         return subjects;
     }
+    
+    /**
+     * Returns the name of a subject as a String
+     * @param subjectIndex subject index
+     * @return the name of a subject as a String
+     */
+    public static String getSingleSubject (int subjectIndex) {
+        return subjects[subjectIndex];
+    }
 }
