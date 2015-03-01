@@ -81,6 +81,9 @@ public class Student {
         return this.transcript.getTranscript();
     }
     
+    /**
+     * Set with a UI the personal data of a student but the name
+     */
     public void setPersonalData() {
         
         while (true) {

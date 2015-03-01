@@ -164,6 +164,11 @@ public class RegistreNotesEdgarSanchezHurtado {
         return option;        
     }
     
+    /**
+     * Do the math for the percentatges of students who passed the exams.
+     * @param students
+     * @return a matrix[3][3] with all the statistics data
+     */
     static int[][] calcStatistics(ArrayList<Student> students) {
         int[][] passExam = new int[3][3];
         int[][] studentTranscript;
@@ -181,7 +186,10 @@ public class RegistreNotesEdgarSanchezHurtado {
         
         return passExam;
     }
-    
+    /**
+     * Print the statics of students who passed the exams.
+     * @param rawStatistics 
+     */
     static void printStatistics(int[][] rawStatistics) {
         int[] subjectTotals = new int[3];
         
