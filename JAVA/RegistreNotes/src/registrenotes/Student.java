@@ -82,9 +82,6 @@ public class Student {
     }
     
     public void setPersonalData() {
-        System.out.print("Student name (first name and surnames): ");
-        this.setName(KeyboardInput.strInput());
-        System.out.println("");
         
         while (true) {
             try {

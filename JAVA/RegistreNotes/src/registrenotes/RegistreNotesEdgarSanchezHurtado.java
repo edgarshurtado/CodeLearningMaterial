@@ -23,6 +23,9 @@ public class RegistreNotesEdgarSanchezHurtado {
      */
     static void newStudent(ArrayList<Student> students) {
         Student student = new Student();
+        System.out.print("Student name (first name and surnames): ");
+        student.setName(KeyboardInput.strInput());
+        System.out.println("");
         student.setPersonalData();        
         students.add(student);
     }
