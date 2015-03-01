@@ -232,6 +232,31 @@ public class RegistreNotesEdgarSanchezHurtado {
         } catch (Exception e) {
             System.out.println("Student didn't find");
         }
+    }
+    
+    public static void modifyStudentSingleMark(ArrayList<Student> students) {
+        String studentName;
+        int studentIndex;
+        int trimester;
+        int newMark;
+        try {
+            System.out.print("Name student: ");
+        studentName = KeyboardInput.strInput();
+        studentIndex = searchStudent(students, studentName);
+        System.out.println("Select subject");
+        String subject = Transcript.subjectInput();
+        System.out.println("Select trimester");
+        trimester = Transcript.trimesterInput();
+        System.out.println("Introduce new mark");
+        newMark = Transcript.markInput();
+        
+        Student student;
+        student = students.get(studentIndex);
+        
+        student.setMark(newMark, trimester, subject);
+        } catch (Exception e) {
+            System.out.println("Error. Something went wrong");
+        }
         
         
     }
@@ -240,7 +265,7 @@ public class RegistreNotesEdgarSanchezHurtado {
 
         ArrayList<Student> students = new ArrayList<>();
         testStudents(students);
-        
+        modifyStudentSingleMark(students);
    
 //        int option;
 //        boolean exit = false;
