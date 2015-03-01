@@ -81,6 +81,32 @@ public class Student {
         return this.transcript.getTranscript();
     }
     
+    public void setPersonalData() {
+        System.out.print("Student name (first name and surnames): ");
+        this.setName(KeyboardInput.strInput());
+        System.out.println("");
+        
+        while (true) {
+            try {
+                System.out.print("Student phone number: ");
+                this.setTelef(KeyboardInput.intInput());
+                break;
+            } catch (Error e) {
+                System.out.println("Error in number. It should have 9 digits");
+            }
+        }
+        
+        System.out.println("");
+        System.out.print("Student street: ");
+        this.setAdress(KeyboardInput.strInput());
+        System.out.println("");
+        System.out.print("Student adress number: ");
+        this.setAdressNumber(KeyboardInput.intInput());
+        System.out.println("");
+        System.out.print("Student cp: ");
+        this.setCp(KeyboardInput.intInput());
+    }
+    
     /**
      * Prints the student transcript formated.
      */
