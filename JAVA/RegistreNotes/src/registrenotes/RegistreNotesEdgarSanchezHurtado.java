@@ -190,7 +190,8 @@ public class RegistreNotesEdgarSanchezHurtado {
      * Print the statics of students who passed the exams.
      * @param rawStatistics 
      */
-    static void printStatistics(int[][] rawStatistics) {
+    static void printStatistics(ArrayList<Student> students) {
+        int[][] rawStatistics = calcStatistics(students);
         int[] subjectTotals = new int[3];
         
         System.out.println("\t1er trimestre\t2º trimestre\t3º trimestre\t"
@@ -228,7 +229,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         ArrayList<Student> students = new ArrayList<>();
         testStudents(students);
         
-        printStatistics(calcStatistics(students));
+        printStatistics(students);
    
 //        int option;
 //        boolean exit = false;
