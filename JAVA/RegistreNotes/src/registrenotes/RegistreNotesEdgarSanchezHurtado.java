@@ -144,7 +144,12 @@ public class RegistreNotesEdgarSanchezHurtado {
         System.out.println("");
         System.out.println("1. New Student");
         System.out.println("2. Evaluate Trimester");
-        System.out.println("3. Buscar alumne");
+        System.out.println("3. Search Student");
+        System.out.println("4. Statistics");
+        System.out.println("5. Modify student personal data");
+        System.out.println("6. Change student mark");
+        System.out.println("7. Delete student record");
+        System.out.println("8. Delete all students records");
         System.out.println("0. Exit");
         System.out.println("");
     }
@@ -272,8 +277,6 @@ public class RegistreNotesEdgarSanchezHurtado {
 
         ArrayList<Student> students = new ArrayList<>();
         testStudents(students);
-        deleteStudent(students);
-        showStudentData(students);
    
         int option;
         boolean exit = false;
