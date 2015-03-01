@@ -135,6 +135,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         tempStudent.setTelef(123456789);
         tempStudent.setAdressNumber(32);
         tempStudent.setCp(46702);
+        tempStudent.setMark(7, 1, "PRG");
         students.add(tempStudent);
         //Student 2
         tempStudent = new Student();
@@ -143,6 +144,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         tempStudent.setTelef(987654321);
         tempStudent.setAdressNumber(12);
         tempStudent.setCp(46701);
+        tempStudent.setMark(7, 2, "BDA");
         students.add(tempStudent);
         //Student 3
         tempStudent = new Student();
@@ -151,6 +153,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         tempStudent.setTelef(987123654);
         tempStudent.setAdressNumber(123);
         tempStudent.setCp(36000);
+        tempStudent.setMark(7, 3, "EDD");
         students.add(tempStudent);
         
     }
@@ -200,19 +203,44 @@ public class RegistreNotesEdgarSanchezHurtado {
     }
     
     static void printStatistics(int[][] rawStatistics) {
-  
-        for (int subject = 0; subject < 3; subject++) {
-            System.out.println(Transcript.getSingleSubject(subject) + " ");
+        int[] subjectTotals = new int[3];
+        
+        System.out.println("\t1er trimestre\t2º trimestre\t3º trimestre\t"
+                + "      Total"); //Table header
+        
+        for (int subjectIndex = 0; subjectIndex < 3; subjectIndex++) {
+            //Subjec name
+            System.out.print(Transcript.getSingleSubject(subjectIndex) + "\t\t");
             for (int trimester = 0; trimester < 3; trimester++) {
-                System.out.println(rawStatistics[subject][trimester] + " ");
+                //Subjec trimester mark
+                System.out.print(rawStatistics[subjectIndex][trimester] + "\t\t");
             }
+            //Subject total
+            subjectTotals[subjectIndex] = (rawStatistics[subjectIndex][0] + 
+                    rawStatistics[subjectIndex][1] + 
+                    rawStatistics[subjectIndex][2])/3;
+            System.out.print(subjectTotals[subjectIndex]);
+            System.out.println(""); //change line
         }
+        //Trimester totals
+        System.out.print("TOTAL\t\t");
+        System.out.print((rawStatistics[0][0] + rawStatistics[1][0] +
+                rawStatistics[2][0])/3 + "\t\t");
+        System.out.print((rawStatistics[0][1] + rawStatistics[1][1] +
+                rawStatistics[2][1])/3 + "\t\t");
+        System.out.print((rawStatistics[0][2] + rawStatistics[1][2] +
+                rawStatistics[2][2])/3 + "\t\t");
+        //Total of totals
+        System.out.println((subjectTotals[0] + subjectTotals[1] + 
+                subjectTotals[2])/3);
     }
     
     public static void main(String[] args) {
 
         ArrayList<Student> students = new ArrayList<>();
         testStudents(students);
+        
+        printStatistics(calcStatistics(students));
    
 //        int option;
 //        boolean exit = false;
