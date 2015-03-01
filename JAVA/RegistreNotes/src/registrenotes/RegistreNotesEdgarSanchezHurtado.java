@@ -275,28 +275,43 @@ public class RegistreNotesEdgarSanchezHurtado {
         deleteStudent(students);
         showStudentData(students);
    
-//        int option;
-//        boolean exit = false;
-//
-//        while  (!exit) {  
-//            menu();
-//            option = selectOption();
-//            switch (option) {
-//                case 1:
-//                    newStudent(students);
-//                    break;
-//                case 2:
-//                    evaluateTrimester(students);
-//                    break;
-//                case 3:
-//                    showStudentData(students);
-//                    break;
-//                case 0:
-//                    exit = true;
-//                    break;
-//                default:
-//                    throw new AssertionError();
-//            }
-//        }
+        int option;
+        boolean exit = false;
+
+        while  (!exit) {  
+            menu();
+            option = selectOption();
+            switch (option) {
+                case 1:
+                    newStudent(students);
+                    break;
+                case 2:
+                    evaluateTrimester(students);
+                    break;
+                case 3:
+                    showStudentData(students);
+                    break;
+                case 4:
+                    printStatistics(students);
+                    break;
+                case 5:
+                    modifyStudentData(students);
+                    break;
+                case 6:
+                    modifyStudentSingleMark(students);
+                    break;
+                case 7:
+                    deleteStudent(students);
+                    break;
+                case 8:
+                    students.clear();
+                    break;
+                case 0:
+                    exit = true;
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }
     }
 }
