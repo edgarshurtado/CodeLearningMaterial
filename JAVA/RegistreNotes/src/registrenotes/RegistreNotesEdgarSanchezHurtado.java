@@ -257,15 +257,23 @@ public class RegistreNotesEdgarSanchezHurtado {
         } catch (Exception e) {
             System.out.println("Error. Something went wrong");
         }
+    }
+    
+    public static void deleteStudent(ArrayList<Student> students) {
         
+        System.out.print("Student Name: ");
+        String studentName = KeyboardInput.strInput();
+        int studentIndex = searchStudent(students, studentName);
         
+        students.remove(studentIndex);
     }
     
     public static void main(String[] args) {
 
         ArrayList<Student> students = new ArrayList<>();
         testStudents(students);
-        modifyStudentSingleMark(students);
+        deleteStudent(students);
+        showStudentData(students);
    
 //        int option;
 //        boolean exit = false;
