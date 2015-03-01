@@ -224,12 +224,23 @@ public class RegistreNotesEdgarSanchezHurtado {
                 subjectTotals[2])/3);
     }
     
+    public static void modifyStudentData(ArrayList<Student> students){
+        System.out.print("Name student: ");
+        String studentName = KeyboardInput.strInput();
+        try {
+            students.get(searchStudent(students, studentName)).setPersonalData();
+        } catch (Exception e) {
+            System.out.println("Student didn't find");
+        }
+        
+        
+    }
+    
     public static void main(String[] args) {
 
         ArrayList<Student> students = new ArrayList<>();
         testStudents(students);
         
-        printStatistics(students);
    
 //        int option;
 //        boolean exit = false;
