@@ -286,27 +286,35 @@ public class RegistreNotesEdgarSanchezHurtado {
             option = selectOption();
             switch (option) {
                 case 1:
+                    System.out.println("Creating a new Student");
                     newStudent(students);
                     break;
                 case 2:
+                    System.out.println("Evaluating a trimester");
                     evaluateTrimester(students);
                     break;
                 case 3:
+                    System.out.println("Printing Student Personal Data");
                     showStudentData(students);
                     break;
                 case 4:
+                    System.out.println("Printing statistics");
                     printStatistics(students);
                     break;
                 case 5:
+                    System.out.println("Modify Student Personal Data");
                     modifyStudentData(students);
                     break;
                 case 6:
+                    System.out.println("Modify a student's mark");
                     modifyStudentSingleMark(students);
                     break;
                 case 7:
+                    System.out.println("Delete a Student");
                     deleteStudent(students);
                     break;
                 case 8:
+                    System.out.println("Delete all students");
                     students.clear();
                     break;
                 case 0:
