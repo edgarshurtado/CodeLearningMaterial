@@ -162,7 +162,7 @@ public class RegistreNotesEdgarSanchezHurtado {
         int option;
         System.out.print("Select an option: ");
         option = KeyboardInput.intInput();
-        while(option < 1 || option > 8) {
+        while(option < 0 || option > 8) {
             System.out.print("Bad option, try again");
             option = KeyboardInput.intInput();
         }
