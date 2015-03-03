@@ -52,16 +52,16 @@
 			bNMJCgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+A
 			AoADgASjERITgAWABoAKgA5UdHlwZVRyb3dzVGtleXNfECZTZWxl
 			Y3Rpb25EZXRhaWxUeXBlUHJpbWFyeUtleWVkRGV0YWlsc9MJCgsa
-			HB6hG4AHoR2ACIAJUTMJ0iIjJCVaJGNsYXNzbmFtZVgkY2xhc3Nl
-			c18QE05TTXV0YWJsZURpY3Rpb25hcnmjJCYnXE5TRGljdGlvbmFy
-			eVhOU09iamVjdNIKCykroSqAC4AN0gstLi9ZTlMuc3RyaW5ngAxU
-			Y29kadIiIzEyXxAPTlNNdXRhYmxlU3RyaW5nozEzJ1hOU1N0cmlu
-			Z9IiIzU2Xk5TTXV0YWJsZUFycmF5ozU3J1dOU0FycmF50iIjJjmi
-			JidfEA9OU0tleWVkQXJjaGl2ZXLRPD1UZGF0YYABAAgAEQAaACMA
-			LQAyADcASQBPAFYAXgBpAHAAdAB2AHgAegB+AIAAggCEAIYAiwCQ
-			AJUAvgDFAMcAyQDLAM0AzwDRANIA1wDiAOsBAQEFARIBGwEgASIB
-			JAEmASsBNQE3ATwBQQFTAVcBYAFlAXQBeAGAAYUBiAGaAZ0BogAA
-			AAAAAAIBAAAAAAAAAD4AAAAAAAAAAAAAAAAAAAGk
+			HB6hG4AHoR2ACIAJUjIwCdIiIyQlWiRjbGFzc25hbWVYJGNsYXNz
+			ZXNfEBNOU011dGFibGVEaWN0aW9uYXJ5oyQmJ1xOU0RpY3Rpb25h
+			cnlYTlNPYmplY3TSCgspK6EqgAuADdILLS4vWU5TLnN0cmluZ4AM
+			VGNvZGnSIiMxMl8QD05TTXV0YWJsZVN0cmluZ6MxMydYTlNTdHJp
+			bmfSIiM1Nl5OU011dGFibGVBcnJheaM1NydXTlNBcnJhedIiIyY5
+			oiYnXxAPTlNLZXllZEFyY2hpdmVy0Tw9VGRhdGGAAQAIABEAGgAj
+			AC0AMgA3AEkATwBWAF4AaQBwAHQAdgB4AHoAfgCAAIIAhACGAIsA
+			kACVAL4AxQDHAMkAywDNAM8A0gDTANgA4wDsAQIBBgETARwBIQEj
+			ASUBJwEsATYBOAE9AUIBVAFYAWEBZgF1AXkBgQGGAYkBmwGeAaMA
+			AAAAAAACAQAAAAAAAAA+AAAAAAAAAAAAAAAAAAABpQ==
 			</data>
 			<key>contentSortColIsAsc</key>
 			<true/>
@@ -127,24 +127,53 @@ UPDATE alumnos
 #11 Afegir altre camp nota2 a alumnes
 ALTER TABLE alumnos ADD COLUMN nota2 FLOAT;
 
+#Volver a introducir los alumnos de dam y eso en la tabla
+ALTER TABLE alumnos CHANGE codi codi INT AUTO_INCREMENT; 
+UPDATE alumnos 
+	SET codi = 20
+	WHERE codi = 1;
+INSERT INTO alumnos (codi, nombre, estudis)
+	SELECT * FROM dam;
+INSERT INTO alumnos (nombre, estudis)
+	SELECT nombre, estudis FROM eso;
+
+UPDATE alumnos
+	SET estudis = "PQPI"
+	WHERE estudis = "PQP" | estudis IS NULL;
 
 #12. Que la nota2 siga igual que la nota mÈs un 10%
-
+UPDATE alumnos
+	SET nota2 = nota + (nota * 0.1);
 #13. Quants alumnes n'hi ha?
-
+SELECT count(*)
+	FROM alumnos;
 #14. Quants alumnes no sÛn de PQPI?
-
+SELECT count(*)
+	FROM alumnos
+	WHERE estudis != "PQP";
 #15. Trau la nota mitja de tots el alumnes (camp nota)
-
+SELECT SUM(nota)/COUNT(nota)
+	FROM alumnos;
 #16. Trau la nota mitja de l'alumne 1 (la mitja de les seues 2 notes)
-
+SELECT ((nota+nota2)/2)
+	FROM alumnos
+	WHERE codi = 1;
 #17. Nota mitja de cada alumne
-
+SELECT *, (nota+nota2)/2 AS nota_media
+	FROM alumnos;
 #18. Nota m‡xima i mÌnima de tots els alumnes
-
+SELECT MAX(nota), MIN(nota)
+	FROM alumnos;
 #19. Nota mitja de tots els alumnes aprovats
-
+SELECT (nota+nota2)/2 AS nota_media
+	FROM alumnos
+	WHERE (nota+nota2)/2 &gt;= 5;
 #20. MOstra les diferentes notes suspeses que s'han tret
+SELECT DISTINCT nota
+	FROM alumnos
+	WHERE nota &lt; 5;
+
+
 </string>
 			<key>table</key>
 			<string>alumnos</string>
@@ -162,48 +191,80 @@ ALTER TABLE alumnos ADD COLUMN nota2 FLOAT;
 	<array/>
 	<key>queryHistory</key>
 	<array>
-		<string>ALTER TABLE alumnos CHANGE notas nota FLOAT</string>
-		<string>#Posem a tots una nota ficticia
-UPDATE alumnos
-	SET notas = 3</string>
-		<string>#Posem a tots una nota ficticia
-UPDATE alumnes
-	SET notas = 3</string>
-		<string>DELETE FROM alumnos
-	WHERE nombre IS NULL</string>
-		<string>#Posem a tots una nota ficticia
-INSERT INTO alumnos (notas) VALUES (3)</string>
-		<string># Afegir camp nota a taula alumnes
-ALTER TABLE alumnos ADD COLUMN notas FLOAT</string>
-		<string>INSERT INTO alumnos (nombre, estudis) VALUES ("Adriana", "PQP")</string>
-		<string>INSERT INTO alumnos (nombre, estudis) VALUES ("Carlos", "PQP")</string>
-		<string>INSERT INTO alumnos (nombre, estudis) VALUES ("Isidro", "PQP")</string>
-		<string>USE instituto</string>
-		<string>DELETE FROM alumnos</string>
-		<string>#
-SELECT * FROM alumnos</string>
-		<string>DELETE * FROM alumnos</string>
-		<string>INSERT INTO eso (codi, nombre) VALUES (10, "Adrianorbe");
-INSERT INTO eso (codi, nombre) VALUES (11, "Chismoll");
-INSERT INTO eso (codi, nombre) VALUES (12, "Botija")</string>
-		<string>SELECT * FROM eso</string>
-		<string>INSERT INTO eso
-	SELECT *
-		FROM alumnos
-		WHERE estudis = "ESO"</string>
-		<string>CREATE TABLE eso (
-	codi INT PRIMARY KEY,
-	nombre VARCHAR(20),
-	estudis VARCHAR(3)
-)</string>
-		<string>CREATE TABLE alumnos (
-	codi INT PRIMARY KEY,
-	nombre VARCHAR(20),
-	estudis VARCHAR(3)
-)</string>
-		<string>SHOW TABLES</string>
-		<string># Igual pero con los de la eso
-DROP TABLE eso</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT DISTINCT nota
+	FROM alumnos
+	WHERE nota &lt; 5</string>
+		<string>SELECT DISTINCT nota
+FROM alumnos 
+WHERE nota &lt; 5</string>
+		<string>#18. Nota m‡xima i mÌnima de tots els alumnes
+SELECT MAX(nota), MIN(nota)
+	FROM alumnos</string>
+		<string>#17. Nota mitja de cada alumne
+SELECT *, (nota+nota2)/2 AS nota_media
+	FROM alumnos</string>
+		<string>#19. Nota mitja de tots els alumnes aprovats
+SELECT (nota+nota2)/2 AS nota_media
+	FROM alumnos
+	WHERE (nota+nota2)/2 &gt;= 5</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT codi, nota, nota2
+	FROM alumnos
+	WHERE nota &gt; 5 || 6</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT codi, nota, nota2
+	FROM alumnos
+	WHERE nota &lt; 5 || 8</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT codi, nota, nota2
+	FROM alumnos
+	WHERE nota &lt; 5 || nota2 &lt; 5</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT codi, nota, nota2
+	FROM alumnos
+	WHERE nota = 4 || 7</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT codi, nota, nota2
+	FROM alumnos
+	WHERE nota = 3 || 7</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT nota, nota2
+	FROM alumnos
+	WHERE nota = 3 || 7</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT nota, nota2
+	FROM alumnos
+	WHERE nota = 3 | 7</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT nota, nota2
+	FROM alumnos
+	WHERE nota = 5 | 7</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT nota, nota2
+	FROM alumnos
+	WHERE nota = 5 || 7</string>
+		<string>UPDATE alumnos
+	SET nota = 5
+	WHERE nota = 3</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT nota, nota2
+	FROM alumnos
+	WHERE nota &lt; 5 | 7</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT nota, nota2
+	FROM alumnos
+	WHERE nota &lt; 5 || nota2 &lt; 5</string>
+		<string>#20. MOstra les diferentes notes suspeses que s'han tret
+SELECT nota, nota2
+	FROM alumnos
+	WHERE nota &lt; 5 | nota2 &lt; 5</string>
+		<string>UPDATE alumnos
+	SET nota2 = 7
+	WHERE nota2 = 5</string>
+		<string>UPDATE alumnos
+	SET nota2 = 5
+	WHERE nota2 &lt; 4</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>
