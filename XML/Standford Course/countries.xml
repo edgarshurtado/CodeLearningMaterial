@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!DOCTYPE [
+  <!ELEMENT countries (country)* >
+  <!ELEMENT country (language | city)* >
+    <!ATTLIST country name CDATA #REQUIRED >
+    <!ATTLIST country population CDATA #REQUIRED >
+    <!ATTLIST country area CDATA #REQUIRED >
+  <!ELEMENT language (#PCDATA) >
+    <!ATTLIST language percentage CDATA #REQUIRED>
+  <!ELEMENT city (name, population) >
+  <!ELEMENT name (#PCDATA) >
+  <!ELEMENT population (#PCDATA) >
+]>
+
 <countries>
   <country name="Afghanistan" population="22664136" area="647500">
     <language percentage="11">Turkic</language>
