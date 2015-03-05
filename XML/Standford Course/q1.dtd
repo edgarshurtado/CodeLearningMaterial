@@ -11,7 +11,7 @@
 <!ATTLIST Course 	Number ID #REQUIRED
 					Enrollment CDATA #IMPLIED>
 <!ELEMENT Description (#PCDATA)>
-<!ELEMENT Instructors ((Lecturer*, Professor*)|(Professor*, Lecturer*)) >
+<!ELEMENT Instructors (Lecturer | Professor)* >
 <!ELEMENT Lecturer (First_Name, Middle_Initial?, Last_Name)>
 <!ELEMENT Prerequisites (Prereq+)>
 <!ELEMENT Prereq (#PCDATA)>
