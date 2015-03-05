@@ -41,8 +41,6 @@
 		<dict>
 			<key>connectionEncoding</key>
 			<string>latin1</string>
-			<key>contentFilter</key>
-			<dict/>
 			<key>contentPageNumber</key>
 			<integer>1</integer>
 			<key>contentSelection</key>
@@ -66,7 +64,7 @@
 			<key>contentSortColIsAsc</key>
 			<true/>
 			<key>contentViewport</key>
-			<string>{{0, 0}, {502, 623}}</string>
+			<string>{{0, 0}, {693, 456}}</string>
 			<key>isToolbarVisible</key>
 			<true/>
 			<key>table</key>
@@ -85,55 +83,65 @@
 	<array/>
 	<key>queryHistory</key>
 	<array>
-		<string>SELECT MAX(sou), MIN(sou), AVG(sou)
-	FROM jugadors</string>
-		<string>SELECT MAX(sou), MIN(sou), AVG(sou)</string>
-		<string>#7 Mostra els següents sous: el més car, el més barat i la mitja.
-DESCRIBE jugadors</string>
-		<string>#6 Quants partits li falten per jugar al València (codi val)? Un partit no està jugat si no estan posats els gols.
-SELECT COUNT(*) FROM partits
-	WHERE golsc IS NULL &amp;&amp; (equipc = 'val' || equipf = 'val')</string>
-		<string>#6 Quants partits li falten per jugar al València (codi val)? Un partit no està jugat si no estan posats els gols.
-SELECT COUNT(*) FROM partits
-	WHERE golsc IS NULL</string>
-		<string>#5 Quants partits ha guanyat el Barça?
-DESCRIBE partits</string>
-		<string>SELECT COUNT(*) FROM partits
-	WHERE equipc = 'bar' &amp;&amp; golsc &gt; golsf || equipf = 'bar' &amp;&amp; golsf &gt; golsc</string>
-		<string>SELECT * FROM partits
-	WHERE equipc = 'bar' &amp;&amp; golsc &gt; golsf || equipf = 'bar' &amp;&amp; golsf &gt; golsc</string>
-		<string>SELECT * FROM partits
-	WHERE equipc = 'bar' &amp;&amp; golsc &gt; golsf</string>
-		<string>SELECT * FROM partits
-	WHERE equipc = 'bar'</string>
-		<string>#4 Mitja de gols per partit en tota la lliga
-SELECT AVG(golsc + golsf) AS `Media por partido`
-	FROM partits</string>
-		<string>#4 Mitja de gols per partit en tota la lliga
-SELECT SUM(golsc + golsf)/SUM(*) AS `Media por partido`
-	FROM partits</string>
-		<string>#4 Mitja de gols per partit en tota la lliga
-SELECT (SUM(golsc + golsf)/SUM(*)) AS `Media por partido`
-	FROM partits</string>
-		<string>#3 Total de gols marcats en tota la lliga
-SELECT SUM(golsc + golsf) AS `Goles liga`
-	FROM partits</string>
-		<string>#3 Total de gols marcats en tota la lliga
-SELECT SUM(golsc + golsf)
-	FROM partits</string>
-		<string>SELECT jornada, golsc, golsf, golsc + golsf AS golst, possessioc, 100 - possessioc AS possessiof 
+		<string>#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom AS `pitxitxi`, golejadors.equip, golejadors.dorsal, MAX(gols) AS `gols`
+	FROM golejadors, jugadors
+	WHERE golejadors.dorsal = jugadors.dorsal AND golejadors.equip = jugadors.equip</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom AS `pitxitxi`, golejadors.equip, golejadors.dorsal, MAX(gols)
+	FROM golejadors, jugadors
+	WHERE golejadors.dorsal = jugadors.dorsal AND golejadors.equip = jugadors.equip</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom, golejadors.equip, golejadors.dorsal, MAX(gols)</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom, golejadors.equip, golejadors.dorsal, MAX(gols) AS gols</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom AS `pitxitxi`, golejadors.equip, golejadors.dorsal, MAX(gols) AS gols</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom , golejadors.equip, golejadors.dorsal, MAX(gols)
+	FROM golejadors, jugadors
+	WHERE golejadors.dorsal = jugadors.dorsal AND golejadors.equip = jugadors.equip</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom , golejadors.equip, golejadors.dorsal, MAX(gols)
+	FROM golejadors, jugadors
+	WHERE dorsal = jugadors.dorsal AND equip = jugadors.equip</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom ,equip, dorsal, MAX(gols)
+	FROM golejadors, jugadors
+	WHERE dorsal = jugadors.dorsal AND equip = jugadors.equip</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom ,equip, dorsal, MAX(gols)
+	FROM golejadors, jugadors</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT equip, dorsal, MAX(gols)
+	FROM golejadors</string>
+		<string>#11 Gols marcats pel pitxitxi
+SELECT equip, dorsal, MAX(gols)</string>
+		<string>#11 Gols marcats pel pitxitxi
+DESCRIBE golejadors</string>
+		<string>#10. Mostra les quinieles de tota la competició
+SELECT equipc, equipf, jornada, IF(golsc &gt; golsf, 'x', '') AS `Equip casa`, IF (golsc &lt; golsf, 'x', '') AS `Equip fora`, IF(golsc = golsf, 'x', '') AS `1x2`
 	FROM partits
-	ORDER BY golst DESC, golsc DESC</string>
-		<string>SELECT jornada, golsc, golsf, golsc + golsf AS golst, possessioc, 100 - possessioc AS possessiof 
-	FROM partits
-	ORDER BY golst DESC</string>
-		<string>SELECT jornada, golsc, golsf, golsc + golsf AS golst, possessioc, 100 - possessioc AS possessiof 
+	ORDER BY jornada</string>
+		<string>#10. Mostra les quinieles de tota la competició
+SELECT equipc, equipf, jornada, IF(golsc &gt; golsf, 'x', '') AS `Equip casa`, IF (golsc &lt; golsf, 'x', '') AS `Equip fora`, IF(golsc = golsf, 'x', '') AS `1x2`
 	FROM partits</string>
-		<string>#2 De cada partit mostra la jornada, els gols de cada equip, el total de gols, la possessió de l'equip de casa i la de l'equip de fora. Primer eixiran els partits que s'hagen marcat més gols. En cas d'igualtat, eixiram primer els que es marcaren més gols a casa.
+		<string>SELECT equipc, equipf, IF(golsc &gt; golsf, 'x', '') AS `Equip casa`, IF (golsc &lt; golsf, 'x', '') AS `Equip fora`, IF(golsc = golsf, 'x', '') AS `1x2`
+	FROM partits
+	WHERE jornada = 1</string>
+		<string>#9 Mostra la quiniela de la primera jornada (equip casa, equip fora, 1x2). Harás de buscar un select condicional. Busca en internet.
 DESCRIBE partits</string>
-		<string>#2 De cada partit mostra la jornada, els gols de cada equip, el total de gols, la possessió de l'equip de casa i la de l'equip de fora. Primer eixiran els partits que s'hagen marcat més gols. En cas d'igualtat, eixiram primer els que es marcaren més gols a casa.
-
-SELECT jornada, golsc, golsf, golsc + golsf AS golst, possesioc, 100 - possesioc AS possesiof 
+		<string>#9 Mostra la quiniela de la primera jornada (equip casa, equip fora, 1x2). Harás de buscar un select condicional. Busca en internet.
+SELECT equipc, equipf, IF(golsc &gt; golsf, 'x', '') AS `Equip casa`, IF (golsc &lt; golsf, 'x', '') AS `Equip fora`, IF(golsc = golsf, 'x', '') AS `1x2`
+	FROM partits</string>
+		<string>#9 Mostra la quiniela de la primera jornada (equip casa, equip fora, 1x2). Harás de buscar un select condicional. Busca en internet.
+SELECT IF(golsc &gt; golsf, 'x', '') AS `Equip casa`, IF (golsc &lt; golsf, 'x', '') AS `Equip fora`, IF(golsc = golsf, 'x', '') AS `1x2`
+	FROM partits</string>
+		<string>#9 Mostra la quiniela de la primera jornada (equip casa, equip fora, 1x2). Harás de buscar un select condicional. Busca en internet.
+SELECT IF(golsc &gt; golsf, 'x', '') AS `Equip casa`, IF (golsc &lt; golsf, 'x', '') AS `Equip fora`, IF(golsc = golsf, 'x', '')
+	FROM partits</string>
+		<string>#9 Mostra la quiniela de la primera jornada (equip casa, equip fora, 1x2). Harás de buscar un select condicional. Busca en internet.
+SELECT IF(golsc &gt; golsf, 'x', '') AS `Equip casa`
 	FROM partits</string>
 	</array>
 	<key>rdbms_type</key>
