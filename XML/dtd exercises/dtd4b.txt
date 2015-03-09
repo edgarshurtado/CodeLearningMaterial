@@ -1,0 +1,5 @@
+1. Es válido
+
+2. No es válido porque AAA no contiene a BBB en el DTD
+
+3. No es válido porque sólo puede haber un elemento AAA
