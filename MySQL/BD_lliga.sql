@@ -69,4 +69,39 @@ DESCRIBE partits;
 SELECT equipc, sum(golsc)
 	FROM partits
 	GROUP BY equipc;
-	 
+	
+#7 Gols que ha rebut en total cada equip com a visitant
+SELECT equipf AS equip, sum(golsc) AS `goles encajados como vis.`
+	FROM partits
+	GROUP BY equipf;
+	
+#8 Quants partits han guanyat cada equip jugant en casa
+SELECT equipc AS `equip`, count(*) AS `partits guanyats`
+	FROM `partits`
+	WHERE golsc > golsf
+	GROUP BY equipc;
+	
+#9 Comprova si hi ha algun nom de jugador repetit. És a dir: cal mostrar el nom del jugador i quantes voltes apareix però només per a aquells jugadors que tinguen el nom repetit.
+SELECT nom, count(*)
+	FROM jugadors
+	GROUP BY nom
+	HAVING count(*) > 1;
+	
+#10 Volem saber la mitja de possessió del baló de cada equip jugant a casa. Ordenat de major a menor possessió. La mitja ha d'eixir sense decimals.
+DESCRIBE partits;
+SELECT equipc, ROUND(AVG(possessioc))
+	FROM partits
+	GROUP BY equipc;
+	
+#11 Mitjana de gols marcats en cada jornada i la data de la jornada (un decimal).
+DESCRIBE jornades;
+SELECT jornades.num AS `jornada`, ROUND(AVG(partits.golsc + partits.golsf), 1) AS `Mitja gols`
+	FROM jornades, `partits`
+	GROUP BY jornades.num;
+	
+#12 Jornades en les quals s'han marcat més de 35 gols.
+DESCRIBE partits;
+SELECT jornada, SUM(golsc+golsf) AS `gols`
+	FROM partits
+	GROUP BY jornada
+	HAVING `gols` > 35;
