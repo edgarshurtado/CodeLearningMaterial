@@ -23,7 +23,7 @@ SELECT SUM(kms)
 DESCRIBE ports;
 SELECT nom
 	FROM ports
-	WHERE categoria = "E";
+	WHERE categoria IS NULL;
 
 ##4.4.2 CLAUSULA SELECT
 #a1 Selecciona tota la informació dels ports
@@ -31,7 +31,7 @@ SELECT * FROM ports;
 
 #a2 Selecciona el nom del port, l'altura en kilòmetres (está guardada en metres) i, al costat, que aparega la paraula "Km"
 
-SELECT nom, (altura/1000) AS `altura Km`
+SELECT nom, (altura/1000), "kms" AS altura_kms
 	FROM ports;
 	
 ### 4.4.4 RESULTATS DE CONSULTES
@@ -57,7 +57,7 @@ INSERT INTO premis
 ## 4.4.10 (Clàusula GROUP BY)
 #c1 Calcula de cada equip l'edat mitjana, màxima, mínima i quants corredors té
 DESCRIBE ciclistes;
-SELECT equip, MAX(edat), MIN(edat), count(*)
+SELECT equip, round(AVG(edat),2) AS `mitja	`, MAX(edat), MIN(edat), count(*)
 	FROM ciclistes
 	GROUP BY equip;
 	
