@@ -52,16 +52,16 @@ DESCRIBE partits;
 SELECT count(*)
 	FROM partits
 	WHERE jornada = 1;
-SELECT jornada, count(*) AS `partits`, SUM(golsc + golsf)/COUNT(*) AS `Mitja gols`
+	
+SELECT jornada, count(*) AS `partits`, AVG(golsc + golsf) AS `Mitja gols`
 	FROM `partits`
 	GROUP BY jornada
 	HAVING `Mitja gols` IS NOT NULL;
 	
 #5 Gols marcats pel pitxitxi de cada equip
 DESCRIBE golejadors;
-SELECT golejadors.equip, jugadors.nom, MAX(golejadors.gols)
-	FROM golejadors, jugadors
-	WHERE golejadors.equip + golejadors.dorsal = jugadors.equip + jugadors.dorsal
+SELECT 	equip, max(gols) 
+	FROM golejadors
 	GROUP BY equip;
 	
 #6 Gols marcats per cada equip en casa
@@ -105,3 +105,95 @@ SELECT jornada, SUM(golsc+golsf) AS `gols`
 	FROM partits
 	GROUP BY jornada
 	HAVING `gols` > 35;
+	
+#EXERCICIS AMB UNION
+DESCRIBE partits;
+#1 Quants partits li queda per jugar a cada equip en casa i quants fora?
+SELECT equipc AS `Equip`, count(*) AS `Partits`, "casa" AS `Lloc`
+	FROM partits
+	WHERE golsc IS NULL
+	GROUP BY equipc
+	
+UNION 
+
+SELECT equipf, count(*), "fora"
+	FROM `partits`
+	WHERE golsf IS NULL 
+	GROUP BY equipf
+	
+ORDER BY 1;
+
+#2 Quants partits ha guanyat/empatat/perdut cada equip jugant en casa/fora. Així:
+SELECT equipc AS `Equip`, count(*) AS `Partits`, "guanyats a casa" AS `Resultat`
+	FROM partits
+	WHERE golsc > golsf
+	GROUP BY equipc
+
+UNION
+
+SELECT equipc, count(*), "empatats a casa"
+	FROM partits
+	WHERE golsc = golsf
+	GROUP BY equipc
+
+UNION
+	
+SELECT equipc, count(*), "perduts a casa"
+	FROM partits
+	WHERE golsc < golsf
+	GROUP BY equipc
+	
+ORDER BY 1,3
+;
+
+#Intentar usar JOIN LEFT
+SELECT count(*)
+	FROM partits
+	WHERE golsc < golsf
+	GROUP BY equipc;
+	
+#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
+
+SELECT count(*)
+	FROM partits
+	WHERE equipc = 'ath' AND golsc = golsf OR equipf = 'ath' AND golsf = golsc;
+
+SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
+	FROM partits, equips
+	WHERE equipc = equips.codi AND golsc > golsf OR equipf = equips.codi AND golsf > golsc
+	GROUP BY `Equip`
+		
+UNION 
+
+SELECT equips.codi, count(*), "perduts"
+	FROM partits, equips
+	WHERE equipc = equips.codi AND golsc < golsf OR equipf = equips.codi AND golsf < golsc
+	GROUP BY equips.codi
+	
+UNION
+
+SELECT equips.codi, count(*), "empatats"
+	FROM partits, equips
+	WHERE equipc = equips.codi AND golsc = golsf OR equipf = equips.codi AND golsf = golsc
+	GROUP BY equips.codi
+
+
+ORDER BY `Equip`;
+
+#4 Quants 1, quantes X i quants 2
+SELECT count(*), "1" AS `Resultat`
+	FROM partits
+	WHERE golsc > golsf
+
+UNION 
+
+SELECT count(*), "2"
+	FROM partits
+	WHERE golsc < golsf
+
+UNION 
+
+SELECT count(*), "x"
+	FROM partits
+	WHERE golsc = golsf; 
+
