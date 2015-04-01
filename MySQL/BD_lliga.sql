@@ -91,20 +91,22 @@ SELECT nom, count(*)
 DESCRIBE partits;
 SELECT equipc, ROUND(AVG(possessioc))
 	FROM partits
-	GROUP BY equipc;
+	GROUP BY equipc
+	ORDER BY 2 DESC;
 	
 #11 Mitjana de gols marcats en cada jornada i la data de la jornada (un decimal).
 DESCRIBE jornades;
-SELECT jornades.num AS `jornada`, ROUND(AVG(partits.golsc + partits.golsf), 1) AS `Mitja gols`
+SELECT jornades.num AS `Jornada`, jornades.data, ROUND(AVG(partits.golsc + partits.golsf), 1) AS `Mitja gols`
 	FROM jornades, `partits`
-	GROUP BY jornades.num;
+	WHERE jornades.num = partits.jornada
+	GROUP BY jornades.num, jornades.data;
 	
 #12 Jornades en les quals s'han marcat més de 35 gols.
 DESCRIBE partits;
 SELECT jornada, SUM(golsc+golsf) AS `gols`
 	FROM partits
 	GROUP BY jornada
-	HAVING `gols` > 35;
+	HAVING SUM(golsc+golsf) > 35;
 	
 #EXERCICIS AMB UNION
 DESCRIBE partits;
@@ -143,8 +145,7 @@ SELECT equipc, count(*), "perduts a casa"
 	WHERE golsc < golsf
 	GROUP BY equipc
 	
-ORDER BY 1,3
-;
+ORDER BY 1,3;
 
 #Intentar usar JOIN LEFT
 SELECT count(*)
@@ -197,3 +198,37 @@ SELECT count(*), "x"
 	FROM partits
 	WHERE golsc = golsf; 
 
+##EXERCISIS MULTITAULA
+#1 De cada partit volem mostrar els codis dels equips i el nom de la ciutat on juguen.
+DESCRIBE partits;
+DESCRIBE equips;
+DESCRIBE ciutats;
+SELECT CASA.nomllarg AS EC, FORA.nomllarg AS EV, ciutats.nom AS Ciutat
+	FROM partits, `equips` CASA, `equips` FORA, ciutats
+	WHERE partits.`equipc` = CASA.`codi`
+		AND partits.`equipf` = FORA.`codi`
+		AND CASA.ciutat = ciutats.codi;
+
+#2 De cada partit que falta per jugar volem mostrar en quina data es disputarà, els noms curts dels equips, els noms de les ciutats respectives i el total d'habitants de les 2 ciutats
+DESCRIBE ciutats;
+DESCRIBE partits;
+DESCRIBE equips;
+DESCRIBE jornades;
+
+SELECT count(*)
+	FROM partits
+	WHERE golsc IS NULL;
+
+SELECT jornades.data, 
+EC.`nomcurt` AS EC, EF.`nomcurt` AS EF,
+CC.`nom` AS `Ciutat casa`, CC.`habitants`,
+CF.`nom` AS `Ciutat fora`, CF.`habitants`
+	FROM partits, jornades, 
+		equips EC, equips EF, 
+		ciutats CC, ciutats CF
+	WHERE partits.golsc IS NULL
+		AND partits.jornada = jornades.num
+		AND partits.`equipc` = EC.`codi`
+		AND partits.`equipf` = EF.`codi`
+		AND EC.`ciutat` = CC.`codi`
+		AND EF.`ciutat` = CF.`codi`;
