@@ -91,3 +91,106 @@ SELECT edat, `equip`, count(*)
 	
 ## 4.4.11 (Clàusula HAVING)
 #d1 Calcula de cada equip amb més de 3 corredors: l'edat mitjana, máxima i quants corredors té
+
+DESCRIBE ciclistes;
+SELECT ROUND(AVG(edat), 1), max(edat), count(*)
+	FROM ciclistes
+	GROUP BY equip
+	HAVING count(*) >= 3;
+	
+#d2) Calcula quantes etapes ha guanyat cada corredor, ordenat primer per qui ha guanyat més etapes. Només es mostrarán els corredors que hagen guanyat más d'1 etapa.
+DESCRIBE etapes;
+SELECT ciclista, count(*)
+	FROM etapes
+	GROUP BY ciclista
+	HAVING count(*) > 1;
+	
+#d3) Mostra les categories de ports on l'altura màxima siga igual a la mínima.
+DESCRIBE ports;
+SELECT nom, categoria, max(altura), min(altura) 
+	FROM ports
+	GROUP BY categoria
+	HAVING max(altura) = min(altura);
+	
+#d4)Dorsals que han guanyat més d'un port en una mateixa etapa.
+DESCRIBE ports;
+
+SELECT ciclista, etapa, count(*)
+	FROM ports
+	GROUP BY ciclista, etapa
+	HAVING count(*) > 1;
+	
+#4.4.12(Condicions de recerca)
+#E1) Mostra l'etapa i els km de les etapes entre 50 i 100 kms
+DESCRIBE etapes;
+SELECT numero, kms
+	FROM etapes
+	WHERE kms > 50 AND kms < 100;
+	
+#E2) Mostra l'etapa i els km de les altres etapes (<50 i > 100)
+SELECT numero, kms
+	FROM etapes
+	WHERE kms < 50 OR kms > 100;
+	
+#E3) Obtín el nom dels cilistes que comencen per 'Al'
+DESCRIBE ciclistes;
+SELECT nom
+	FROM ciclistes
+	WHERE nom LIKE 'Al%';
+
+#E4) Noms d'equips que contiguen 'tiac'
+DESCRIBE equips;
+
+SELECT nom
+	FROM equips
+	WHERE nom LIKE '%tiac%';
+	
+#E5) Noms de ciutats d'arribada que continguen 'Naran', que tinguen altra lletra al costat, després una 'o' i després més coses.
+DESCRIBE etapes;
+SELECT arribada
+	FROM etapes
+	WHERE arribada LIKE '%naran_o%';
+
+#E6) Noms de ciclistes que continguen 'Induráin' peró que no siguen 'Miguel'.
+DESCRIBE ciclistes;
+SELECT nom
+	FROM ciclistes
+	WHERE nom LIKE '%induráin%' AND nom NOT LIKE '%miguel%';
+
+#4.4.13 (Condicions de recerca compostes: AND, OR i NOT)
+#F1) Selecciona els ports que estiguen entre 1500 i 2000 metres. A més, haurán de complir que no siguen de la categoria 'E' o que tinguen una pendent major que 5.
+DESCRIBE ports;
+
+SELECT nom, altura, categoria, pendent
+	FROM ports
+	WHERE altura > 1500 AND altura < 2000 AND (categoria != 'E' OR pendent > 5);
+	
+#F2) Ciclistes que comencen per 'Al', 'An' o 'Ar' que tinguen entre 25 i 30 anys.
+DESCRIBE ciclistes;
+
+SELECT nom, edat
+	FROM ciclistes
+	WHERE (nom LIKE 'Al%' OR nom LIKE 'an%' OR nom LIKE 'Ar%') AND edat >= 25 AND edat <= 30;
+	
+#G1) Ordena els ciclistes pel nom de l'equip. Dins de cada equip, primer eixiran els més vells i després els més joves. Si diversos ciclistes del mateix equip tenen la mateixa edat, deuran aparéixer ordenats pel nom del ciclista
+
+DESCRIBE ciclistes;
+SELECT equip, nom, edat
+	FROM ciclistes
+	ORDER BY equip, edat DESC;
+	
+#H1) Selecciona els dorsals dels corredors de Banesto i també els que han guanyat alguna etapa.
+
+SELECT dorsal
+	FROM ciclistes
+	WHERE equip='Banesto'
+
+UNION	
+
+SELECT ciclista
+	FROM etapes;
+	
+
+
+
+	
