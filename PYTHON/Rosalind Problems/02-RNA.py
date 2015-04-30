@@ -1,12 +1,4 @@
-fhand=open("rosalind_rna.txt")
+def rna_transcriber(string):
 
-result=""
-
-for line in fhand:
-	for nBase in line:
-		if nBase == 'T':
-			nBase = 'U'
-		result+=nBase
-
-print result
+	return string.replace("T", "U")
 
