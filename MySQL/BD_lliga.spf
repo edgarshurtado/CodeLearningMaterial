@@ -47,22 +47,25 @@
 			<integer>1</integer>
 			<key>contentSelection</key>
 			<data>
-			YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFy
-			Y2hpdmVyVCR0b3ASAAGGoK8QDwcIFRYXGBkfICEoLDA0OFUkbnVs
-			bNMJCgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+A
-			AoADgASjERITgAWABoAKgA5UdHlwZVRyb3dzVGtleXNfECZTZWxl
-			Y3Rpb25EZXRhaWxUeXBlUHJpbWFyeUtleWVkRGV0YWlsc9MJCgsa
-			HB6hG4AHoR2ACIAJU2F0aAnSIiMkJVokY2xhc3NuYW1lWCRjbGFz
-			c2VzXxATTlNNdXRhYmxlRGljdGlvbmFyeaMkJidcTlNEaWN0aW9u
-			YXJ5WE5TT2JqZWN00goLKSuhKoALgA3SCy0uL1lOUy5zdHJpbmeA
-			DFRjb2Rp0iIjMTJfEA9OU011dGFibGVTdHJpbmejMTMnWE5TU3Ry
-			aW5n0iIjNTZeTlNNdXRhYmxlQXJyYXmjNTcnV05TQXJyYXnSIiMm
-			OaImJ18QD05TS2V5ZWRBcmNoaXZlctE8PVRkYXRhgAEACAARABoA
-			IwAtADIANwBJAE8AVgBeAGkAcAB0AHYAeAB6AH4AgACCAIQAhgCL
-			AJAAlQC+AMUAxwDJAMsAzQDPANMA1ADZAOQA7QEDAQcBFAEdASIB
-			JAEmASgBLQE3ATkBPgFDAVUBWQFiAWcBdgF6AYIBhwGKAZwBnwGk
-			AAAAAAAAAgEAAAAAAAAAPgAAAAAAAAAAAAAAAAAAAaY=
+			YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK8QEAcIFRYXGBkfICEoLTE1ODxVJG51
+			bGzTCQoLDBAUV05TLmtleXNaTlMub2JqZWN0c1YkY2xhc3OjDQ4P
+			gAKAA4AEoxESE4AFgAaACoAPVHR5cGVUcm93c1RrZXlzXxAmU2Vs
+			ZWN0aW9uRGV0YWlsVHlwZVByaW1hcnlLZXllZERldGFpbHPTCQoL
+			GhweoRuAB6EdgAiACWcAegBhAHL/+ABhAHQAaAnSIiMkJVokY2xh
+			c3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxlRGljdGlvbmFyeaMk
+			JidcTlNEaWN0aW9uYXJ5WE5TT2JqZWN00goLKSyiKiuAC4ANgA7S
+			Cy4vMFlOUy5zdHJpbmeADFZlcXVpcGPSIiMyM18QD05TTXV0YWJs
+			ZVN0cmluZ6MyNCdYTlNTdHJpbmfSCy4vN4AMVmVxdWlwZtIiIzk6
+			Xk5TTXV0YWJsZUFycmF5ozk7J1dOU0FycmF50iIjJj2iJidfEA9O
+			U0tleWVkQXJjaGl2ZXLRQEFUZGF0YYABAAgAEQAaACMALQAyADcA
+			SgBQAFcAXwBqAHEAdQB3AHkAewB/AIEAgwCFAIcAjACRAJYAvwDG
+			AMgAygDMAM4A0ADfAOAA5QDwAPkBDwETASABKQEuATEBMwE1ATcB
+			PAFGAUgBTwFUAWYBagFzAXgBegGBAYYBlQGZAaEBpgGpAbsBvgHD
+			AAAAAAAAAgEAAAAAAAAAQgAAAAAAAAAAAAAAAAAAAcU=
 			</data>
+			<key>contentSortCol</key>
+			<string>possessioc</string>
 			<key>contentSortColIsAsc</key>
 			<true/>
 			<key>contentViewport</key>
@@ -163,20 +166,22 @@ SELECT nom, count(*)
 DESCRIBE partits;
 SELECT equipc, ROUND(AVG(possessioc))
 	FROM partits
-	GROUP BY equipc;
+	GROUP BY equipc
+	ORDER BY 2 DESC;
 	
 #11 Mitjana de gols marcats en cada jornada i la data de la jornada (un decimal).
 DESCRIBE jornades;
-SELECT jornades.num AS `jornada`, ROUND(AVG(partits.golsc + partits.golsf), 1) AS `Mitja gols`
+SELECT jornades.num AS `Jornada`, jornades.data, ROUND(AVG(partits.golsc + partits.golsf), 1) AS `Mitja gols`
 	FROM jornades, `partits`
-	GROUP BY jornades.num;
+	WHERE jornades.num = partits.jornada
+	GROUP BY jornades.num, jornades.data;
 	
 #12 Jornades en les quals s'han marcat més de 35 gols.
 DESCRIBE partits;
 SELECT jornada, SUM(golsc+golsf) AS `gols`
 	FROM partits
 	GROUP BY jornada
-	HAVING `gols` &gt; 35;
+	HAVING SUM(golsc+golsf) &gt; 35;
 	
 #EXERCICIS AMB UNION
 DESCRIBE partits;
@@ -215,8 +220,7 @@ SELECT equipc, count(*), "perduts a casa"
 	WHERE golsc &lt; golsf
 	GROUP BY equipc
 	
-ORDER BY 1,3
-;
+ORDER BY 1,3;
 
 #Intentar usar JOIN LEFT
 SELECT count(*)
@@ -269,9 +273,124 @@ SELECT count(*), "x"
 	FROM partits
 	WHERE golsc = golsf; 
 
+##EXERCISIS MULTITAULA
+#1 De cada partit volem mostrar els codis dels equips i el nom de la ciutat on juguen.
+DESCRIBE partits;
+DESCRIBE equips;
+DESCRIBE ciutats;
+SELECT CASA.nomllarg AS EC, FORA.nomllarg AS EV, ciutats.nom AS Ciutat
+	FROM partits, `equips` CASA, `equips` FORA, ciutats
+	WHERE partits.`equipc` = CASA.`codi`
+		AND partits.`equipf` = FORA.`codi`
+		AND CASA.ciutat = ciutats.codi;
+
+#2 De cada partit que falta per jugar volem mostrar en quina data es disputarà, els noms curts dels equips, els noms de les ciutats respectives i el total d'habitants de les 2 ciutats
+DESCRIBE ciutats;
+DESCRIBE partits;
+DESCRIBE equips;
+DESCRIBE jornades;
+
+SELECT count(*)
+	FROM partits
+	WHERE golsc IS NULL;
+
+SELECT jornades.data, 
+EC.`nomcurt` AS EC, EF.`nomcurt` AS EF,
+CC.`nom` AS `Ciutat casa`, CC.`habitants`,
+CF.`nom` AS `Ciutat fora`, CF.`habitants`
+	FROM partits, jornades, 
+		equips EC, equips EF, 
+		ciutats CC, ciutats CF
+	WHERE partits.golsc IS NULL
+		AND partits.jornada = jornades.num
+		AND partits.`equipc` = EC.`codi`
+		AND partits.`equipf` = EF.`codi`
+		AND EC.`ciutat` = CC.`codi`
+		AND EF.`ciutat` = CF.`codi`;
+		
+##EJERCICIOS SUBCONSULTAS
+
+#1 Nom del pitxixi
+
+SELECT nom
+	FROM jugadors, (
+		SELECT dorsal AS dorsal_pixixi, equip AS equip_pixixi
+ 			FROM golejadors
+ 			WHERE gols = (
+ 				SELECT max(gols)
+				FROM golejadors) 
+		)AS pixixi
+	WHERE dorsal = dorsal_pixixi AND equip = equip_pixixi;
+	
+SELECT nom
+	FROM jugadors, golejadors
+	WHERE golejadors.dorsal = jugadors.`dorsal`
+		AND golejadors.`equip` = jugadors.`equip`
+		AND golejadors.gols = 
+		(
+			SELECT max(gols)
+				FROM golejadors
+		);
+		
+#2 Nom del pitxixi i quants gols ha marcarts
+
+SELECT nom, golejadors.gols
+	FROM jugadors, golejadors
+	WHERE golejadors.dorsal = jugadors.`dorsal`
+		AND golejadors.`equip` = jugadors.`equip`
+		AND golejadors.gols = 
+		(
+			SELECT max(gols)
+				FROM golejadors
+		);
+
+#3 Mostra el nom i sou del jugador millor pagat de tota la lliga
+SELECT nom, sou
+	FROM jugadors
+	WHERE 
+		sou = (SELECT max(sou) FROM jugadors);
+		
+#4 Mostra el nom del jugador millor pagat de cada equip
+
+SELECT nom, jugadors.equip
+	FROM jugadors, (
+		SELECT max(sou) AS 'sou_max', equip
+			FROM jugadors
+			GROUP BY equip
+	) AS sueldos_maximos
+	WHERE jugadors.sou = sou_max
+		AND jugadors.equip = sueldos_maximos.equip;
+	
+
+#5 Noms dels jugadors dels equips del partit on més gols es marcaren. Mostra també els equips. Ordenat per equip i nom de jugador.
+
+SELECT jugadors.nom, jugadors.equip
+	FROM jugadors, partits
+	WHERE jugadors.equip IN (partits.`equipc`, partits.`equipf`)
+		AND partits.golsc + partits.golsf = ( SELECT max(golsc + golsf)
+												FROM partits
+											);
+											
+#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT j1.nom, j1.equip
+		FROM  jugadors j1
+		WHERE j1.dorsal NOT IN (
+									SELECT dorsal
+										FROM golejadors
+										WHERE golejadors.equip = j1.equip
+										);
+										
+#7 
+
+	SELECT equips.`nomcurt`, count(*)
+		FROM equips, partits
+		WHERE (equips.`codi` = partits.`equipc`
+			OR equips.`codi` = partits.`equipf`)
+			AND possessioc IS NULL
+		GROUP BY equips.`nomcurt`;
 </string>
 			<key>table</key>
-			<string>equips</string>
+			<string>partits</string>
 			<key>view</key>
 			<string>SP_VIEW_CUSTOMQUERY</string>
 			<key>windowVerticalDividerPosition</key>
@@ -286,184 +405,140 @@ SELECT count(*), "x"
 	<array/>
 	<key>queryHistory</key>
 	<array>
-		<string>#4 Quants 1, quantes X i quants 2
-SELECT count(*), "1" AS `Resultat`
+		<string>#7 
+
+	SELECT equips.`nomcurt`, count(*)
+		FROM equips, partits
+		WHERE (equips.`codi` = partits.`equipc`
+			OR equips.`codi` = partits.`equipf`)
+			AND possessioc IS NULL
+		GROUP BY equips.`nomcurt`</string>
+		<string>#7 
+
+	SELECT equips.`nomcurt`
+		FROM equips, partits
+		WHERE (equips.`codi` = partits.`equipc`
+			OR equips.`codi` = partits.`equipf`)
+			AND possessioc IS NULL</string>
+		<string>SELECT equips.codi, count(*)
+	FROM partits, equips
+	WHERE possessioc IS NULL
+		AND (equips.codi = equipc
+		OR equips.codi = equipf)
+	GROUP BY equips.codi</string>
+		<string>SELECT equips.codi, count(*)
+	FROM partits, equips
+	WHERE possessioc IS NULL
+		AND equips.codi = equipc
+		OR equips.codi = equipf
+	GROUP BY equips.codi</string>
+		<string>SELECT equips.codi
+	FROM partits, equips
+	WHERE possessioc IS NULL
+		AND equips.codi = equipc
+		OR equips.codi = equipf</string>
+		<string>SELECT equipc, equipf
 	FROM partits
-	WHERE golsc &gt; golsf
+	WHERE possessioc IS NULL</string>
+		<string>#7 Quants partits li queda per jugar en total a cada equip?
 
-UNION 
-
-SELECT count(*), "2"
+SELECT equipc, equipf
 	FROM partits
-	WHERE golsc &lt; golsf
+	WHERE possessioc IS NULL</string>
+		<string>#7 Quants partits li queda per jugar en total a cada equip?
 
-UNION 
-
-SELECT count(*), "x"
+SELECT equipc, equipf
 	FROM partits
-	WHERE golsc = golsf</string>
-		<string>#4 Quants 1, quantes X i quants 2
-SELECT count(*), "1" AS `Resultat`
+	WHERE posessio IS NULL</string>
+		<string>#7 Quants partits li queda per jugar en total a cada equip?
+
+SELECT equipc, equipf
 	FROM partits
-	WHERE golsc &gt; golsf</string>
-		<string>#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
+	WHERE possessio IS NULL</string>
+		<string>#7 Quants partits li queda per jugar en total a cada equip?
 
-SELECT count(*)
+SELECT equipc, equipf
 	FROM partits
-	WHERE equipc = 'ath' AND golsc = golsf OR equipf = 'ath' AND golsf = golsc</string>
-		<string>SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY `Equip`
-		
-UNION 
+	WHERE possesio IS NULL</string>
+		<string>#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT j1.nom, j1.equip
+		FROM  jugadors j1
+		WHERE j1.dorsal NOT IN (
+										SELECT dorsal
+											FROM golejadors
+											WHERE golejadors.equip = j1.equip
+										)</string>
+		<string>#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT jugadors.nom, jugadors.equip
+		FROM  jugadors j1
+		WHERE jugadors.dorsal NOT IN (
+										SELECT dorsal
+											FROM golejadors
+											WHERE golejadors.equip = j1.equip
+										)</string>
+		<string>#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT jugadors.nom, jugadors.equip
+		FROM  jugadors
+		WHERE jugadors.dorsal NOT IN (
+										SELECT dorsal
+											FROM golejadors
+										)</string>
+		<string>#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT jugadors.nom, jugadors.equip
+		FROM  jugadors, golejadors
+		WHERE jugadors.dorsal NOT IN (
+										SELECT dorsal
+											FROM golejadors
+										)</string>
+		<string>#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT jugadors.nom, jugadors.equip
+		FROM  jugadors, golejadors
+		WHERE jugadors.equip NOT IN (
+										SELECT dorsal
+											FROM golejadors	
+									)
+			AND jugadors.dorsal NOT IN (
+										SELECT dorsal
+											FROM golejadors
+									)</string>
+		<string>#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT jugadors.nom, jugadors.equip
+		FROM  jugadors, golejadors
+		WHERE jugadors.equip NOT IN  golejadors.equip
+			AND jugadors.dorsal NOT IN (
+										SELECT dorsal
+											FROM golejadors
+									)</string>
+		<string>#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT jugadors.nom, jugadors.equip
+		FROM  jugadors, golejadors
+		WHERE jugadors.equip = golejadors.equip
+			AND jugadors.dorsal NOT IN (
+										SELECT dorsal
+											FROM golejadors
+									)</string>
+		<string>#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT jugadors.nom, jugadors.equip
+		FROM  jugadors, golejadors
+		WHERE jugadors.dorsal NOT IN (
+										SELECT dorsal
+											FROM golejadors
+									)</string>
+		<string>#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT jugadors.nom, jugadors.equip
+		FROM  jugadors, golejadors
+		WHERE jugadors.dorsal NOT IN (
+										SELECT jugador
+											FROM golejadors
+									)</string>
+		<string>#5 Noms dels jugadors dels equips del partit on més gols es marcaren. Mostra també els equips. Ordenat per equip i nom de jugador.
 
-SELECT equips.codi, count(*), "perduts"
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &lt; golsf OR equipf = equips.codi AND golsf &lt; golsc
-	GROUP BY equips.codi
-	
-UNION
-
-SELECT equips.codi, count(*), "empatats"
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc = golsf OR equipf = equips.codi AND golsf = golsc
-	GROUP BY equips.codi
-
-
-ORDER BY `Equip`</string>
-		<string>SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY `Equip`
-		
-UNION 
-
-SELECT equips.codi, count(*), "perduts"
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &lt; golsf OR equipf = equips.codi AND golsf &lt; golsc
-	GROUP BY equips.codi
-
-SELECT equips.codi, count(*), "empatats"
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &lt; golsf OR equipf = equips.codi AND golsf &lt; golsc
-	GROUP BY equips.codi
-
-
-ORDER BY `Equip`</string>
-		<string>SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY `Equip`
-		
-UNION 
-
-SELECT equips.codi, count(*), "perduts"
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &lt; golsf OR equipf = equips.codi AND golsf &lt; golsc
-	GROUP BY equips.codi
-
-SELECT equips.codi, count(*), "empatats"
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc = golsf OR equipf = equips.codi AND golsf = golsc
-	GROUP BY equips.codi
-
-
-ORDER BY `Equip`</string>
-		<string>SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY `Equip`
-		
-UNION 
-
-SELECT equips.codi, count(*), "perduts"
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &lt; golsf OR equipf = equips.codi AND golsf &lt; golsc
-	GROUP BY equips.codi
-
-
-ORDER BY `Equip`</string>
-		<string>#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
-
-SELECT count(*)
-	FROM partits
-	WHERE equipc = 'ath' AND golsc &gt; golsf OR equipf = 'ath' AND golsf &gt; golsc</string>
-		<string>SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY `Equip`
-		
-UNION 
-
-SELECT equips.codi, count(*), "perduts"
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &lt; golsf OR equipf = equips.codi AND golsf &lt; golsc
-	GROUP BY `Equip`
-
-
-ORDER BY `Equip`</string>
-		<string>SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY `Equip`
-	ORDER BY `Equip`</string>
-		<string>#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
-
-SELECT count(*)
-	FROM partits
-	WHERE equipc = 'ath' AND golsc &gt; golsf</string>
-		<string>#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
-
-SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY `Equip`
-	ORDER BY `Equip`</string>
-		<string>#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
-
-SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY equipc
-	ORDER BY `Equip`</string>
-		<string>#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
-
-SELECT equips.codi AS `Equip`, count(partits.*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY equipc
-	ORDER BY `Equip`</string>
-		<string>#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
-
-SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc = equips.codi AND golsc &gt; golsf OR equipf = equips.codi AND golsf &gt; golsc
-	GROUP BY equipc</string>
-		<string>#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
-
-SELECT codi.equips AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc.partits = codi.equips AND golsc &gt; golsf OR equipf = codi.equips AND golsf &gt; golsc
-	GROUP BY equipc</string>
-		<string>#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
-
-SELECT codi.equips AS `Equip`, count(*.partits) AS `Partits`, "guanyats" AS `Resultat`
-	FROM partits, equips
-	WHERE equipc.partits = codi.equips AND golsc &gt; golsf OR equipf = codi.equips AND golsf &gt; golsc
-	GROUP BY equipc</string>
-		<string>SELECT jornada, count(*) AS `partits`, AVG(golsc + golsf) AS `Mitja gols`
-	FROM `partits`
-	GROUP BY jornada
-	HAVING `Mitja gols` IS NOT NULL</string>
-		<string>SELECT jornada, count(*) AS `partits`, AVG(SUM(golsc + golsf)) AS `Mitja gols`
-	FROM `partits`
-	GROUP BY jornada
-	HAVING `Mitja gols` IS NOT NULL</string>
-		<string>SELECT jornada, count(*) AS `partits`, SUM(golsc + golsf)/COUNT(*) AS `Mitja gols`
-	FROM `partits`
-	GROUP BY jornada
-	HAVING `Mitja gols` IS NOT NULL</string>
+SELECT jugadors.nom, jugadors.equip
+	FROM jugadors, partits
+	WHERE jugadors.equip IN (partits.`equipc`, partits.`equipf`)
+		AND golsc + golsf = ( SELECT max(golsc + golsf)
+												FROM partits
+											)</string>
 	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>

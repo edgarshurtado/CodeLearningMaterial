@@ -1,196 +1,306 @@
-##4.2.2
-#a1 Obteniu quants ciclistes hi ha
+#7 Mostra el següents sous: El més car, el més barat i la mitjana
+SELECT MAX(sou), MIN(sou), AVG(sou)
+	FROM jugadors;
+	
+#8 Incrementa un 5% els pressupostos de tots els equips.
+UPDATE equips
+	SET pressupost = pressupost * 1.05;
+
+#9 Mostra la quiniela de la primera jornada (equip casa, equip fora, 1x2). Harás de buscar un select condicional. Busca en internet.
+DESCRIBE partits;
+SELECT equipc, equipf, IF(golsc > golsf, 'x', '') AS `Equip casa`, IF (golsc < golsf, 'x', '') AS `Equip fora`, IF(golsc = golsf, 'x', '') AS `1x2`
+	FROM partits
+	WHERE jornada = 1;
+	
+#10. Mostra les quinieles de tota la competició
+SELECT equipc, equipf, jornada, IF(golsc > golsf, 'x', '') AS `Equip casa`, IF (golsc < golsf, 'x', '') AS `Equip fora`, IF(golsc = golsf, 'x', '') AS `1x2`
+	FROM partits
+	ORDER BY jornada;
+	
+#11 Gols marcats pel pitxitxi
+SELECT jugadors.nom AS `pitxitxi`, golejadors.equip, golejadors.dorsal, MAX(gols) AS `gols`
+	FROM golejadors, jugadors
+	WHERE golejadors.dorsal = jugadors.dorsal AND golejadors.equip = jugadors.equip;
+	
+#EXERCICIS GROUP BY
+#1 Mostra de cada equip: el codi, sou màxim, mínim, la suma de tots els sous, quants jugadors hi ha, de quants jugadors es coneix el sou, la mitjana de sous entre els que sabem el sou i la mitjana de sous entre tots el jugadors.
+DESCRIBE jugadors;
+SELECT count(*) 
+	FROM jugadors;
+	
 SELECT count(*)
-	FROM ciclistes;
-
-#a2 Mostra l'edat mitjana dels ciclistes
-DESCRIBE ciclistes;
-SELECT AVG(edat)
-	FROM ciclistes;
-	
-#a3 Obteniu l'altura mínima y máxima dels ports de muntanya
-DESCRIBE ports;
-SELECT MIN(altura), MAX(altura)
-	FROM ports;
-
-#a4 Calcula quants kilòmetres té en total la volta ciclista
-DESCRIBE etapes;
-SELECT SUM(kms)
-	FROM etapes;
-	
-##4.3.7 Flata de dades (valors NULL)
-#b1 Obteniu aquells ports que no tenen assignada categoria
-DESCRIBE ports;
-SELECT nom
-	FROM ports
-	WHERE categoria IS NULL;
-
-##4.4.2 CLAUSULA SELECT
-#a1 Selecciona tota la informació dels ports
-SELECT * FROM ports;
-
-#a2 Selecciona el nom del port, l'altura en kilòmetres (está guardada en metres) i, al costat, que aparega la paraula "Km"
-
-SELECT nom, (altura/1000), "kms" AS altura_kms
-	FROM ports;
-	
-### 4.4.4 RESULTATS DE CONSULTES
-#b1 Crea la taula etapes_ciutat que continga el número d'etapa i la ciutat d'aquelles etapes que comencen i cabaen en la mateixa ciutat.
-DESCRIBE etapes;
-CREATE TABLE etapes_ciutat
-	SELECT numero, eixida
-		FROM etapes
-		WHERE eixida = arribada;
-		
-#b2 Crea la taula premis que continga el nom del color del mallot i el premi. Els noms de les columnes han de ser "Color del mallot" i "Valor del premi"
-DESCRIBE mallots;
-CREATE TABLE premis(
-	`Color del mallot` VARCHAR(20),
-	`Valor del premi` INT(10),
-	PRIMARY KEY (`Color del mallot`, `Valor del premi`)
-);
-
-INSERT INTO premis
-	SELECT color, premi
-	FROM mallots;
-	
-## 4.4.10 (Clàusula GROUP BY)
-#c1 Calcula de cada equip l'edat mitjana, màxima, mínima i quants corredors té
-DESCRIBE ciclistes;
-SELECT equip, round(AVG(edat),2) AS `mitja	`, MAX(edat), MIN(edat), count(*)
-	FROM ciclistes
+	FROM jugadors
+	WHERE sou IS NULL;
+SELECT equip, MAX(sou), MIN(sou), SUM(sou), COUNT(dorsal) AS `jugadors`, COUNT(sou), AVG(sou) AS `Mitja sou`, SUM(sou)/COUNT(*) AS `Mitja total`
+	FROM jugadors
 	GROUP BY equip;
 	
-#c2 Calcula quantes etapes ha guanyat cada corredor, ordenat primer per qui ha guanyat més etapes.
-DESCRIBE etapes;
-DESCRIBE ciclistes;
-SELECT ciclistes.nom, count(*) AS `etapas_ganadas`
-	FROM etapes, ciclistes
-	WHERE ciclistes.dorsal = etapes.`ciclista`
-	GROUP BY etapes.ciclista
-	ORDER BY `etapas_ganadas` DESC;
+#2. Mostra quants jugadors té cada equip en cada posició.
+DESCRIBE jugadors;
+SELECT equip, lloc, count(*)
+	FROM jugadors
+	GROUP BY equip, lloc;
 	
-#c3 Calcula, de cada categoria de port: l'altura máxima, minima i mitjana; la pendent máxima, mínima i mitjana; quants ports hi ha
-
-DESCRIBE ports;
-SELECT categoria, MAX(altura), MIN(altura), AVG(altura), MAX(pendent), MIN(pendent), AVG(pendent), count(*)
-	FROM ports
-	GROUP BY categoria;
+#3 Gols marcats en total en cada jornada
+SELECT jornada, sum(golsc+golsf) AS `gols`
+	FROM `partits`
+	GROUP BY jornada
+	HAVING gols IS NOT NULL;
 	
-#c4 Calcula quantes voltes ha portat un corredor cada mallot
-DESCRIBE portar;
-SELECT ciclista, mallot, count(*)
-	FROM portar
-	GROUP BY ciclista, mallot;
-
-#c5 Quants corredors hi ha de cada edat en cada equip?
-DESCRIBE ciclistes;
-SELECT edat, `equip`, count(*)
-	FROM ciclistes
-	GROUP BY edat, equip;
+#4 Mitja de gols per partit en cada jornada
+DESCRIBE partits;
+SELECT count(*)
+	FROM partits
+	WHERE jornada = 1;
 	
-## 4.4.11 (Clàusula HAVING)
-#d1 Calcula de cada equip amb més de 3 corredors: l'edat mitjana, máxima i quants corredors té
-
-DESCRIBE ciclistes;
-SELECT ROUND(AVG(edat), 1), max(edat), count(*)
-	FROM ciclistes
-	GROUP BY equip
-	HAVING count(*) >= 3;
+SELECT jornada, count(*) AS `partits`, AVG(golsc + golsf) AS `Mitja gols`
+	FROM `partits`
+	GROUP BY jornada
+	HAVING `Mitja gols` IS NOT NULL;
 	
-#d2) Calcula quantes etapes ha guanyat cada corredor, ordenat primer per qui ha guanyat més etapes. Només es mostrarán els corredors que hagen guanyat más d'1 etapa.
-DESCRIBE etapes;
-SELECT ciclista, count(*)
-	FROM etapes
-	GROUP BY ciclista
+#5 Gols marcats pel pitxitxi de cada equip
+DESCRIBE golejadors;
+SELECT 	equip, max(gols) 
+	FROM golejadors
+	GROUP BY equip;
+	
+#6 Gols marcats per cada equip en casa
+DESCRIBE partits;
+SELECT equipc, sum(golsc)
+	FROM partits
+	GROUP BY equipc;
+	
+#7 Gols que ha rebut en total cada equip com a visitant
+SELECT equipf AS equip, sum(golsc) AS `goles encajados como vis.`
+	FROM partits
+	GROUP BY equipf;
+	
+#8 Quants partits han guanyat cada equip jugant en casa
+SELECT equipc AS `equip`, count(*) AS `partits guanyats`
+	FROM `partits`
+	WHERE golsc > golsf
+	GROUP BY equipc;
+	
+#9 Comprova si hi ha algun nom de jugador repetit. És a dir: cal mostrar el nom del jugador i quantes voltes apareix però només per a aquells jugadors que tinguen el nom repetit.
+SELECT nom, count(*)
+	FROM jugadors
+	GROUP BY nom
 	HAVING count(*) > 1;
 	
-#d3) Mostra les categories de ports on l'altura màxima siga igual a la mínima.
-DESCRIBE ports;
-SELECT nom, categoria, max(altura), min(altura) 
-	FROM ports
-	GROUP BY categoria
-	HAVING max(altura) = min(altura);
+#10 Volem saber la mitja de possessió del baló de cada equip jugant a casa. Ordenat de major a menor possessió. La mitja ha d'eixir sense decimals.
+DESCRIBE partits;
+SELECT equipc, ROUND(AVG(possessioc))
+	FROM partits
+	GROUP BY equipc
+	ORDER BY 2 DESC;
 	
-#d4)Dorsals que han guanyat més d'un port en una mateixa etapa.
-DESCRIBE ports;
+#11 Mitjana de gols marcats en cada jornada i la data de la jornada (un decimal).
+DESCRIBE jornades;
+SELECT jornades.num AS `Jornada`, jornades.data, ROUND(AVG(partits.golsc + partits.golsf), 1) AS `Mitja gols`
+	FROM jornades, `partits`
+	WHERE jornades.num = partits.jornada
+	GROUP BY jornades.num, jornades.data;
+	
+#12 Jornades en les quals s'han marcat més de 35 gols.
+DESCRIBE partits;
+SELECT jornada, SUM(golsc+golsf) AS `gols`
+	FROM partits
+	GROUP BY jornada
+	HAVING SUM(golsc+golsf) > 35;
+	
+#EXERCICIS AMB UNION
+DESCRIBE partits;
+#1 Quants partits li queda per jugar a cada equip en casa i quants fora?
+SELECT equipc AS `Equip`, count(*) AS `Partits`, "casa" AS `Lloc`
+	FROM partits
+	WHERE golsc IS NULL
+	GROUP BY equipc
+	
+UNION 
 
-SELECT ciclista, etapa, count(*)
-	FROM ports
-	GROUP BY ciclista, etapa
-	HAVING count(*) > 1;
+SELECT equipf, count(*), "fora"
+	FROM `partits`
+	WHERE golsf IS NULL 
+	GROUP BY equipf
 	
-#4.4.12(Condicions de recerca)
-#E1) Mostra l'etapa i els km de les etapes entre 50 i 100 kms
-DESCRIBE etapes;
-SELECT numero, kms
-	FROM etapes
-	WHERE kms > 50 AND kms < 100;
-	
-#E2) Mostra l'etapa i els km de les altres etapes (<50 i > 100)
-SELECT numero, kms
-	FROM etapes
-	WHERE kms < 50 OR kms > 100;
-	
-#E3) Obtín el nom dels cilistes que comencen per 'Al'
-DESCRIBE ciclistes;
-SELECT nom
-	FROM ciclistes
-	WHERE nom LIKE 'Al%';
+ORDER BY 1;
 
-#E4) Noms d'equips que contiguen 'tiac'
+#2 Quants partits ha guanyat/empatat/perdut cada equip jugant en casa/fora. Així:
+SELECT equipc AS `Equip`, count(*) AS `Partits`, "guanyats a casa" AS `Resultat`
+	FROM partits
+	WHERE golsc > golsf
+	GROUP BY equipc
+
+UNION
+
+SELECT equipc, count(*), "empatats a casa"
+	FROM partits
+	WHERE golsc = golsf
+	GROUP BY equipc
+
+UNION
+	
+SELECT equipc, count(*), "perduts a casa"
+	FROM partits
+	WHERE golsc < golsf
+	GROUP BY equipc
+	
+ORDER BY 1,3;
+
+#Intentar usar JOIN LEFT
+SELECT count(*)
+	FROM partits
+	WHERE golsc < golsf
+	GROUP BY equipc;
+	
+#3 Quants partits ha guanyat/empatat/perdut cada equip, però sense diferenciar si és a casa o fora (només els totals)
+
+SELECT count(*)
+	FROM partits
+	WHERE equipc = 'ath' AND golsc = golsf OR equipf = 'ath' AND golsf = golsc;
+
+SELECT equips.codi AS `Equip`, count(*) AS `Partits`, "guanyats" AS `Resultat`
+	FROM partits, equips
+	WHERE equipc = equips.codi AND golsc > golsf OR equipf = equips.codi AND golsf > golsc
+	GROUP BY `Equip`
+		
+UNION 
+
+SELECT equips.codi, count(*), "perduts"
+	FROM partits, equips
+	WHERE equipc = equips.codi AND golsc < golsf OR equipf = equips.codi AND golsf < golsc
+	GROUP BY equips.codi
+	
+UNION
+
+SELECT equips.codi, count(*), "empatats"
+	FROM partits, equips
+	WHERE equipc = equips.codi AND golsc = golsf OR equipf = equips.codi AND golsf = golsc
+	GROUP BY equips.codi
+
+
+ORDER BY `Equip`;
+
+#4 Quants 1, quantes X i quants 2
+SELECT count(*), "1" AS `Resultat`
+	FROM partits
+	WHERE golsc > golsf
+
+UNION 
+
+SELECT count(*), "2"
+	FROM partits
+	WHERE golsc < golsf
+
+UNION 
+
+SELECT count(*), "x"
+	FROM partits
+	WHERE golsc = golsf; 
+
+##EXERCISIS MULTITAULA
+#1 De cada partit volem mostrar els codis dels equips i el nom de la ciutat on juguen.
+DESCRIBE partits;
 DESCRIBE equips;
+DESCRIBE ciutats;
+SELECT CASA.nomllarg AS EC, FORA.nomllarg AS EV, ciutats.nom AS Ciutat
+	FROM partits, `equips` CASA, `equips` FORA, ciutats
+	WHERE partits.`equipc` = CASA.`codi`
+		AND partits.`equipf` = FORA.`codi`
+		AND CASA.ciutat = ciutats.codi;
+
+#2 De cada partit que falta per jugar volem mostrar en quina data es disputarà, els noms curts dels equips, els noms de les ciutats respectives i el total d'habitants de les 2 ciutats
+DESCRIBE ciutats;
+DESCRIBE partits;
+DESCRIBE equips;
+DESCRIBE jornades;
+
+SELECT count(*)
+	FROM partits
+	WHERE golsc IS NULL;
+
+SELECT jornades.data, 
+EC.`nomcurt` AS EC, EF.`nomcurt` AS EF,
+CC.`nom` AS `Ciutat casa`, CC.`habitants`,
+CF.`nom` AS `Ciutat fora`, CF.`habitants`
+	FROM partits, jornades, 
+		equips EC, equips EF, 
+		ciutats CC, ciutats CF
+	WHERE partits.golsc IS NULL
+		AND partits.jornada = jornades.num
+		AND partits.`equipc` = EC.`codi`
+		AND partits.`equipf` = EF.`codi`
+		AND EC.`ciutat` = CC.`codi`
+		AND EF.`ciutat` = CF.`codi`;
+		
+##EJERCICIOS SUBCONSULTAS
+
+#1 Nom del pitxixi
 
 SELECT nom
-	FROM equips
-	WHERE nom LIKE '%tiac%';
+	FROM jugadors, (
+		SELECT dorsal AS dorsal_pixixi, equip AS equip_pixixi
+ 			FROM golejadors
+ 			WHERE gols = (
+ 				SELECT max(gols)
+				FROM golejadors) 
+		)AS pixixi
+	WHERE dorsal = dorsal_pixixi AND equip = equip_pixixi;
 	
-#E5) Noms de ciutats d'arribada que continguen 'Naran', que tinguen altra lletra al costat, després una 'o' i després més coses.
-DESCRIBE etapes;
-SELECT arribada
-	FROM etapes
-	WHERE arribada LIKE '%naran_o%';
-
-#E6) Noms de ciclistes que continguen 'Induráin' peró que no siguen 'Miguel'.
-DESCRIBE ciclistes;
 SELECT nom
-	FROM ciclistes
-	WHERE nom LIKE '%induráin%' AND nom NOT LIKE '%miguel%';
+	FROM jugadors, golejadors
+	WHERE golejadors.dorsal = jugadors.`dorsal`
+		AND golejadors.`equip` = jugadors.`equip`
+		AND golejadors.gols = 
+		(
+			SELECT max(gols)
+				FROM golejadors
+		);
+		
+#2 Nom del pitxixi i quants gols ha marcarts
 
-#4.4.13 (Condicions de recerca compostes: AND, OR i NOT)
-#F1) Selecciona els ports que estiguen entre 1500 i 2000 metres. A més, haurán de complir que no siguen de la categoria 'E' o que tinguen una pendent major que 5.
-DESCRIBE ports;
+SELECT nom, golejadors.gols
+	FROM jugadors, golejadors
+	WHERE golejadors.dorsal = jugadors.`dorsal`
+		AND golejadors.`equip` = jugadors.`equip`
+		AND golejadors.gols = 
+		(
+			SELECT max(gols)
+				FROM golejadors
+		);
 
-SELECT nom, altura, categoria, pendent
-	FROM ports
-	WHERE altura > 1500 AND altura < 2000 AND (categoria != 'E' OR pendent > 5);
+#3 Mostra el nom i sou del jugador millor pagat de tota la lliga
+SELECT nom, sou
+	FROM jugadors
+	WHERE 
+		sou = (SELECT max(sou) FROM jugadors);
+		
+#4 Mostra el nom del jugador millor pagat de cada equip
+
+SELECT nom, jugadors.equip
+	FROM jugadors, (
+		SELECT max(sou) AS 'sou_max', equip
+			FROM jugadors
+			GROUP BY equip
+	) AS sueldos_maximos
+	WHERE jugadors.sou = sou_max
+		AND jugadors.equip = sueldos_maximos.equip;
 	
-#F2) Ciclistes que comencen per 'Al', 'An' o 'Ar' que tinguen entre 25 i 30 anys.
-DESCRIBE ciclistes;
 
-SELECT nom, edat
-	FROM ciclistes
-	WHERE (nom LIKE 'Al%' OR nom LIKE 'an%' OR nom LIKE 'Ar%') AND edat >= 25 AND edat <= 30;
-	
-#G1) Ordena els ciclistes pel nom de l'equip. Dins de cada equip, primer eixiran els més vells i després els més joves. Si diversos ciclistes del mateix equip tenen la mateixa edat, deuran aparéixer ordenats pel nom del ciclista
+#5 Noms dels jugadors dels equips del partit on més gols es marcaren. Mostra també els equips. Ordenat per equip i nom de jugador.
 
-DESCRIBE ciclistes;
-SELECT equip, nom, edat
-	FROM ciclistes
-	ORDER BY equip, edat DESC;
-	
-#H1) Selecciona els dorsals dels corredors de Banesto i també els que han guanyat alguna etapa.
-
-SELECT dorsal
-	FROM ciclistes
-	WHERE equip='Banesto'
-
-UNION	
-
-SELECT ciclista
-	FROM etapes;
-	
-
-
-
-	
+SELECT jugadors.nom, jugadors.equip
+	FROM jugadors, partits
+	WHERE jugadors.equip IN (partits.`equipc`, partits.`equipf`)
+		AND partits.golsc + partits.golsf = ( SELECT max(golsc + golsf)
+												FROM partits
+											);
+											
+#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT j1.nom, j1.equip
+		FROM  jugadors j1
+		WHERE j1.dorsal NOT IN (
+									SELECT dorsal
+										FROM golejadors
+										WHERE golejadors.equip = j1.equip
+										);

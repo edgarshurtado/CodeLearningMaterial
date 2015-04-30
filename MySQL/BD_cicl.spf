@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>ciclisme</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>name</key>
+			<string>127.0.0.1</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>latin1</string>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGNjdYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK0HCBUWFxgZHSQoLDA0VSRudWxs0wkK
+			CwwQFFdOUy5rZXlzWk5TLm9iamVjdHNWJGNsYXNzow0OD4ACgAOA
+			BKMREhOABYAGgAiADFR0eXBlVHJvd3NUa2V5c18QJlNlbGVjdGlv
+			bkRldGFpbFR5cGVQcmltYXJ5S2V5ZWREZXRhaWxz0wkKCxobHKCg
+			gAfSHh8gIVokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxl
+			RGljdGlvbmFyeaMgIiNcTlNEaWN0aW9uYXJ5WE5TT2JqZWN00goL
+			JSehJoAJgAvSCykqK1lOUy5zdHJpbmeAClRjb2Rp0h4fLS5fEA9O
+			U011dGFibGVTdHJpbmejLS8jWE5TU3RyaW5n0h4fMTJeTlNNdXRh
+			YmxlQXJyYXmjMTMjV05TQXJyYXnSHh8iNaIiI18QD05TS2V5ZWRB
+			cmNoaXZlctE4OVRkYXRhgAEACAARABoAIwAtADIANwBFAEsAUgBa
+			AGUAbABwAHIAdAB2AHoAfAB+AIAAggCHAIwAkQC6AMEAwgDDAMUA
+			ygDVAN4A9AD4AQUBDgETARUBFwEZAR4BKAEqAS8BNAFGAUoBUwFY
+			AWcBawFzAXgBewGNAZABlQAAAAAAAAIBAAAAAAAAADoAAAAAAAAA
+			AAAAAAAAAAGX
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {693, 456}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>##4.2.2
+#a1 Obteniu quants ciclistes hi ha
+SELECT count(*)
+	FROM ciclistes;
+
+#a2 Mostra l'edat mitjana dels ciclistes
+DESCRIBE ciclistes;
+SELECT AVG(edat)
+	FROM ciclistes;
+	
+#a3 Obteniu l'altura mínima y máxima dels ports de muntanya
+DESCRIBE ports;
+SELECT MIN(altura), MAX(altura)
+	FROM ports;
+
+#a4 Calcula quants kilòmetres té en total la volta ciclista
+DESCRIBE etapes;
+SELECT SUM(kms)
+	FROM etapes;
+	
+##4.3.7 Flata de dades (valors NULL)
+#b1 Obteniu aquells ports que no tenen assignada categoria
+DESCRIBE ports;
+SELECT nom
+	FROM ports
+	WHERE categoria IS NULL;
+
+##4.4.2 CLAUSULA SELECT
+#a1 Selecciona tota la informació dels ports
+SELECT * FROM ports;
+
+#a2 Selecciona el nom del port, l'altura en kilòmetres (está guardada en metres) i, al costat, que aparega la paraula "Km"
+
+SELECT nom, (altura/1000), "kms" AS altura_kms
+	FROM ports;
+	
+### 4.4.4 RESULTATS DE CONSULTES
+#b1 Crea la taula etapes_ciutat que continga el número d'etapa i la ciutat d'aquelles etapes que comencen i cabaen en la mateixa ciutat.
+DESCRIBE etapes;
+CREATE TABLE etapes_ciutat
+	SELECT numero, eixida
+		FROM etapes
+		WHERE eixida = arribada;
+		
+#b2 Crea la taula premis que continga el nom del color del mallot i el premi. Els noms de les columnes han de ser "Color del mallot" i "Valor del premi"
+DESCRIBE mallots;
+CREATE TABLE premis(
+	`Color del mallot` VARCHAR(20),
+	`Valor del premi` INT(10),
+	PRIMARY KEY (`Color del mallot`, `Valor del premi`)
+);
+
+INSERT INTO premis
+	SELECT color, premi
+	FROM mallots;
+	
+## 4.4.10 (Clàusula GROUP BY)
+#c1 Calcula de cada equip l'edat mitjana, màxima, mínima i quants corredors té
+DESCRIBE ciclistes;
+SELECT equip, round(AVG(edat),2) AS `mitja	`, MAX(edat), MIN(edat), count(*)
+	FROM ciclistes
+	GROUP BY equip;
+	
+#c2 Calcula quantes etapes ha guanyat cada corredor, ordenat primer per qui ha guanyat més etapes.
+DESCRIBE etapes;
+DESCRIBE ciclistes;
+SELECT ciclistes.nom, count(*) AS `etapas_ganadas`
+	FROM etapes, ciclistes
+	WHERE ciclistes.dorsal = etapes.`ciclista`
+	GROUP BY etapes.ciclista
+	ORDER BY `etapas_ganadas` DESC;
+	
+#c3 Calcula, de cada categoria de port: l'altura máxima, minima i mitjana; la pendent máxima, mínima i mitjana; quants ports hi ha
+
+DESCRIBE ports;
+SELECT categoria, MAX(altura), MIN(altura), AVG(altura), MAX(pendent), MIN(pendent), AVG(pendent), count(*)
+	FROM ports
+	GROUP BY categoria;
+	
+#c4 Calcula quantes voltes ha portat un corredor cada mallot
+DESCRIBE portar;
+SELECT ciclista, mallot, count(*)
+	FROM portar
+	GROUP BY ciclista, mallot;
+
+#c5 Quants corredors hi ha de cada edat en cada equip?
+DESCRIBE ciclistes;
+SELECT edat, `equip`, count(*)
+	FROM ciclistes
+	GROUP BY edat, equip;
+	
+## 4.4.11 (Clàusula HAVING)
+#d1 Calcula de cada equip amb més de 3 corredors: l'edat mitjana, máxima i quants corredors té
+
+DESCRIBE ciclistes;
+SELECT ROUND(AVG(edat), 1), max(edat), count(*)
+	FROM ciclistes
+	GROUP BY equip
+	HAVING count(*) &gt;= 3;
+	
+#d2) Calcula quantes etapes ha guanyat cada corredor, ordenat primer per qui ha guanyat més etapes. Només es mostrarán els corredors que hagen guanyat más d'1 etapa.
+DESCRIBE etapes;
+SELECT ciclista, count(*)
+	FROM etapes
+	GROUP BY ciclista
+	HAVING count(*) &gt; 1;
+	
+#d3) Mostra les categories de ports on l'altura màxima siga igual a la mínima.
+DESCRIBE ports;
+SELECT nom, categoria, max(altura), min(altura) 
+	FROM ports
+	GROUP BY categoria
+	HAVING max(altura) = min(altura);
+	
+#d4)Dorsals que han guanyat més d'un port en una mateixa etapa.
+DESCRIBE ports;
+
+SELECT ciclista, etapa, count(*)
+	FROM ports
+	GROUP BY ciclista, etapa
+	HAVING count(*) &gt; 1;
+	
+#4.4.12(Condicions de recerca)
+#E1) Mostra l'etapa i els km de les etapes entre 50 i 100 kms
+DESCRIBE etapes;
+SELECT numero, kms
+	FROM etapes
+	WHERE kms &gt; 50 AND kms &lt; 100;
+	
+#E2) Mostra l'etapa i els km de les altres etapes (&lt;50 i &gt; 100)
+SELECT numero, kms
+	FROM etapes
+	WHERE kms &lt; 50 OR kms &gt; 100;
+	
+#E3) Obtín el nom dels cilistes que comencen per 'Al'
+DESCRIBE ciclistes;
+SELECT nom
+	FROM ciclistes
+	WHERE nom LIKE 'Al%';
+
+#E4) Noms d'equips que contiguen 'tiac'
+DESCRIBE equips;
+
+SELECT nom
+	FROM equips
+	WHERE nom LIKE '%tiac%';
+	
+#E5) Noms de ciutats d'arribada que continguen 'Naran', que tinguen altra lletra al costat, després una 'o' i després més coses.
+DESCRIBE etapes;
+SELECT arribada
+	FROM etapes
+	WHERE arribada LIKE '%naran_o%';
+
+#E6) Noms de ciclistes que continguen 'Induráin' peró que no siguen 'Miguel'.
+DESCRIBE ciclistes;
+SELECT nom
+	FROM ciclistes
+	WHERE nom LIKE '%induráin%' AND nom NOT LIKE '%miguel%';
+
+#4.4.13 (Condicions de recerca compostes: AND, OR i NOT)
+#F1) Selecciona els ports que estiguen entre 1500 i 2000 metres. A més, haurán de complir que no siguen de la categoria 'E' o que tinguen una pendent major que 5.
+DESCRIBE ports;
+
+SELECT nom, altura, categoria, pendent
+	FROM ports
+	WHERE altura &gt; 1500 AND altura &lt; 2000 AND (categoria != 'E' OR pendent &gt; 5);
+	
+#F2) Ciclistes que comencen per 'Al', 'An' o 'Ar' que tinguen entre 25 i 30 anys.
+DESCRIBE ciclistes;
+
+SELECT nom, edat
+	FROM ciclistes
+	WHERE (nom LIKE 'Al%' OR nom LIKE 'an%' OR nom LIKE 'Ar%') AND edat &gt;= 25 AND edat &lt;= 30;
+	
+#G1) Ordena els ciclistes pel nom de l'equip. Dins de cada equip, primer eixiran els més vells i després els més joves. Si diversos ciclistes del mateix equip tenen la mateixa edat, deuran aparéixer ordenats pel nom del ciclista
+
+DESCRIBE ciclistes;
+SELECT equip, nom, edat
+	FROM ciclistes
+	ORDER BY equip, edat DESC;
+	
+#H1) Selecciona els dorsals dels corredors de Banesto i també els que han guanyat alguna etapa.
+
+SELECT dorsal
+	FROM ciclistes
+	WHERE equip='Banesto'
+
+UNION	
+
+SELECT ciclista
+	FROM etapes;
+	
+
+#H2 Donada la seguent taula:
+CREATE TABLE amics(
+	nom CHAR(10),
+	cog1 CHAR (10),
+	cog2 CHAR (10)
+);
+
+INSERT INTO amics VALUES ("Edgar", "Sánchez", "Hurtado");
+INSERT INTO amics VALUES ("Anaís", "López", "Sánchez");
+INSERT INTO amics VALUES ("David", "Sebastiá", "Valero");
+INSERT INTO amics VALUES ("Cristina Aisha", "Tello", "Gómez");
+INSERT INTO amics VALUES ("Alex", "Latorre", "Tello");
+INSERT INTO amics VALUES ("Adhara", "Sebastiá", "Hurtado");
+
+#Mostra en una columna tots els noms dels amics
+#a)Sense repetir-los
+SELECT cog1 AS `Cognoms` FROM amics
+
+UNION 
+
+SELECT cog2 FROM amics;
+
+#b)Encara que estiguen repetits
+
+SELECT cog1 AS `Cognoms` FROM amics
+
+UNION ALL
+
+SELECT cog2 FROM amics
+
+ORDER BY `Cognoms`;
+
+#c els primers cognoms sense repetir pero els segons repetits
+
+SELECT DISTINCT cog1 AS `Cognoms` FROM amics
+
+UNION ALL 
+
+SELECT cog2 FROM amics;
+
+#H4. Seleccioneu els ciclistes que han guanyat alguna etapa o algun port. També cal mostrar els kms de l’etapa o l’altura del port però tot expressat en metres. També cal mostrar si es tracta d’un port o d’una etapa. Primer deuen aparéixer els ports i després, les etapes. Les etapes han d’eixir ordenades per la longitud. I els ports, per l’altura.
+
+SELECT ciclista, kms*1000 AS `Distancia/Altura`,'etapa' AS `Tipus`
+	FROM etapes
+	
+UNION 
+
+SELECT ciclista, altura, 'port'
+	FROM ports
+	
+ORDER BY `Tipus` DESC, `Distancia/Altura`;
+
+#H5 Selecciona els números d’etapa de més de 200 km, les etapes amb més de 2 ports i les etapes en què algun corredor ha portat més d’un mallot.
+
+SELECT numero, '+200' AS `Motivo seleción`
+	FROM etapes
+	WHERE kms &gt; 200
+
+UNION ALL
+
+SELECT etapa, '+2 ports'
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) &gt; 2
+	
+UNION ALL
+
+SELECT etapa, '+1 mallot'
+	FROM portar 
+	GROUP BY etapa, `ciclista`
+	HAVING count(*) &gt; 1;
+;
+
+#h6) Obté el total de premis que ha aconseguit cada ciclista, classificant els tipus de premis(ports guanyats, etapes guanyades i mallots portats). Ordenat pel dorsal i per la quantita de premis. Tindrà el següent aspecte:
+DESCRIBE portar;
+
+SELECT ciclista AS `Dorsal`, count(*) AS Premis, "ports" AS `Tipus`
+	FROM ports
+	GROUP BY `ciclista`
+
+UNION 
+
+SELECT ciclista, count(*), "etapes"
+	FROM etapes
+	GROUP BY `ciclista`
+
+UNION
+
+SELECT ciclista, count(*), "mallots"
+	FROM portar
+	GROUP BY `ciclista`
+	
+ORDER BY `Dorsal`;
+
+#I1) Obtín els noms dels corredors amb el nom dels seus directors.
+
+DESCRIBE ciclistes;
+DESCRIBE equips;
+
+SELECT ciclistes.nom, equips.director
+	FROM ciclistes, equips
+	WHERE ciclistes.equip = equips.nom;
+	
+#I2) Mostra entre quines 2 ciutats està cada port
+DESCRIBE ports;
+DESCRIBE etapes;
+
+SELECT ports.nom, etapes.eixida, etapes.arribada
+	FROM ports, etapes
+	WHERE ports.etapa = etapes.`numero`;
+	
+#I3) Mostra quants corredors té cada director
+SELECT count(*), equips.`director`
+	FROM ciclistes, equips
+	WHERE ciclistes.`equip` = equips.`nom`
+	GROUP BY equips.`director`;
+	
+#I4) Mostra els noms dels corredors que han guanyat més d'una etapa i quantes etapes ha guanyat cadascú. Primer han d'eixir els que han guanyat més etapes. En cas d'empat, ordena-ho pel nom del corredor.
+
+DESCRIBE etapes;
+
+SELECT ciclistes.nom, count(*)
+	FROM ciclistes, `etapes`
+	WHERE etapes.ciclista = ciclistes.`dorsal` 
+	GROUP BY etapes.`ciclista`
+	HAVING count(*) &gt; 1;
+	
+#I5) Obtín el nom dels corredors que guanyaren algun port de l'etapa que començava en Igualada
+
+DESCRIBE ports;
+DESCRIBE ciclistes;
+DESCRIBE etapes;
+
+SELECT DISTINCT ciclistes.nom
+	FROM ciclistes, etapes, ports
+	WHERE etapes.eixida = 'Igualada'
+		AND etapes.`numero` = ports.`etapa`
+		AND ports.`ciclista` = ciclistes.`dorsal`;
+		
+#I6) Per a cada etapa, volem saber la següent informació:
+
+SELECT etapes.`numero`, etapes.`eixida`,
+	mallots.`codi`, mallots.`color`, portar.`ciclista`, ciclistes.`nom`, equips.`director`,
+	count(*)
+	FROM etapes, ciclistes, portar, mallots, equips, ports
+	WHERE etapes.`numero` = portar.`etapa`
+		AND portar.`mallot` = mallots.`codi`
+		AND portar.`ciclista` = ciclistes.dorsal
+		AND ciclistes.`equip` = equips.nom
+		AND etapes.`numero` = ports.`etapa`
+	GROUP BY etapes.`numero`, etapes.`eixida`,
+	mallots.`codi`, mallots.`color`, portar.`ciclista`, ciclistes.`nom`, equips.`director`
+	ORDER BY etapes.`numero`;
+	
+#I6) Con Join
+
+SELECT etapes.`numero`, etapes.`eixida`,
+	mallots.`codi`, mallots.`color`, ciclistes.`dorsal`, ciclistes.`nom`, equips.`director`,
+	count(ports.`nom`) AS `Puertos etapa`, AVG(ports.`altura`), MIN(ports.altura), MAX(ports.altura)
+	FROM etapes JOIN portar
+		ON etapes.`numero` = portar.etapa
+		JOIN mallots
+		ON portar.`mallot` = mallots.`codi`
+		JOIN ciclistes
+		ON portar.`ciclista` = ciclistes.`dorsal`
+		JOIN equips
+		ON ciclistes.`equip` = equips.`nom`
+		LEFT JOIN ports
+		ON etapes.`numero` = ports.`etapa`
+	GROUP BY etapes.numero, etapes.eixida, mallots.codi, mallots.color, ciclistes.dorsal,
+	ciclistes.nom, equips.director
+	ORDER BY etapes.numero;
+	
+#I7) Obteniu parelles d'etapes que tenen el mateix nombre de km. Cal mostrar també el nombre de km. Peró tenint en compte que : no han d'eixir parelles de la mateixa etapa (p.e: 10 100), ni tampoc han d'eixir parelles repetides (p.e: 9 6 i 6 9).
+
+SELECT etapa1.`numero`, etapa2.`numero`
+	FROM etapes AS etapa1, etapes AS etapa2
+	WHERE etapa1.`kms` = etapa2.kms
+		AND etapa1.`numero`&gt; etapa2.`numero`;
+		
+#I8) Mostra el nom del ciclista i nom del seu director
+
+SELECT ciclistes.`nom`, equips.`director`
+	FROM ciclistes, equips
+	WHERE ciclistes.`equip` = equips.`nom`;
+	
+#I9) Mostra el nom del port i nom del ciclista que l'ha guanyat
+SELECT ports.`nom`, ciclistes.`nom`
+	FROM ports, ciclistes
+	WHERE ports.`ciclista` = ciclistes.`dorsal`;
+	
+#I10) Mostra el número d'etapa i l'equip del corredor que l'ha guanyada
+
+SELECT etapes.`numero`, ciclistes.`equip`
+	FROM etapes, ciclistes
+	WHERE etapes.`ciclista` = ciclistes.`dorsal`
+	ORDER BY 1;
+	
+#I11) Mostra el número d'etapa i el director de l'equip de qui ha guanyat l'etapa
+
+SELECT etapes.`numero`, equips.`director`
+	FROM etapes, ciclistes, equips
+	WHERE etapes.ciclista = ciclistes.`dorsal`
+		AND ciclistes.`equip` = equips.`nom`
+	ORDER BY 1;
+	
+#I12) Mostra de cada etapa:
+	#a)el número, la ciutat d'eixida, el dorsal del guanyador i el dorsal de qui portava el mallot groc d'eixa etapa
+	#b) Mostra a) més el nom del guanyador de l'etapa
+	#c) Mostra a) més el nom de qui portava el mallot groc
+	#d) Mostra a) més el nom dels 2 corredors corresponents
+	
+SELECT etapes.`numero`, etapes.`eixida`, etapes.`ciclista` AS "Guanyador", ciclistes.`nom` AS `Mallot groc`
+	FROM etapes, ciclistes, portar
+	WHERE etapes.`numero` = portar.`etapa` AND portar.`mallot` = "MGE" AND portar.`ciclista` = ciclistes.`dorsal`;
+	
+#I13) Equips que han guanyat alguna etapa portant algun mallot. També cal mostrar el número d'etapa, l'eixida i el mallot.
+
+SELECT equips.`nom`, etapes.`numero`, etapes.`eixida`, portar.`mallot`
+	FROM equips, etapes, portar, ciclistes
+	WHERE 
+		etapes.`numero` = portar.`etapa`
+		AND portar.`ciclista` = ciclistes.`dorsal`;
+		
+##SUBCONSULTES
+#J1) Noms de ciclistes que no han guanyat cap etapa
+SELECT nom
+	FROM ciclistes
+	WHERE ciclistes.`dorsal` NOT IN (
+		SELECT `ciclista` FROM etapes		
+	);
+	
+#J2) Obteniu número d'etapa i km d'aquelles etapes que no les ha guanyades cap corredor del Banesto.
+DESCRIBE ciclistes;
+SELECT numero, kms
+	FROM etapes
+	WHERE etapes.`ciclista` NOT IN (
+		SELECT dorsal FROM ciclistes
+			WHERE equip = 'Banesto'
+	);
+	
+#J3) Volem mostrar qui ha guanyat cada mallot al final de la volta ciclista. Per tant, mostrarem el color de cada mallot, el premi corresponent i el nom del corredor que l'ha guanyat. Nota: tindrem en compte que el guanyador d'un mallot és el ciclista que l'ha portat en l'ultima etapa.
+
+SELECT mallots.`color`, mallots.`premi`, ciclistes.nom
+	FROM mallots, ciclistes, portar
+	WHERE ciclistes.`dorsal` = portar.`ciclista`
+		AND mallots.`codi` = portar.`mallot`
+		AND portar.etapa = (SELECT max(numero) FROM etapes);
+	 
+#J4) Para después
+
+#J5) Quantita d' etapes que no tenen ports.
+
+DESCRIBE etapes;
+DESCRIBE ports;
+
+SELECT `numero`
+	FROM etapes
+	WHERE numero NOT IN (SELECT etapa FROM ports);
+	
+#J6) Mostra el número d'etapa i quants ports té l'etapa amb més ports.
+
+SELECT etapa, count(*) AS `n_ports`
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = 
+	(
+		SELECT max(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports # las subselect en un from han de llevar nombre
+	); #Las subselect en otros sitios como el HAVING no hace falta
+	
+#J7) Mostra el número d'etapa i quants ports té l'etapa amb més port i la de menys
+
+SELECT etapa, count(*) AS `n_ports`
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = 
+	(
+		SELECT max(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	)
+	OR count(*) =
+	(
+		SELECT min(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	);
+
+#J8) Nom dels ciclistes que han portat tots els mallots
+SELECT nom
+	FROM ciclistes
+	WHERE 
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MGE'
+		) 
+		AND
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MMO'
+		)
+		AND
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MMS'
+		); #con estos 3 mallots ya no hay ningún ciclista, por eso no los he puesto todos
+		
+#J9) Qui ha guanyat més etapes i quantes?
+	
+SELECT nom
+	FROM etapes, ciclistes
+	WHERE etapes.ciclista = ciclistes.dorsal
+	GROUP BY ciclista
+	HAVING count(*) =(
+		SELECT max(ganadas)
+		FROM (
+			SELECT count(*) AS ganadas
+				FROM etapes
+				GROUP BY ciclista
+		) AS ganar
+	);
+	
+#J10) Quants ciclistes no han guanyat res (ni etapes, ni ports, ni han portat mallot)
+
+
+
+
+</string>
+			<key>table</key>
+			<string>mallots</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>202</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>#con estos 3 mallots ya no hay ningún ciclista, por eso no los he puesto todos
+		
+#J9) Qui ha guanyat més etapes i quantes?
+	
+SELECT nom
+	FROM etapes, ciclistes
+	WHERE etapes.ciclista = ciclistes.dorsal
+	GROUP BY ciclista
+	HAVING count(*) =(
+		SELECT max(ganadas)
+		FROM (
+			SELECT count(*) AS ganadas
+				FROM etapes
+				GROUP BY ciclista
+		) AS ganar
+	)</string>
+		<string>#con estos 3 mallots ya no hay ningún ciclista, por eso no los he puesto todos
+		
+#J9) Qui ha guanyat més etapes i quantes?
+	
+SELECT ciclista
+	FROM etapes
+	GROUP BY ciclista
+	HAVING count(*) =(
+		SELECT max(ganadas)
+		FROM (
+			SELECT count(*) AS ganadas
+				FROM etapes
+				GROUP BY ciclista
+		) AS ganar
+	)</string>
+		<string>#con estos 3 mallots ya no hay ningún ciclista, por eso no los he puesto todos
+		
+#J9) Qui ha guanyat més etapes i quantes?
+	
+SELECT max(ganadas)
+	FROM (
+		SELECT count(*) AS ganadas
+			FROM etapes
+			GROUP BY ciclista
+	) AS ganar</string>
+		<string>SELECT count(*) AS ganadas
+	FROM etapes
+	GROUP BY ciclista</string>
+		<string>#con estos 3 mallots ya no hay ningún ciclista, por eso no los he puesto todos
+		
+#J9) Qui ha guanyat més etapes i quantes?
+	
+SELECT count(*)
+	FROM etapes
+	GROUP BY ciclista</string>
+		<string>#J8) Nom dels ciclistes que han portat tots els mallots
+SELECT nom
+	FROM ciclistes
+	WHERE 
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MGE'
+		) 
+		AND
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MMO'
+		)
+		AND
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MMS'
+		)</string>
+		<string>#J8) Nom dels ciclistes que han portat tots els mallots
+SELECT nom
+	FROM ciclistes
+	WHERE 
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MGE'
+		) 
+		AND
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MMO'
+		)
+		AND
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MMV'
+		)</string>
+		<string>#J8) Nom dels ciclistes que han portat tots els mallots
+SELECT nom
+	FROM ciclistes
+	WHERE 
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MGE'
+		) 
+		AND
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MMO'
+		)</string>
+		<string>#J8) Nom dels ciclistes que han portat tots els mallots
+SELECT nom
+	FROM ciclistes
+	WHERE 
+		dorsal IN (
+			SELECT `ciclista`
+			FROM portar
+			WHERE mallot = 'MGE'
+		)</string>
+		<string>#Las subselect en otros sitios como el HAVING no hace falta
+	
+#J7) Mostra el número d'etapa i quants ports té l'etapa amb més port i la de menys
+
+SELECT etapa, count(*) AS `n_ports`
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = 
+	(
+		SELECT max(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	)
+	OR count(*) =
+	(
+		SELECT min(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	)</string>
+		<string>#Las subselect en otros sitios como el HAVING no hace falta
+	
+#J7) Mostra el número d'etapa i quants ports té l'etapa amb més port i la de menys
+
+SELECT etapa, count(*) AS `n_ports`
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = 
+	(
+		SELECT max(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	)
+	OR 
+	(
+		SELECT min(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	)</string>
+		<string>#J6) Mostra el número d'etapa i quants ports té l'etapa amb més ports.
+
+SELECT etapa, count(*) AS `n_ports`
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = 
+	(
+		SELECT max(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	)</string>
+		<string>#J6) Mostra el número d'etapa i quants ports té l'etapa amb més ports.
+
+SELECT etapa, count(*) AS `n_puertos`
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = 
+	(
+		SELECT max(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	)</string>
+		<string>#J6) Mostra el número d'etapa i quants ports té l'etapa amb més ports.
+
+SELECT etapa, count(*)
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = 
+	(
+		SELECT max(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	)</string>
+		<string>SELECT etapa
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = 
+	(
+		SELECT max(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+	)</string>
+		<string>#J6) Mostra el número d'etapa i quants ports té l'etapa amb més ports.
+
+
+SELECT max(n_puertos)
+			FROM 
+			(
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports</string>
+		<string>#J6) Mostra el número d'etapa i quants ports té l'etapa amb més ports.
+
+SELECT etapa
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = (
+		SELECT max(n_puertos)
+			FROM (
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+		) AS mp</string>
+		<string>#J6) Mostra el número d'etapa i quants ports té l'etapa amb més ports.
+
+SELECT etapa
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = (
+		SELECT max(n_puertos)
+			FROM (
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) 
+		) AS max_ports</string>
+		<string>#J6) Mostra el número d'etapa i quants ports té l'etapa amb més ports.
+
+SELECT etapa
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = (
+		SELECT max(n_puertos)
+			FROM (
+				SELECT count(*) AS n_puertos
+					FROM ports
+					GROUP BY etapa
+			) AS count_ports
+		) AS max_ports</string>
+		<string>#J6) Mostra el número d'etapa i quants ports té l'etapa amb més ports.
+
+SELECT etapa
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) = 4</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.6.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

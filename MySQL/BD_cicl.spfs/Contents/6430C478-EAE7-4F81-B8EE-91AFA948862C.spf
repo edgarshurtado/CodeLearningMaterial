@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>name</key>
+			<string>root@127.0.0.1</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJX
+			TlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAF
+			gAdUdHlwZVRyb3dzXxAdU2VsZWN0aW9uRGV0YWlsVHlwZU5TSW5k
+			ZXhTZXTSFwsYGVxOU1JhbmdlQ291bnQQAIAG0hscHR5aJGNsYXNz
+			bmFtZVgkY2xhc3Nlc1pOU0luZGV4U2V0oh8gWk5TSW5kZXhTZXRY
+			TlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVk
+			QXJjaGl2ZXLRJidUZGF0YYABAAgAEQAaACMALQAyADcAQABGAE0A
+			VQBgAGcAagBsAG4AcQBzAHUAdwB8AIEAoQCmALMAtQC3ALwAxwDQ
+			ANsA3gDpAPIA9wEEAQcBGQEcASEAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {693, 456}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string></string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>202</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>#J3) Volem mostrar qui ha guanyat cada mallot al final de la volta ciclista. Per tant, mostrarem el color de cada mallot, el premi corresponent i el nom del corredor que l'ha guanyat. Nota: tindrem en compte que el guanyador d'un mallot és el ciclista que l'ha portat en l'ultima etapa.
+
+SELECT mallots.`color`, mallots.`premi`, ciclistes.nom
+	FROM mallots, ciclistes, portar
+	WHERE ciclistes.`dorsal` = portar.`ciclista`
+		AND mallots.`codi` = portar.`mallot`
+		AND portar.etapa = (SELECT max(numero) FROM etapes)</string>
+		<string>#J3) Volem mostrar qui ha guanyat cada mallot al final de la volta ciclista. Per tant, mostrarem el color de cada mallot, el premi corresponent i el nom del corredor que l'ha guanyat. Nota: tindrem en compte que el guanyador d'un mallot és el ciclista que l'ha portat en l'ultima etapa.
+
+SELECT mallots.`color`, mallots.`premi`, ciclistes.nom
+	FROM mallots, ciclistes, etapes, portar
+	WHERE ciclistes.`dorsal` = portar.`ciclista`
+		AND mallots.`codi` = portar.`mallot`
+		AND portar.etapa = (SELECT max(numero) FROM etapes)</string>
+		<string>#J3) Volem mostrar qui ha guanyat cada mallot al final de la volta ciclista. Per tant, mostrarem el color de cada mallot, el premi corresponent i el nom del corredor que l'ha guanyat. Nota: tindrem en compte que el guanyador d'un mallot és el ciclista que l'ha portat en l'ultima etapa.
+
+SELECT mallots.`color`, mallots.`premi`, ciclistes.nom
+	FROM mallots, ciclistes, etapes, portar
+	WHERE portar.etapa = (SELECT max(numero) FROM etapes)
+		AND ciclistes.`dorsal` = portar.`ciclista`
+		AND mallots.`codi` = portar.`mallot`</string>
+		<string>SELECT numero, kms
+	FROM etapes
+	WHERE etapes.`ciclista` NOT IN (
+		SELECT dorsal FROM ciclistes
+			WHERE equip = 'Banesto'
+	)</string>
+		<string>#J2) Obteniu número d'etapa i km d'aquelles etapes que no les ha guanyades cap corredor del Banesto.
+DESCRIBE ciclistes</string>
+		<string>##SUBCONSULTES
+#J1) Noms de ciclistes que no han guanyat cap etapa
+SELECT nom
+	FROM ciclistes
+	WHERE ciclistes.`dorsal` NOT IN (
+		SELECT `ciclista` FROM etapes		
+	)
+	
+#J2) Obteniu número d'etapa i km d'aquelles etapes que no les ha guanyades cap corredor del Banesto.
+DESCRIBE equips</string>
+		<string>##SUBCONSULTES
+#J1) Noms de ciclistes que no han guanyat cap etapa
+SELECT nom
+	FROM ciclistes
+	WHERE ciclistes.`dorsal` NOT IN (
+		SELECT `ciclista` FROM etapes		
+	)
+	
+#J2) Obteniu número d'etapa i km d'aquelles etapes que no les ha guanyades cap corredor del Banesto.
+DESCRIBE equip</string>
+		<string>##SUBCONSULTES
+#J1) Noms de ciclistes que no han guanyat cap etapa
+SELECT nom
+	FROM ciclistes
+	WHERE ciclistes.`dorsal` NOT IN (
+		SELECT `ciclista` FROM etapes		
+	)
+	
+#J2) Obteniu número d'etapa i km d'aquelles etapes que no les ha guanyades cap corredor del Banesto.
+SELECT numero, kms
+	FROM etapes
+	WHERE etapes.`ciclista` NOT IN (
+		SELECT dorsal FROM ciclistes
+			WHERE equip = 'Banesto'
+	)</string>
+		<string>##SUBCONSULTES
+#J1) Noms de ciclistes que no han guanyat cap etapa
+SELECT nom
+	FROM ciclistes
+	WHERE ciclistes.`dorsal` NOT IN (
+		SELECT `ciclista` FROM etapes		
+	)</string>
+		<string>##SUBCONSULTES
+#J1) Noms de ciclistes que no han guanyat cap etapa
+SELECT nom
+	FROM ciclistes
+	WHERE cilistes.`dorsal` NOT IN (
+		SELECT `ciclista` FROM etapes		
+	)</string>
+		<string>SELECT ciclista AS `Dorsal`, count(*) AS Premis, "ports" AS `Tipus`
+	FROM ports
+	GROUP BY `ciclista`
+
+UNION 
+
+SELECT ciclista, count(*), "etapes"
+	FROM etapes
+	GROUP BY `ciclista`
+
+UNION
+
+SELECT ciclista, count(*), "mallots"
+	FROM portar
+	GROUP BY `ciclista`
+	
+ORDER BY `Dorsal`</string>
+		<string>SELECT ciclista AS `Dorsal`, count(*) AS Premis, "ports" AS `Tipus`
+	FROM ports
+	GROUP BY `ciclista`
+
+UNION 
+
+SELECT ciclista, count(*), "etapes"
+	FROM etapes
+	GROUP BY `ciclista`</string>
+		<string>SELECT ciclista AS `Dorsal`, count(*) AS Premis, "ports" AS `Tipus`
+	FROM ports
+	GROUP BY `ciclista`</string>
+		<string>#h6) Obté el total de premis que ha aconseguit cada ciclista, classificant els tipus de premis(ports guanyats, etapes guanyades i mallots portats). Ordenat pel dorsal i per la quantita de premis. Tindrà el següent aspecte:
+DESCRIBE portar</string>
+		<string>#h6) Obté el total de premis que ha aconseguit cada ciclista, classificant els tipus de premis(ports guanyats, etapes guanyades i mallots portats). Ordenat pel dorsal i per la quantita de premis. Tindrà el següent aspecte:
+DESCRIBE mallots</string>
+		<string>#h6) Obté el total de premis que ha aconseguit cada ciclista, classificant els tipus de premis(ports guanyats, etapes guanyades i mallots portats). Ordenat pel dorsal i per la quantita de premis. Tindrà el següent aspecte:
+DESCRIBE ciclistes</string>
+		<string>#H5 Selecciona els números d’etapa de més de 200 km, les etapes amb més de 2 ports i les etapes en què algun corredor ha portat més d’un mallot.
+
+SELECT numero, '+200' AS `Motivo seleción`
+	FROM etapes
+	WHERE kms &gt; 200
+
+UNION ALL
+
+SELECT etapa, '+2 ports'
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) &gt; 2
+	
+UNION ALL
+
+SELECT etapa, '+1 mallot'
+	FROM portar 
+	GROUP BY etapa, `ciclista`
+	HAVING count(*) &gt; 1</string>
+		<string>#H5 Selecciona els números d’etapa de més de 200 km, les etapes amb més de 2 ports i les etapes en què algun corredor ha portat més d’un mallot.
+
+SELECT numero, '+200' AS `Motivo seleción`
+	FROM etapes
+	WHERE kms &gt; 200
+
+UNION 
+
+SELECT etapa, '+2 ports'
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) &gt; 2
+	
+UNION
+
+SELECT etapa, '+1 mallot'
+	FROM portar 
+	GROUP BY etapa, `ciclista`
+	HAVING count(*) &gt; 1</string>
+		<string>#H5 Selecciona els números d’etapa de més de 200 km, les etapes amb més de 2 ports i les etapes en què algun corredor ha portat més d’un mallot.
+
+SELECT numero, '+200' AS `Motivo seleción`
+	FROM etapes
+	WHERE kms &gt; 200
+
+UNION 
+
+SELECT etapa, '+2 ports'
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) &gt; 2
+	
+UNION
+
+SELECT etapa, '+1 mallot'
+	FROM mallots 
+	GROUP BY etapa, `ciclista`
+	HAVING count(*) &gt; 1</string>
+		<string>#H5 Selecciona els números d’etapa de més de 200 km, les etapes amb més de 2 ports i les etapes en què algun corredor ha portat més d’un mallot.
+
+SELECT numero, '+200' AS `Motivo seleción`
+	FROM etapes
+	WHERE kms &gt; 200
+
+UNION 
+select etapa, '+2 ports'
+	FROM ports
+	GROUP BY etapa
+	HAVING count(*) &gt; 2</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.6.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

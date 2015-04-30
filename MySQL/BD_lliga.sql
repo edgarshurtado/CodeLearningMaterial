@@ -232,3 +232,75 @@ CF.`nom` AS `Ciutat fora`, CF.`habitants`
 		AND partits.`equipf` = EF.`codi`
 		AND EC.`ciutat` = CC.`codi`
 		AND EF.`ciutat` = CF.`codi`;
+		
+##EJERCICIOS SUBCONSULTAS
+
+#1 Nom del pitxixi
+
+SELECT nom
+	FROM jugadors, (
+		SELECT dorsal AS dorsal_pixixi, equip AS equip_pixixi
+ 			FROM golejadors
+ 			WHERE gols = (
+ 				SELECT max(gols)
+				FROM golejadors) 
+		)AS pixixi
+	WHERE dorsal = dorsal_pixixi AND equip = equip_pixixi;
+	
+SELECT nom
+	FROM jugadors, golejadors
+	WHERE golejadors.dorsal = jugadors.`dorsal`
+		AND golejadors.`equip` = jugadors.`equip`
+		AND golejadors.gols = 
+		(
+			SELECT max(gols)
+				FROM golejadors
+		);
+		
+#2 Nom del pitxixi i quants gols ha marcarts
+
+SELECT nom, golejadors.gols
+	FROM jugadors, golejadors
+	WHERE golejadors.dorsal = jugadors.`dorsal`
+		AND golejadors.`equip` = jugadors.`equip`
+		AND golejadors.gols = 
+		(
+			SELECT max(gols)
+				FROM golejadors
+		);
+
+#3 Mostra el nom i sou del jugador millor pagat de tota la lliga
+SELECT nom, sou
+	FROM jugadors
+	WHERE 
+		sou = (SELECT max(sou) FROM jugadors);
+		
+#4 Mostra el nom del jugador millor pagat de cada equip
+
+SELECT nom, jugadors.equip
+	FROM jugadors, (
+		SELECT max(sou) AS 'sou_max', equip
+			FROM jugadors
+			GROUP BY equip
+	) AS sueldos_maximos
+	WHERE jugadors.sou = sou_max
+		AND jugadors.equip = sueldos_maximos.equip;
+	
+
+#5 Noms dels jugadors dels equips del partit on més gols es marcaren. Mostra també els equips. Ordenat per equip i nom de jugador.
+
+SELECT jugadors.nom, jugadors.equip
+	FROM jugadors, partits
+	WHERE jugadors.equip IN (partits.`equipc`, partits.`equipf`)
+		AND partits.golsc + partits.golsf = ( SELECT max(golsc + golsf)
+												FROM partits
+											);
+											
+#6 Jugadors(equip i nom) que encara no han marcat cap gol. Ordenat per equip i nom.
+	SELECT j1.nom, j1.equip
+		FROM  jugadors j1
+		WHERE j1.dorsal NOT IN (
+									SELECT dorsal
+										FROM golejadors
+										WHERE golejadors.equip = j1.equip
+										);
