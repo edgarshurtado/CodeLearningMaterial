@@ -1,0 +1,22 @@
+library(Rcmdr)
+exti
+library(Rcmdr)
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+biocLite(c("QuasR"))
+biocLite(c("ape"))
+biocLite(c("DESeq"))
+library()
+available.packages()
+install.packages("KernSmooth")
+library("KernSmooth")
+getwd()
+myfunction <- function(x) {#
+	y <- rnorm(100)#
+	mean(y)#
+}
+ls()
+myfunction()
+dir()
+getwd()
+source("myfunction.R")
