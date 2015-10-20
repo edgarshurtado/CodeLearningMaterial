@@ -1,5 +1,0 @@
-El primer fragmento es válido
-
-El segundo fragmento no es válido debido a que según el dtd debe haber un campo BBB
-
-El tercer fragmento tampoco es válido debido a que el campo BBB ha de colgar de XXX pero sin embargo está puesto dentro de AAA.
