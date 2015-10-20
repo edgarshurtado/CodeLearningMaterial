@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ropa con iva</title>
+    </head>
+    <body>
+        
+    	<script type="text/javascript">
+    		function obtenerPrecioIva(vectorPrendas, vectorPrecios, articuloBuscado){
+
+    			function buscarPrenda(){
+
+    				for (var i = 0; i < vectorPrendas.length; i++) {
+    					if(vectorPrendas[i] === articuloBuscado) return i;
+    				};
+    				return -1;
+    			}
+
+    			var posicionPrenda = buscarPrenda();
+    			
+    			if(posicionPrenda >= 0){
+    				alert(vectorPrecios[posicionPrenda] + vectorPrecios[posicionPrenda] * 0.21);
+    			} else {
+    				alert("El artículo no existe");
+    			}
+    		}
+    		
+
+    		var prendas = ["falda", "pantalón vaquero", "suéter", "camiseta", "corbata",
+    					"vestido", "chaqueta", "cinturón", 'guantes', "jersey"];
+    		var precioSinIva =[10, 20, 8, 8, 5, 15, 30, 2, 2, 10];
+
+    		obtenerPrecioIva(prendas, precioSinIva, 
+    						prompt("Escribe el artículo del que quieras saber el precio"));
+    	</script>
+    </body>
+</html>

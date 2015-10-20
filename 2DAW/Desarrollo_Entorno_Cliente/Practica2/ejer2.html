@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dia de la semana</title>
+    </head>
+    <body>
+        
+    	<script type="text/javascript">
+    		var fecha = new Date();
+    		var dia = fecha.toString().split(" ")[0];
+
+    		switch(dia){
+    			case "Mon":
+    				document.write("Hoy es Lunes");
+    				break;
+    			case "Tues":
+    				document.write("Hoy es Martes");
+    				break;
+    			case "Wed":
+    				document.write("Hoy es Miércoles");
+    				break;
+    			case "Thu":
+    				document.write("Hoy es Jueves");
+    				break;
+    			case "Fri":
+    				document.write("Hoy es Viernes");
+    				break;
+    			case "Sat":
+    				document.write("Hoy es Sábado");
+    				break;
+    			case "Sun":
+    				document.write("Hoy es Domingo");
+    				break;
+    			default:
+    				document.write("Oh oh, algo fue mal =(");
+    				break;
+    		}
+
+   		</script>
+    </body>
+</html>

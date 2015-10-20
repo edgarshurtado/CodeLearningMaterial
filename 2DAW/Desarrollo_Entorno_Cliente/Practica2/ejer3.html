@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>El mejor futbolista</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="author" href="humans.txt">
+    </head>
+    <body>
+    	<script type="text/javascript">
+    		var futbolista;
+    		do{
+    			futbolista = prompt("Cuál es el mejor futbolista del mundo?").toLowerCase();
+
+    			if(futbolista !== "messi"){
+    				alert("No tienes ni idea de futbol! Inténtalo de nuevo.");
+    			}
+
+    		}while(futbolista !== "messi");
+
+    		document.write("<h1>Eres un buen aficionado al fútbol</h1>");
+    	</script>
+    </body>
+</html>

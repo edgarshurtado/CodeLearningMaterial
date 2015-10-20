@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript" src="./main.js"></script>
+</head>
+<body>
+<a id="enlace" href="">Enlace 1</a>
+<a href="">Enlace 2</a>
+<script type="text/javascript">
+// Cogemos todos los elementos 'a'
+  var enlaces = document.getElementsByTagName('a');
+
+  for (var i = 0; i < enlaces.length; i++) {
+    // Itero sobre todos los tag para darles la habilidad de cambiar
+    // todos los tag de tamaño
+    enlaces[i].onmouseover = function(){
+      for (var j = 0; j < enlaces.length; j++) {
+        enlaces[j].style.fontSize = "large";
+      };
+    };
+  }
+</script>
+</body>
+</html>

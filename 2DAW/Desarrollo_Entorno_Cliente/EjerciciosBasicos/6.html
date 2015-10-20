@@ -1,0 +1,12 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			var frase = prompt('Introduce una frase');
+			if(frase.length < 100){
+				alert("El programa necesita una frase de 100 carácteres mínimos para funcionar");
+			}else {
+				alert(frase + "\n" + "a --> " + (frase.split('a').length - 1));
+			}
+		</script>
+	</head>
+</html>

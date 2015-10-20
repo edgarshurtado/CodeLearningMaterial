@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Elegir Soneto Con Funciones</title>
+    </head>
+    <body>
+		<script type="text/javascript">
+			alert("Inicio");
+
+			function retrieveUserName(){
+				return prompt("Escribe tu nombre");
+			}
+			
+			function selectOption(nombreUsuario){
+
+				return prompt( nombreUsuario + " " +
+					"elige la estrofa del soneto NOS SOBRAN LOS MOTIVOS" +
+					"de Joaquin Sabina\n" +
+					"\t1) Estrofa 1\n" +
+					"\t2) Estrofa 2\n" +
+					"\t3) Estrofa 3\n" +
+					"\t4) Estrofa 4\n" +
+					"\t5) Todo el soneto\n" +
+					"\t6) Acabar"
+				);
+			}
+
+			function obtenerSoneto(opcion){
+
+				var soneto = [
+					"Este adiós no maquilla un hasta luego,\n" + 
+					"este nunca no esconde un ojala,\n" + 
+					"estas cenizas no juegan con fuego,\n" +
+					"este ciego no mira para atrás.\n\n" ,
+					
+					"Este notario firma lo que escribo,\n" +
+					"esta letra no la protestaré,\n" +
+					"ahórrate el acuse de recibo,\n" +
+					"estas vísperas son las de después.\n\n" ,
+	
+					"A este ruido tan huérfano de padre\n" +
+					"no voy a permitirle que taladre\n" +
+					"un corazón podrido de latir.\n\n",
+	
+					"Este pez ya no muere por tu boca,\n" +
+					"este loco se va con otra loca,\n" + 
+					"estos ojos no lloran más por ti. \n\n"
+				];
+
+			switch(opcion){
+				case "1":
+					alert(soneto[0]);
+					break;
+				case "2":
+					alert(soneto[1]);
+					break;
+				case "3":
+					alert(soneto[2]);
+					break;
+				case "4":
+					alert(soneto[3]);
+					break;
+				case "5":
+					alert(soneto[0] + soneto[1] + soneto[2] + soneto[3]);
+					break;
+				case "6":
+					alert("Programa terminado");
+					break;
+				default:
+					alert(opcion + " no es una entrada válida");
+					break;
+			}
+		}
+
+			var usuario = retrieveUserName();
+			var opcionUsuario;
+
+			do{
+				opcionUsuario = selectOption(usuario);
+				obtenerSoneto(opcionUsuario);
+			}while(opcionUsuario !== '6');
+
+		</script>        
+    </body>
+</html>
