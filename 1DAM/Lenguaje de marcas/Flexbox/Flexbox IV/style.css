@@ -1,0 +1,76 @@
+body{
+	margin: 0;
+	display: -webkit-box;   /* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */
+   	display: -moz-box;      /* OLD: Firefox (buggy) */
+   	display: -ms-flexbox;   /* MID: IE 10 */
+   	display: -webkit-flex;  /* NEW, Chrome 21–28, Safari 6.1+ */
+   	display: flex;          /* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */
+
+   	flex-direction: column;
+   	-webkit-flex-direction: column;
+}
+
+#header{
+	display: -webkit-box;   /* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */
+   	display: -moz-box;      /* OLD: Firefox (buggy) */
+   	display: -ms-flexbox;   /* MID: IE 10 */
+   	display: -webkit-flex;  /* NEW, Chrome 21–28, Safari 6.1+ */
+   	display: flex;          /* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */
+
+   	-webkit-box-align: center; -moz-box-align: center; /* OLD… */
+   	-ms-flex-align: center; /* You know the drill now… */
+   	-webkit-align-items: center;
+   	align-items: center;
+
+   	-webkit-justify-content: center;
+   	justify-content: center;
+
+   	width: 100%;
+   	height: 150pt;
+   	font-size: 2rem;
+   	background-color: green;
+}
+
+h3 {
+	text-align: center;
+}
+
+#dosCol{
+	display: -webkit-box;   /* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */
+   	display: -moz-box;      /* OLD: Firefox (buggy) */
+   	display: -ms-flexbox;   /* MID: IE 10 */
+   	display: -webkit-flex;  /* NEW, Chrome 21–28, Safari 6.1+ */
+   	display: flex;          /* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */
+	flex-direction: row;
+	-webkit-flex-direction: row;
+
+	background-color: blue;
+}
+
+#tresCol{
+	display: -webkit-box;   /* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */
+   	display: -moz-box;      /* OLD: Firefox (buggy) */
+   	display: -ms-flexbox;   /* MID: IE 10 */
+   	display: -webkit-flex;  /* NEW, Chrome 21–28, Safari 6.1+ */
+   	display: flex;          /* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */
+	flex-direction: row;
+	-webkit-flex-direction: row;
+
+	flex-direction: row;
+	-webkit-flex-direction: row;
+
+	background-color: green;
+	color: white;
+}
+
+.contentColumn{
+	flex: 1;
+	margin: 0 10px;
+}
+
+.imageColumn {
+	flex:1;
+	background-image: url("Unknown.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+}

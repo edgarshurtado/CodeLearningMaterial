@@ -1,0 +1,57 @@
+body {
+	background-color: #0000FF;
+}
+
+a {
+	color: white;
+}
+
+.title {
+	text-align: center;
+	color: black;
+}
+
+#header{
+	display: -webkit-box;   /* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */
+   	display: -moz-box;      /* OLD: Firefox (buggy) */
+   	display: -ms-flexbox;   /* MID: IE 10 */
+   	display: -webkit-flex;  /* NEW, Chrome 21–28, Safari 6.1+ */
+   	display: flex;          /* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */
+
+   	-webkit-box-align: center; -moz-box-align: center; /* OLD… */
+   	-ms-flex-align: center; /* You know the drill now… */
+   	-webkit-align-items: center;
+   	align-items: center;
+
+   	-webkit-justify-content: center;
+   	justify-content: center;
+
+   	flex-direction: column;
+   	-webkit-flex-direction: column;
+}
+
+#footer{
+	text-align: center;
+}
+
+.section{
+	color: white;
+}
+
+.section li{
+	color:black;
+}
+
+.imageSection {
+	display: -webkit-box;   /* OLD: Safari,  iOS, Android browser, older WebKit browsers.  */
+	display: -moz-box;      /* OLD: Firefox (buggy) */
+	display: -ms-flexbox;   /* MID: IE 10 */
+	display: -webkit-flex;  /* NEW, Chrome 21–28, Safari 6.1+ */
+	display: flex;          /* NEW: IE11, Chrome 29+, Opera 12.1+, Firefox 22+ */
+	
+	flex-direction: row;
+	-webkit-flex-direction: row;
+
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+}
