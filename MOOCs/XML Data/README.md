@@ -1,5 +1,5 @@
 #XML Data
-##Standfor University
+###Standfor University
 
 This is a MOOC from the Stanford University about XML files, DTD and Schema. It's available in [this link](https://lagunita.stanford.edu/courses/DB/XML/SelfPaced/about).
 
