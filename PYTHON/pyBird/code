@@ -1,0 +1,226 @@
+#-*- coding: utf-8 -*-
+##---------------------------------------------------------------------------------------
+##LIBRERÍAS##
+##---------------------------------------------------------------------------------------
+import sqlite3
+
+
+##---------------------------------------------------------------------------------------
+#   FUNCIONES GENERALES DEL PROGRAMA
+##---------------------------------------------------------------------------------------
+def entradasimple(input_type, promp): #función para convertir raw_input() en cualquier tipo de var
+   while True: 
+        entr_simpl= raw_input(promp)
+        try:
+            entr_simpl=input_type(entr_simpl)
+            return entr_simpl
+        except:
+            print entr_simpl, "no es válido"
+            print "has de introducir una variable", input_type
+
+def introdatos():
+    #poner el documento a abrir
+        day=raw_input("Introduce el día de anillamiento (formato dd-mm-aaaa): ") #hacer función para no permitir introducir fechas superiores a la actual
+        place=raw_input("Introduce el lugar: ") 
+        place=search_lugaresdatabase(place) #toma el valor inicial de place, busca en la base de datos y devuelve el id del lugar. Opción de introducir nuevos lugares
+        ninp=entradasimple(int,"Introduce el nº de especies: ")
+        l_introdatos=[] #crea la lista que contendrá las tuplas que serán introducidas en la base de datos
+    
+        #loop para la introducción de datos
+        for i in range(ninp):
+            cesp= raw_input("Código de especie: ")
+            cesp= cesp.upper()
+            search_especiesdatabase(cesp)
+            nanill= entradasimple(int,"Nº anillado: ")
+            tupla_temporal=(day,place, cesp, nanill)
+            l_introdatos.append(tupla_temporal)
+        
+        #presentación de los datos introducidos
+        print "Los datos introducidos han sido:"
+        for tupla in l_introdatos:
+            print tupla
+        return l_introdatos  #devuelve la lista de tuplas para usar en la base de datos
+
+##---------------------------------------------------------------------------------------
+###FUNCIONES BASE DE DATOS###
+##---------------------------------------------------------------------------------------
+
+def addto_especiesdatabase(cesp):  #añadir especies en la base de datos
+    conn=sqlite3.connect("pybirdData.sqlite3")
+    conn.text_factory=str #para que la base de datos acepte codificación UTF-8
+
+    cur=conn.cursor()
+ 
+    cur.execute("CREATE TABLE IF NOT EXISTS especies (codigo TEXT UNIQUE, cientifico TEXT UNIQUE, castellano TEXT, english TEXT)")
+
+    #introducción de los datos que se van a guardar en la base de datos
+    nomcient=raw_input("Introduce el nombre científico: ")
+    nomcast=raw_input("Introduce el nombre en castellano: ")
+    nomeng=raw_input("Introduce el nombre en inglés: ")
+
+    intro_tupla=(cesp, nomcient, nomcast, nomeng)
+    
+    print "Los datos introducidos han sido: ", intro_tupla
+    
+    eleccion=raw_input("¿Deseas añadir los datos a la base de datos?[S/n]: "  )
+    if len(eleccion)<1 or eleccion.lower()=="s":
+        print "Los datos han sido guardados"
+        cur.execute("INSERT INTO especies (codigo, cientifico, castellano, english) VALUES (?,?,?,?)", intro_tupla)
+    if eleccion.lower()=="n":
+        print "Los datos no se han guardado"
+
+    
+
+    conn.commit()   #forzar el grabado de los datos en la base de datos
+    
+
+def search_especiesdatabase(cesp): #función para comprobar si una especie está en la base de datos, dando la opción de guardarlo en la base de datos
+
+    conn=sqlite3.connect("pybirdData.sqlite3")
+    conn.text_factory=str
+    
+    cur=conn.cursor()
+    #crea la tabla por si es la primera vez que se ejecuta el programa
+    cur.execute("CREATE TABLE IF NOT EXISTS especies (codigo TEXT UNIQUE, cientifico TEXT UNIQUE, castellano TEXT, english TEXT)")
+
+
+    cur.execute("SELECT codigo FROM especies WHERE codigo=?", (cesp,))
+    try:
+        prueba=cur.fetchone()[0]
+        print cesp, "está en la base de datos"
+    except:
+        print cesp, "no está en la base de datos" 
+        eleccion= raw_input("¿Deseas añadirlo a la base de datos?[S/n]: "  )
+        if len(eleccion)<1 or eleccion.lower()=="s":
+            addto_especiesdatabase(cesp)
+        if eleccion.lower()=="n":
+            print "Los datos no se han guardado"
+            
+def addto_anillamientosdatabase(tupla_anillamientos):
+
+    conn=sqlite3.connect("pybirdData.sqlite3")
+    conn.text_factory=str #para que la base de datos acepte codificación UTF-8
+    cur=conn.cursor()
+    
+    #cur.execute("DROP TABLE IF EXISTS anillamientos") #Linea para borrar la tabla existente
+
+    
+    cur.execute("CREATE TABLE IF NOT EXISTS anillamientos (id INTEGER PRIMARY KEY, date TEXT, lugar INTEGER, codigo TEXT, cantidad INTEGER)")
+
+    
+    cur.execute("INSERT INTO anillamientos (date,lugar,codigo,cantidad) VALUES (?,?,?,?)", tupla_anillamientos)
+    
+    conn.commit() #forzar el grabado de los datos
+    
+
+def addto_lugaresdatabase(nombrelugar):
+
+    conn=sqlite3.connect("pybirdData.sqlite3")
+    cur=conn.cursor()
+    #cur.execute("DROP TABLE IF EXISTS lugares")
+    cur.execute("CREATE TABLE IF NOT EXISTS lugares (id INTEGER PRIMARY KEY, nombrelugar TEXT, coordenadas TEXT, ambiente TEXT)")
+
+    coordenadas=raw_input("Introduce las coordenadas del lugar de anillamiento: ")
+    tipoambiente=raw_input("Introduce el tipo de ambiente: ")
+
+    intro_tupla=(nombrelugar,coordenadas, tipoambiente)
+    
+    print "Los datos introducidos han sido: ", intro_tupla
+    
+    eleccion=raw_input("¿Deseas añadirlo a la base de datos?[S/n]: ")
+    if len(eleccion)<1 or eleccion.lower()=="s":
+        print "Los datos han sido guardados"
+        cur.execute("INSERT INTO lugares (nombrelugar, coordenadas, ambiente) VALUES (?,?,?)", intro_tupla)
+        conn.commit()
+        #tras introducir los datos del lugar devuelve la id del lugar
+        cur.execute("SELECT id FROM lugares  WHERE nombrelugar = ?", (nombrelugar,))
+        id_lugar = cur.fetchone()[0]
+        return id_lugar
+
+    
+    if eleccion.lower()=="n":
+        print "Los datos no se han guardado"
+    
+    
+    
+    
+def search_lugaresdatabase(place):    
+    
+    conn=sqlite3.connect("pybirdData.sqlite3")
+    cur=conn.cursor()
+    #cur.execute("DROP TABLE IF EXISTS lugares")
+
+    cur.execute("CREATE TABLE IF NOT EXISTS lugares (id INTEGER PRIMARY KEY, nombrelugar TEXT, coordenadas TEXT, ambiente TEXT)")
+
+    try:
+        cur.execute("SELECT id FROM lugares  WHERE nombrelugar = ?", (place,))
+        id_lugar = cur.fetchone()[0]
+        return id_lugar
+    except:
+        print place, "no se encuentra en la base de datos"
+        eleccion= raw_input("¿Deseas añadirlo a la base de datos?[S/n]: "  )
+        if len(eleccion)<1 or eleccion.lower()=="s":
+            return addto_lugaresdatabase(place)
+        if eleccion.lower()=="n":
+            print "Los datos no se han guardado"
+
+
+
+def imprimir_database():
+    
+    basesdedatos=["lugares", "anillamientos", "especies"]
+    
+    for basededatos in basesdedatos:
+        
+        print basededatos
+        print ""
+    
+        conn=sqlite3.connect("pybirdData.sqlite3")
+        conn.text_factory=str
+    
+        cur=conn.cursor()
+    
+        cur.execute("SELECT * FROM %s" %basededatos)
+    
+        for row in cur:
+            print row
+        
+        print ""
+
+
+##---------------------------------------------------------------------------------------
+###PROGRAMA###
+##---------------------------------------------------------------------------------------
+
+print "\nBIENVENIDO A LA BETA DE pyBird" 
+print "creado por Edgar S. Hurtado \n"
+
+print "Selecciona una acción tecleando el nº de la opción:"
+print "     1- Introducción de datos"
+print "     2- Base de datos"
+print "     3-Salir del programa"
+print ""
+
+#Menu de selección
+
+menu= True
+
+while menu: #el menu está en bucle por si la opción introducida no es válida
+    opcion=entradasimple(int,"")
+    menu = False
+    if opcion == 1:
+        datosintroducidos=introdatos()
+        preguntaguardado=raw_input("Quieres guardar los datos? [S/n]: ")
+        if len(preguntaguardado)<1 or preguntaguardado.lower()=="s":
+            for tupla in datosintroducidos:
+                addto_anillamientosdatabase(tupla)
+            print "Los datos se han guardado correctamente"
+        if preguntaguardado.lower()=="n":
+            print "Los datos no se han guardado"
+    elif opcion == 2:
+        imprimir_database()
+    elif opcion == 3:
+        print "Programa cerrado"
+    else:
+        print "\n",opcion, "no es una opción válida"
+        menu = True
