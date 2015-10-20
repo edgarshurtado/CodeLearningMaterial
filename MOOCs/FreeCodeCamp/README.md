@@ -1,13 +1,13 @@
 #FreeCodeCamp
 
 FreeCodeCamp is an online platform for self-paced learning on FullStack Web Development. This is accomplished by focusing mainly in JavaScript and some libraries. On the curriculum you'll learn:
--HTML5
--CSS3
--JavaScript
--jQuery
--Angular.js
--Node.js
--Git
+- HTML5
+- CSS3
+- JavaScript
+- jQuery
+- Angular.js
+- Node.js
+- Git
 
 Check it out at [FreeCodeCamp.com](http://www.freecodecamp.com/)  
 
