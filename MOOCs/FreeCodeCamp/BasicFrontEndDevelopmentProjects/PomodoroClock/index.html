@@ -1,0 +1,66 @@
+<html>
+<head>
+	<title>Pomodoro Clock</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="circle.js" type="text/javascript"></script>
+	<script src="script.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">	
+	<link rel="stylesheet" 
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+</head>
+<body>
+	<div class="centered-block">
+		<h2>Pomodoro Timer</h2>
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-3">
+				Work Time
+				<div class="row">
+					<div class="col-xs-4">
+						<div id="plusWork" class="btn btn-default">+</div>
+					</div>
+					<div id="workTime" class="col-xs-4 big fcc-background">
+						25
+					</div>
+					<div class="col-xs-4">
+						<div id="lessWork" class="btn btn-default">-</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-xs-3">
+				Rest Time
+				<div class="row">
+					<div class="col-xs-4">
+						<div id="plusRest" class="btn btn-default">+</div>
+					</div>
+					<div id="restTime" class="col-xs-4 big fcc-background">
+						5
+					</div>
+					<div class="col-xs-4">
+						<div id="lessRest" class="btn btn-default">-</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<svg width="250" height="250" >
+  			<defs>
+    			<pattern id="image" patternUnits="userSpaceOnUse" height="250" width="250">
+      			<image x="0" y="0" height="250" width="250" xlink:href="https://pbs.twimg.com/profile_images/562385977390272512/AK29YaTf.png"></image>
+    			</pattern>
+  			</defs>
+ 			<circle id='top' cx="125" cy="125" r="125" fill="url(#image)"/>
+  
+  			<path id="loader" transform="translate(125, 125)"/>
+		</svg>
+		<div id="announcment">READY TO WORK</div>
+		<div id="timer" class="big button"></div>
+		<button id="start">start</button>
+		<button id="stop">stop</button>
+		<button id="reset">reset</button>
+	</div>
+
+</body>
+</body>
+</body>
+</html>

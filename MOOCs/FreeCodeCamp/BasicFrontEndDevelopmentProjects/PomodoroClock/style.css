@@ -1,0 +1,46 @@
+body {
+	background-color: #457E86 !important;
+}
+
+.centered-block {
+	margin-top: 30px;
+	text-align: center;
+	background-image: url(https://raw.githubusercontent.com/FreeCodeCamp/FCCAssets/master/Logos%20and%20Covers/freeCodeCamp-socialBanner.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-bottom: 30px;
+	font-family: monospace;
+	border:10px solid #4A2B0F;
+	
+}
+
+h2 {
+	color: #EEEEEE;
+	padding-top: 30px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	
+}
+
+.big {
+	font-size: 2em;
+}
+
+.button {
+	cursor: pointer;
+}
+
+svg {
+  display: block;
+  margin: 50px auto;
+}
+
+#loader { 
+	fill: red;
+  opacity: 0.3;	}
+
+.fcc-background {
+	background-color: #4A2B0F;
+	color: white;
+	border-radius: 15px;
+}
+

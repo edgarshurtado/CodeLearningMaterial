@@ -1,0 +1,71 @@
+  <!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style>
+    body{padding-top: 70px;}
+  </style>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" media="screen" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="http://code.jquery.com/jquery.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!--Link to home page with the brand of the company-->
+      <div class="navbar-header">
+        <a href="./index.html" class="navbar-brand">Example</a>
+        <!--Hamburger menu for xs screens-->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+        data-target="#hamburger-navigation">
+        <span class="sr-only">Navigation toggle</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+    </div>
+
+    <div class="navbar-collapse collapse" id="hamburger-navigation"> <!--this div wraps inside the hamburger
+    all the content inside-->
+      <!--Links on the nav-->
+      <ul class="nav navbar-nav" role="menu">
+        <li>
+          <a href="#" class="active">Current page</a>
+        </li>
+        <li>
+          <a href="#">Other link</a>
+        </li>
+        <!--Dropdown list as element of nav navbar-nav ul-->
+        <!--hidden-xs makes this dropdown menu be hidded when the screen is small-->
+        <li class="dropdown hidden-xs">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown">
+            Click here<span class="caret" />
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="">Element one</a></li>
+            <li><a href="">Element one</a></li>
+            <li><a href="">Element one</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!--Navbarlink on the right-->
+      <div class="navbar-text navbar-right">
+        <a class="navbar-link" href="">
+          Follow me!
+        </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+<div class="container">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+</body>
+</html>
