@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:element name="bib">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="20" name="book">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="title" type="xsd:string" />
+<xsd:element minOccurs="0" name="editor">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="last" type="xsd:string" />
+<xsd:element name="first" type="xsd:string" />
+<xsd:element name="affiliation" type="xsd:string" />
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element minOccurs="0" maxOccurs="20" name="author">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="last" type="xsd:string" />
+<xsd:element name="first" type="xsd:string" />
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="publisher" type="xsd:string" />
+<xsd:element name="price" type="xsd:decimal" />
+</xsd:sequence>
+<xsd:attribute name="year" type="xsd:unsignedShort" use="required"/>
+</xsd:complexType>
+</xsd:element>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+</xsd:schema>

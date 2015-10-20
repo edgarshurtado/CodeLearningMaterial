@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PurchaseOrder	>
+	<ShipTo>
+		<name>Pepito</name>
+		<street>Calle falsa 123</street>
+		<city>Springfield</city>
+		<state>Oregon</state>
+		<zip>1234</zip>
+	</ShipTo>
+	<BillTo>
+		<name>Pepito</name>
+		<street>Calle falsa 123</street>
+		<city>Springfield</city>
+		<state>Oregon</state>
+		<zip>1234</zip>
+	</BillTo>
+</PurchaseOrder>

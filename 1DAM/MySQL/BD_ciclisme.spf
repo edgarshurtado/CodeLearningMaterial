@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>database</key>
+			<string>ciclisme</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>name</key>
+			<string>root@127.0.0.1</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>latin1</string>
+			<key>contentFilter</key>
+			<dict/>
+			<key>contentPageNumber</key>
+			<integer>1</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGJCVYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoKgHCBMUFRYaIVUkbnVsbNMJCgsMDxJX
+			TlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6INDoACgAOiEBGABIAF
+			gAdUdHlwZVRyb3dzXxAdU2VsZWN0aW9uRGV0YWlsVHlwZU5TSW5k
+			ZXhTZXTSFwsYGVxOU1JhbmdlQ291bnQQAIAG0hscHR5aJGNsYXNz
+			bmFtZVgkY2xhc3Nlc1pOU0luZGV4U2V0oh8gWk5TSW5kZXhTZXRY
+			TlNPYmplY3TSGxwiI1xOU0RpY3Rpb25hcnmiIiBfEA9OU0tleWVk
+			QXJjaGl2ZXLRJidUZGF0YYABAAgAEQAaACMALQAyADcAQABGAE0A
+			VQBgAGcAagBsAG4AcQBzAHUAdwB8AIEAoQCmALMAtQC3ALwAxwDQ
+			ANsA3gDpAPIA9wEEAQcBGQEcASEAAAAAAAACAQAAAAAAAAAoAAAA
+			AAAAAAAAAAAAAAABIw==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{0, 0}, {502, 623}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>#4.2.2
+##Obteniu quants ciclistes hi ha
+SELECT COUNT(*)
+	FROM ciclistes;
+
+##Mostra l'edat mitjana dels ciclistes
+SELECT AVG(edat)
+	FROM ciclistes;
+	
+##Obteniu l'altura mínima y máxima dels ports de muntanya
+SELECT MAX(altura), MIN(altura)
+	FROM ports;
+	
+##Calcula quants km te en total la volta ciclista
+SELECT SUM(kms)
+	FROM etapes;
+
+#4.3.7
+##Obteniu aquells ports que no tenen assignada categoria
+SELECT nom FROM ports
+	WHERE categoria IS NULL;
+	
+#4.4.2
+##Selecciona tota la informació dels ports
+SELECT * FROM ports;
+##Selecciona el nom del port i l'altura en kms
+SELECT nom, altura/100 AS `altura (kms)`
+	FROM ports;
+	
+#4.4.4
+##Crea la taula etapes_ciutat que continga el número d'etapa i la ciutat d'aquelles etapes que comencen i acaban en la mateixa ciutat
+
+CREATE TABLE etapes_ciutat
+	SELECT numero AS etapa, eixida AS ciutat
+	FROM etapes
+	WHERE eixida = arribada;
+
+## Crea la taula premis que continga el nom del color del mallot i el premi. Els noms de les columnes han de ser "Color del mallot" i "Valor del premi"
+
+CREATE TABLE premis
+	SELECT color AS `Color del mallot`, premi AS `Valor del premi`
+		FROM mallots;
+
+ 
+</string>
+			<key>table</key>
+			<string>premis</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>202</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>## Crea la taula premis que continga el nom del color del mallot i el premi. Els noms de les columnes han de ser "Color del mallot" i "Valor del premi"
+
+CREATE TABLE premis
+	SELECT color AS `Color del mallot`, premi AS `Valor del premi`
+		FROM mallots</string>
+		<string>#4.4.4
+##Crea la taula etapes_ciutat que continga el número d'etapa i la ciutat d'aquelles etapes que comencen i acaban en la mateixa ciutat
+
+CREATE TABLE etapes_ciutat
+	SELECT numero AS etapa, eixida AS ciutat
+	FROM etapes
+	WHERE eixida = arribada</string>
+		<string>#4.4.4
+##Crea la taula etapes_ciutat que continga el número d'etapa i la ciutat d'aquelles etapes que comencen i acaban en la mateixa ciutat
+
+INSERT INTO etapes_ciutat (etapa, ciutat)
+	SELECT numero, eixida AS ciutat
+	FROM etapes
+	WHERE eixida = arribada</string>
+		<string>##Selecciona el nom del port i l'altura en kms
+SELECT nom, altura/100 AS `altura (kms)`
+	FROM ports</string>
+		<string>##Selecciona el nom del port i l'altura en kms
+SELECT nom, altura/100 AS `altura kms`
+	FROM ports</string>
+		<string>##Selecciona el nom del port i l'altura en kms
+SELECT nom, altura/100 AS kms
+	FROM ports</string>
+		<string>##Selecciona el nom del port i l'altura en kms
+SELECT nom, altura/100 AS altura(kms)
+	FROM ports</string>
+		<string>##Selecciona el nom del port i l'altura en kms
+DESCRIBE ports</string>
+		<string>#4.4.2
+##Selecciona tota la informació dels ports
+SELECT * FROM ports</string>
+		<string>#4.3.7
+SELECT nom FROM ports
+	WHERE categoria IS NULL</string>
+		<string>##Calcula quants km te en total la volta ciclista
+SELECT SUM(kms)
+	FROM etapes</string>
+		<string>##Obteniu l'altura mínima y máxima dels ports de muntanya
+SELECT MAX(altura), MIN(altura)
+	FROM ports</string>
+		<string>##Mostra l'edat mitjana dels ciclistes
+SELECT AVG(edat)
+	FROM ciclistes</string>
+		<string>#4.2.2
+##Obteniu quants ciclistes hi ha
+SELECT COUNT(*)
+	FROM ciclistes</string>
+		<string>USE ciclisme</string>
+		<string>USE instituto</string>
+		<string>ALTER TABLE alumnos CHANGE notas nota FLOAT</string>
+		<string>#Posem a tots una nota ficticia
+UPDATE alumnos
+	SET notas = 3</string>
+		<string>#Posem a tots una nota ficticia
+UPDATE alumnes
+	SET notas = 3</string>
+		<string>DELETE FROM alumnos
+	WHERE nombre IS NULL</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.6.21</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

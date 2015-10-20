@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE XXX SYSTEM "reglas.dtd">
+
+<XXX>
+	<AAA true="yes"></AAA>
+	<AAA true="no"></AAA>
+	<BBB></BBB>
+	<BBB month="1"></BBB>
+	<BBB month="2"></BBB>
+	<BBB month="3"></BBB>
+</XXX>
