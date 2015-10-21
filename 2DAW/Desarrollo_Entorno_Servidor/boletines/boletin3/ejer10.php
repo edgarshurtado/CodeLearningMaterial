@@ -6,7 +6,7 @@
   {
     private $nombre;
     private $sueldo;
-    function __construct($nombre, $sueldo)
+    function __construct($nombre, $sueldo=1000)
     {
       $this->nombre = $nombre;
       $this->sueldo = $sueldo;
@@ -23,7 +23,11 @@
       }
     }
   }
-
+  echo "1er empleado <br>";
   $emp1 = new Empleado("Edgar", 5000);
   $emp1->imprimir();
+  echo "<br><br>";
+  echo "2º empleado <br>";
+  $emp2 = new Empleado ("David");
+  $emp2->imprimir();
 ?>
