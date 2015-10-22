@@ -10,10 +10,12 @@ function anade() {
   var nuevoElementoLista = document.createElement('li');
   var texto = document.createTextNode('Elemento añadido');
 
+  // Obtenemos el objeto DOM lista al que vamos a añadir los elementos
   var target = document.getElementById('lista');
-  //
-  nuevoElementoLista.appendChild(texto);
-  target.appendChild(nuevoElementoLista);
+
+  //Añadimos las relaciones en el arbol DOM
+  nuevoElementoLista.appendChild(texto); //texto como hijo de nuevoElementoLista
+  target.appendChild(nuevoElementoLista); //nuevoElementoLista como hijo de target
 }
 </script>
 </head>
