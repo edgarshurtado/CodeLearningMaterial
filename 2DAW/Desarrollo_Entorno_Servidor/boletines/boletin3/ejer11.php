@@ -46,5 +46,4 @@
   $pers1 = new Persona();
   $pers1->setDatos("Edgar", 26);
   $pers1->imprimirDatos();
-
 ?>
