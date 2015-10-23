@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,11 +8,11 @@
 
 class ParticipanteModel {
     private $pdo;
-    
+
     function __construct() {
-        $dsn = "mysql:host=127.0.0.1;dbname=Carreras";
+        $dsn = "mysql:host=localhost;dbname=Carreras";
         $username = "root";
-        $passwd = "servidor";
+        $passwd = "";
         try {
             $this->pdo = new PDO($dsn, $username, $passwd);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -30,7 +30,7 @@ class ParticipanteModel {
             die($ex->getMessage());
         }
     }
-    
+
     public function obtener($id) {
         try {
             $sql = "SELECT * FROM participantes WHERE IdParticipante=?";
@@ -62,7 +62,7 @@ class ParticipanteModel {
                         $data->__GET("CLUB"),
                         $data->__GET("IdParticipante")
                     ));
-            
+
         } catch (Exception $ex) {
             die($ex->getMessage());
         }
@@ -78,12 +78,12 @@ class ParticipanteModel {
                         $data->__GET("Poblacion"),
                         $data->__GET("CLUB")
                     ));
-            
+
         } catch (Exception $ex) {
             die($ex->getMessage());
         }
     }
-    
+
     public function listar (){
         try {
             $result = array();
@@ -91,7 +91,7 @@ class ParticipanteModel {
                     . " FROM participantes ORDER BY Apellidos";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
-            
+
             foreach ($stmt->fetchAll(PDO::FETCH_OBJ) as $fila) {
                 $part = new Participante1();
                 $part->__SET("IdParticipante", $fila->IdParticipante);
@@ -100,11 +100,11 @@ class ParticipanteModel {
                 $part->__SET("Poblacion", $fila->Poblacion);
                 $part->__SET("CLUB", $fila->CLUB);
                 $result[] = $part;
-                
+
             }
             return $result;
         } catch (Exception $ex) {
-            
+
         }
     }
 }

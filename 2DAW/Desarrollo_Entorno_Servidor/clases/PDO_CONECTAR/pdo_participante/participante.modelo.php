@@ -35,7 +35,7 @@ class ParticipanteModelo {
     			$stm->execute(array($id));
     			$fila = $stm->fetch(PDO::FETCH_OBJ);
 
-    			$participante1=new Participante();
+    			$participante1 = new Participante();
     			$participante1->__SET('IdParticipante', $fila->IdParticipante);
     			$participante1->__SET('Nombre', $fila->Nombre);
     			$participante1->__SET('Apellidos', $fila->Apellidos);
