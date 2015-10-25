@@ -49,7 +49,7 @@ function getUserTime(timerId){
 var timer = {
 	totalSeconds: null,
 	runningTime: null,
-	
+
 	timeHandler: null,	//handler which will run the setInterval function
 	svgHandler: null,	//handler for the svg animation
 
@@ -74,9 +74,10 @@ var timer = {
 		this.setTimer();
 	},
 	startTimer: function(){
-		var that = this;
+		var that = this; //Allows to refer to the timer object inside the setInterval
+										//function call
 		this.timeHandler = setInterval(function(){
-			
+
 			if(that.runningTime > 0){
 				that.runningTime--;
 			} else{
@@ -96,7 +97,7 @@ var timer = {
 		clearInterval(this.timeHandler);
 	},
 	setTimer: function(){
-		var color;
+		var color; //color for the svg animation
 		var timerId;
 		var timerMessage;
 		if(this.isWorkTime){
