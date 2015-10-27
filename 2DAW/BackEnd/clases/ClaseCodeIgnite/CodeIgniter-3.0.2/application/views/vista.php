@@ -75,13 +75,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		echo $cuerpo;
 		echo "<br />";
 		echo "<table border=1>";
+		echo "<tr>
+						<td>Nombre</td>
+						<td>Direccion</td>
+						<td>City</td>
+						<td>Email</td>";
 		foreach ($stores as $store) {
 			echo "
 				<tr>
-				<td>Nombre: $store->store_name <br /></td>
-				<td>Direccion: $store->store_address <br /></td>
-				<td>City: $store->store_city <br /></td>
-				<td>Email: $store->store_email <br /></td>
+				<td>$store->store_name <br /></td>
+				<td>$store->store_address <br /></td>
+				<td>$store->store_city <br /></td>
+				<td>$store->store_email <br /></td>
 				</tr>
 			";
 		}

@@ -9,9 +9,12 @@ class Stores extends CI_Controller {
 		$this->load->model('stores_model');
 	}
 
+  public function prueba()
+  {
+    echo "funcion prueba";
+  }
   public function index()
   {
-    echo "Hola, función de entrada del controlador";
     $titulo = "Este es el título de la primera página";
     $cuerpo = "Este es el cuerpo de la primera página";
 
