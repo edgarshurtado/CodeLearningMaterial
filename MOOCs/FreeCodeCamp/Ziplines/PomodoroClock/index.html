@@ -4,9 +4,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="circle.js" type="text/javascript"></script>
 	<script src="script.js" type="text/javascript"></script>
-	<link rel="stylesheet" type="text/css" href="style.css">	
-	<link rel="stylesheet" 
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">	
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
 	<div class="centered-block">
@@ -43,16 +43,20 @@
 				</div>
 			</div>
 		</div>
+
 		<svg width="250" height="250" >
+				<!-- Create a pattern for allowing having an image as a background -->
   			<defs>
     			<pattern id="image" patternUnits="userSpaceOnUse" height="250" width="250">
       			<image x="0" y="0" height="250" width="250" xlink:href="https://pbs.twimg.com/profile_images/562385977390272512/AK29YaTf.png"></image>
     			</pattern>
   			</defs>
+  		<!-- The clock face -->
  			<circle id='top' cx="125" cy="125" r="125" fill="url(#image)"/>
-  
-  			<path id="loader" transform="translate(125, 125)"/>
+  		<!-- The clock filler: to cover the clock face -->
+  		<path id="loader" transform="translate(125, 125)"/>
 		</svg>
+
 		<div id="announcment">READY TO WORK</div>
 		<div id="timer" class="big button"></div>
 		<button id="start">start</button>
