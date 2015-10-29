@@ -1,9 +1,15 @@
-function reveal(id){
-  document.getElementById(id).className = 'visible';
+function reveal(trigger, target){
+  trigger = document.getElementById(trigger);
+  target = document.getElementById(target);
 }
 
-function hide(id){
-  document.getElementById(id).className = 'hidden';
+
+function setVisible(spanElement){
+  spanElement.className = 'visible';
+}
+
+function setHide(spanElement){
+  (spanElement).className = 'hidden';
 }
 
 function changeImage(champ){
