@@ -1,20 +1,6 @@
-function reveal(id){
-  document.getElementById(id).className = 'visible';
+function changeImage(imageUrl){
+  document.getElementById('imageHolder').src = imageUrl;
 }
-
-function hide(id){
-  document.getElementById(id).className = 'hidden';
-}
-
-function changeImage(champ){
-  var champLinks = {
-    'sona' : "./image/Sona_0.jpg",
-    'thresh': "./image/Thresh_0.jpg"
-  }
-
-  document.getElementById('imageHolder').src = champLinks[champ];
-}
-
 
 function alertMessage(id){
   var parent = document.getElementById(id);
@@ -38,5 +24,58 @@ function counters(countersArray){
   for (var i = 0; i < countersArray.length; i++) {
     message +="-- " + countersArray[i] + "\n";
   };
-  alert(message);
+
+  return function(){
+    alert(message);
+  }
+}
+
+function reveal(divID, targetId){
+
+   var spanElement = document.getElementById(targetId);
+   var divElement = document.getElementById(divID);
+   function action(){
+    spanElement.className = 'visible';
+    if(divElement.className == "ExtraInfo"){
+      alertMessage(divID);
+    }
+    switch(divID){
+      case "threshDiv": changeImage("./image/Thresh_0.jpg");
+        break;
+      case "sonaDiv": changeImage("./image/Sona_0.jpg");
+        break;
+    }
+  }
+
+  return action;
+}
+
+function hide(divID, targetId){
+
+   var spanElement = document.getElementById(targetId);
+   var divElement = document.getElementById(divID);
+
+   function action(){
+    spanElement.className = 'hidden';
+    if(divElement.className == "ExtraInfo"){
+      destroyMessage(divID);
+    }
+  }
+
+  return action;
+}
+
+
+window.onload = function(){
+
+  document.getElementById('threshLink').onmouseover = reveal('threshDiv', "threshExtra");
+
+    document.getElementById('sonaLink').onmouseover = reveal('sonaDiv', 'sonaExtra');
+
+    document.getElementById('threshLink').onmouseout = hide('threshDiv', "threshExtra");
+    document.getElementById('sonaLink').onmouseout = hide('sonaDiv', 'sonaExtra');
+
+
+    document.getElementById('threshCounters').onclick = counters(['Janna', 'Soraka']);
+    document.getElementById('sonaCounters').onclick = counters(['Thresh', 'Alistar']);
 }
