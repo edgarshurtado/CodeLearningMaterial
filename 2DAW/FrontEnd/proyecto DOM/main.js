@@ -1,48 +1,58 @@
-function reveal(trigger, target){
-  trigger = document.getElementById(trigger);
-  target = document.getElementById(target);
-}
+function reveal(triggerId, target){
+  triggerElement = document.getElementById(triggerId);
+  targetElement = document.getElementById(target);
+  console.log(target);
+  return function(){
+    console.log(targetElement);
+    targetElement.className = 'visible';
 
-
-function setVisible(spanElement){
-  spanElement.className = 'visible';
-}
-
-function setHide(spanElement){
-  (spanElement).className = 'hidden';
-}
-
-function changeImage(champ){
-  var champLinks = {
-    'sona' : "./image/Sona_0.jpg",
-    'thresh': "./image/Thresh_0.jpg"
+    switch(triggerId){
+      case "threshLink": changeImage("./image/Thresh_0.jpg");
+        break;
+      case "sonaLink": changeImage("./image/Sona_0.jpg");
+        break;
+    }
   }
-
-  document.getElementById('imageHolder').src = champLinks[champ];
 }
 
-
-function alertMessage(id){
-  var parent = document.getElementById(id);
-  var newChild = document.createElement('p');
-  newChild.className = 'important';
-  var text = document.createTextNode('Remember that AP supports are squissy');
-
-  newChild.appendChild(text);
-  parent.insertBefore(newChild, parent.getElementsByTagName('p')[1]);
+function changeImage(imageUrl){
+  document.getElementById('imageHolder').src = imageUrl;
 }
 
-function destroyMessage(id){
-  var parent = document.getElementById(id);
+window.onload = function(){
 
-  parent.removeChild(parent.getElementsByTagName('p')[1]);
+  document.getElementById('threshLink').onmouseover = reveal('threshLink', 'threshExtra');
+
+    document.getElementById('sonaLink').onmouseover = reveal('sonaLink', 'sonaExtra');
 }
 
-function counters(countersArray){
-  var message = "This champ counters are :\n"
+// function setHide(spanElement){
+//   (spanElement).className = 'hidden';
+// }
 
-  for (var i = 0; i < countersArray.length; i++) {
-    message +="-- " + countersArray[i] + "\n";
-  };
-  alert(message);
-}
+
+
+// function alertMessage(id){
+//   var parent = document.getElementById(id);
+//   var newChild = document.createElement('p');
+//   newChild.className = 'important';
+//   var text = document.createTextNode('Remember that AP supports are squissy');
+
+//   newChild.appendChild(text);
+//   parent.insertBefore(newChild, parent.getElementsByTagName('p')[1]);
+// }
+
+// function destroyMessage(id){
+//   var parent = document.getElementById(id);
+
+//   parent.removeChild(parent.getElementsByTagName('p')[1]);
+// }
+
+// function counters(countersArray){
+//   var message = "This champ counters are :\n"
+
+//   for (var i = 0; i < countersArray.length; i++) {
+//     message +="-- " + countersArray[i] + "\n";
+//   };
+//   alert(message);
+// }
