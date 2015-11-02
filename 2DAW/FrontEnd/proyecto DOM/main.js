@@ -2,8 +2,8 @@ function changeImage(imageUrl){
   document.getElementById('imageHolder').src = imageUrl;
 }
 
-function alertMessage(id){
-  var parent = document.getElementById(id);
+function alertMessage(divID){
+  var parent = document.getElementById(divID);
   var newChild = document.createElement('p');
   newChild.className = 'important';
   var text = document.createTextNode('Remember that AP supports are squissy');
@@ -12,8 +12,8 @@ function alertMessage(id){
   parent.insertBefore(newChild, parent.getElementsByTagName('p')[1]);
 }
 
-function destroyMessage(id){
-  var parent = document.getElementById(id);
+function destroyMessage(divID){
+  var parent = document.getElementById(divID);
 
   parent.removeChild(parent.getElementsByTagName('p')[1]);
 }
@@ -34,6 +34,7 @@ function reveal(divID, targetId){
 
    var spanElement = document.getElementById(targetId);
    var divElement = document.getElementById(divID);
+
    function action(){
     spanElement.className = 'visible';
     if(divElement.className == "ExtraInfo"){
