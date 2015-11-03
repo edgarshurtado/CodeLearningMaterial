@@ -31,27 +31,34 @@ class Backoffice extends CI_Controller {
     // echo "$user $pass";
 
     $sql = "SELECT * FROM cg_users
-            WHERE user_name=? AND user_password=?";
+            WHERE user_name=?";
 
-    $query = $this->db->query($sql, array($user, $pass));
+    $query = $this->db->query($sql, array($user));
 
     if ($query->num_rows() == 1) {
-      $row = $query->row();
-      $description = $row->user_description;
-      $email = $row->user_email;
+          $row = $query->row();
+          $description = $row->user_description;
+          $email = $row->user_email;
+          $clave_cifrada = $row->user_password;
 
-      //Guardamos las variables de sesión
-      $variables_sesion=array(
-          'user_name' => $user,
-          'user_description' => $description,
-          'user_email' => $email);
+          //Decodificar la clave cifrada
+          $clave_descodificada = $this->encrypt->decode($clave_cifrada);
+          echo $clave_descodificada;
 
-      $this->session->set_userdata($variables_sesion);
+          if($pass == $clave_descodificada) {
+          //Guardamos las variables de sesión
+          $variables_sesion=array(
+              'user_name' => $user,
+              'user_description' => $description,
+              'user_email' => $email);
 
-      //Cargamos la página de administración
-      $this->load->view("backoffice/admin/pages/index.php");
-    } else {
-      $this->index();
+          $this->session->set_userdata($variables_sesion);
+
+          //Cargamos la página de administración
+          $this->load->view("backoffice/admin/pages/index.php");
+        } else {
+          $this->index();
+        }
     }
   }
   public function logout()
@@ -71,11 +78,27 @@ class Backoffice extends CI_Controller {
   {
     $crud = new Grocery_CRUD();
     $crud->set_table('cg_users');
+
+    //Introduccion de nuevos regristros
+    //---------------------------------
+    $crud->set_subject('usuarios'); // Permite aadir registros
+    // Configurar campos obligatorios
+    $crud->required_fields('user_name', 'user_email');
+    $crud->change_field_type('user_password', 'password');
+    $crud->callback_before_insert(array($this, 'encrypt_password_callback'));
+
+    //Mostrar resultado
+    //----------------
     $output = $crud->render();
-
-    // print_r($output);
-
     $this->load->view("backoffice/example", $output);
+  }
+
+  public function encrypt_password_callback($post_array)
+  {
+      $post_array['user_password'] = 
+          $this->encrypt->encode($post_array['user_password']);
+
+      return $post_array;
   }
 
   public function participantes()
@@ -90,7 +113,8 @@ class Backoffice extends CI_Controller {
   {
     $crud = new Grocery_CRUD();
     $crud->set_table('cg_store');
-    $crud->columns( 'store_name', 'store_address', 'store_city', 'store_state','store_logo', 'store_area_id');
+    $crud->columns( 'store_name', 'store_address', 'store_city', 
+                    'store_state','store_logo', 'store_area_id');
 
     $crud->display_as('store_name', 'Nombre tienda');
     $crud->display_as('store_adress', 'Dirección tienda');
