@@ -16,43 +16,46 @@ function isIE(){
 }
 
 function muestraInformacion(mensaje) {
-	document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
-	for(var i=1; i<mensaje.length; i++) {
-		document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
-	}
+    document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
+    for(var i=1; i<mensaje.length; i++) {
+        document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
+    }
 }
 
 function mouseClientCoords(trigger){
-    var x-coord = trigger.clientX;
-    var y-coord = trigger.clientY; 
+    var x_coord = trigger.clientX;
+    var y_coord = trigger.clientY;
 
-    return [x-coord, y-coord];
+    return [x_coord, y_coord];
 }
 
 function mouseScreenCoords(trigger){
-    var x-coord;
-    var y-coord;
+    var x_coord;
+    var y_coord;
 
     if(isIE()){
-        x-coord = trigger.clientX + document.body.scrollLeft; 
-        y-coord = trigger.clienty + document.body.scrollTop; 
+        x_coord = trigger.clientX + document.body.scrollLeft;
+        y_coord = trigger.clienty + document.body.scrollTop;
     } else {
-        x-coord = trigger.pageX;
-        y-coord = trigger.pageY;
+        x_coord = trigger.pageX;
+        y_coord = trigger.pageY;
     }
-} 
 
+    return [x_coord, y_coord];
+}
+
+function coordString(array){
+    return "[" + array[0].toString() + ", " + array[1].toString() + "]";
+}
 function mousePositions(trigger){
     trigger = trigger || window.trigger;
     var client = mouseClientCoords(trigger);
     var window_pos = mouseScreenCoords(trigger);
 
-    muestraInformacion(['Ratón']); 
+    muestraInformacion(['Ratón', client, window_pos]);
 }
 
-function foo(){ muestraInformacion(['Raton']);}
-
-window.onload(function(){muestraInformacion('Raton');});
+document.onmouseover = mousePositions;
 </script>
 </head>
 
