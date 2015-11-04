@@ -23,13 +23,6 @@ function muestraInformacion(mensaje) {
 }
 
 function mouseClientCoords(trigger){
-    var x_coord = trigger.clientX;
-    var y_coord = trigger.clientY;
-
-    return [x_coord, y_coord];
-}
-
-function mouseScreenCoords(trigger){
     var x_coord;
     var y_coord;
 
@@ -40,6 +33,13 @@ function mouseScreenCoords(trigger){
         x_coord = trigger.pageX;
         y_coord = trigger.pageY;
     }
+
+    return [x_coord, y_coord];
+}
+
+function mouseScreenCoords(trigger){
+    var x_coord = trigger.screenX
+    var y_coord = trigger.screenY;
 
     return [x_coord, y_coord];
 }
