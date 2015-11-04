@@ -22,6 +22,7 @@ function muestraInformacion(mensaje) {
     }
 }
 
+// Mouse events
 function mouseClientCoords(trigger){
     var x_coord;
     var y_coord;
@@ -47,6 +48,7 @@ function mouseScreenCoords(trigger){
 function coordString(array){
     return "[" + array[0].toString() + ", " + array[1].toString() + "]";
 }
+
 function mousePositions(trigger){
     trigger = trigger || window.trigger;
     var client = mouseClientCoords(trigger);
@@ -57,6 +59,7 @@ function mousePositions(trigger){
                         'escritorio ' + coordString( window_pos)]);
 }
 
+//Keyboard events
 function keyCharAndCode(trigger){
     var result = [];
     result.push(trigger.charCode);
@@ -68,7 +71,9 @@ function keyCharAndCode(trigger){
 function keyboardPress(trigger){
     trigger = trigger || window.trigger;
     var keyboardInfo = keyCharAndCode(trigger);
-    muestraInformacion([ 'Teclado' ,keyboardInfo]);
+    muestraInformacion([ 'Teclado' ,
+                        'Char Code: ' + keyboardInfo[0],
+                        keyboardInfo[1]]);
 }
 
 document.onmouseover = mousePositions;
