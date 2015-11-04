@@ -52,10 +52,27 @@ function mousePositions(trigger){
     var client = mouseClientCoords(trigger);
     var window_pos = mouseScreenCoords(trigger);
 
-    muestraInformacion(['Ratón', client, window_pos]);
+    muestraInformacion(['Ratón', 
+                        'ventana ' + coordString(client),
+                        'escritorio ' + coordString( window_pos)]);
+}
+
+function keyCharAndCode(trigger){
+    var result = [];
+    result.push(trigger.charCode);
+    result.push(String.fromCharCode(trigger.charCode)); 
+
+    return result;
+}
+
+function keyboardPress(trigger){
+    trigger = trigger || window.trigger;
+    var keyboardInfo = keyCharAndCode(trigger);
+    muestraInformacion([ 'Teclado' ,keyboardInfo]);
 }
 
 document.onmouseover = mousePositions;
+document.onkeypress = keyboardPress;
 </script>
 </head>
 
