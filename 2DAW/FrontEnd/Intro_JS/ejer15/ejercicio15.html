@@ -11,12 +11,48 @@ body {font-family: arial, helvetica;}
 </style>
 
 <script type="text/javascript">
+function isIE(){
+    return navigator.userAgent.toLowerCase().indexOf('msie')!=-1;
+}
+
 function muestraInformacion(mensaje) {
 	document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
 	for(var i=1; i<mensaje.length; i++) {
 		document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
 	}
 }
+
+function mouseClientCoords(trigger){
+    var x-coord = trigger.clientX;
+    var y-coord = trigger.clientY; 
+
+    return [x-coord, y-coord];
+}
+
+function mouseScreenCoords(trigger){
+    var x-coord;
+    var y-coord;
+
+    if(isIE()){
+        x-coord = trigger.clientX + document.body.scrollLeft; 
+        y-coord = trigger.clienty + document.body.scrollTop; 
+    } else {
+        x-coord = trigger.pageX;
+        y-coord = trigger.pageY;
+    }
+} 
+
+function mousePositions(trigger){
+    trigger = trigger || window.trigger;
+    var client = mouseClientCoords(trigger);
+    var window_pos = mouseScreenCoords(trigger);
+
+    muestraInformacion(['Ratón']); 
+}
+
+function foo(){ muestraInformacion(['Raton']);}
+
+window.onload(function(){muestraInformacion('Raton');});
 </script>
 </head>
 
