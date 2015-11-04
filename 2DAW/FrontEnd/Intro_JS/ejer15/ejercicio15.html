@@ -51,6 +51,12 @@ function coordString(array){
 
 function mousePositions(trigger){
     trigger = trigger || window.trigger;
+
+    if(trigger.type == 'click'){
+        document.getElementById('info').style.backgroundColor = 'red';
+    } else {
+        document.getElementById('info').style.backgroundColor = 'white';
+    }
     var client = mouseClientCoords(trigger);
     var window_pos = mouseScreenCoords(trigger);
 
@@ -80,6 +86,7 @@ function keyboardPress(trigger){
 window.onload = function(){
     document.onmouseover = mousePositions;
     document.onkeypress = keyboardPress;
+    document.onclick = mousePositions;
 };
 
 </script>
