@@ -73,11 +73,15 @@ function keyboardPress(trigger){
     var keyboardInfo = keyCharAndCode(trigger);
     muestraInformacion([ 'Teclado' ,
                         'Char Code: ' + keyboardInfo[0],
-                        keyboardInfo[1]]);
+                        'Character: ' + keyboardInfo[1]]);
+    document.getElementById('info').style.backgroundColor= 'yellow';
 }
 
-document.onmouseover = mousePositions;
-document.onkeypress = keyboardPress;
+window.onload = function(){
+    document.onmouseover = mousePositions;
+    document.onkeypress = keyboardPress;
+};
+
 </script>
 </head>
 
