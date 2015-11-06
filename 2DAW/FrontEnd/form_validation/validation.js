@@ -1,0 +1,52 @@
+function test(){
+    alert('it works!!!');
+}
+
+function applyOnBlur(collection, callback){
+    for (var i = 0; i < collection.length; i++) {
+        collection[i].onblur = callback(collection[i]);
+    };
+}
+
+function validate(domElement, condition){
+    function deleteError(domElement){
+        var finalClass = domElement.className.replace(/(?:^|\s)error(?!\S)/g, '');
+        domElement.className = finalClass;
+    }
+
+    if (condition) {
+        deleteError(domElement);
+    } else {
+        domElement.className += ' error';
+    }
+
+}
+
+function validateAlphabetic(form_element){
+    function isAlphabetic(string){
+        if( string == null || string.length == 0 || /[0-9]+$/.test(string) ) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    return function(){
+        validate(form_element, isAlphabetic(form_element.value));
+        console.log(form_element.value)
+    };
+}
+
+
+
+
+window.onload = function(){
+    applyOnBlur(document.getElementsByClassName('alphabetic'), validateAlphabetic);
+
+    document.getElementById('form_1068625').onsubmit = function(){
+        var errorMissages = document.getElementsByClassName('error');
+        alert(errorMissages.length);
+        return errorMissages.length == 0;
+    };
+};
+
