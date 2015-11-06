@@ -60,7 +60,7 @@ function mousePositions(trigger){
     var client = mouseClientCoords(trigger);
     var window_pos = mouseScreenCoords(trigger);
 
-    muestraInformacion(['Ratón', 
+    muestraInformacion(['Ratón',
                         'ventana ' + coordString(client),
                         'escritorio ' + coordString( window_pos)]);
 }
@@ -69,7 +69,7 @@ function mousePositions(trigger){
 function keyCharAndCode(trigger){
     var result = [];
     result.push(trigger.charCode);
-    result.push(String.fromCharCode(trigger.charCode)); 
+    result.push(String.fromCharCode(trigger.charCode));
 
     return result;
 }
@@ -80,6 +80,7 @@ function keyboardPress(trigger){
     muestraInformacion([ 'Teclado' ,
                         'Char Code: ' + keyboardInfo[0],
                         'Character: ' + keyboardInfo[1]]);
+
     document.getElementById('info').style.backgroundColor= 'yellow';
 }
 
