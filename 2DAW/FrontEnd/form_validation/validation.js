@@ -9,21 +9,22 @@ window.onload = function(){
                                             //any error.
     };
 };
-// Sets for every Dom Element with the targetClass to pass on blur a test
-function setFieldTestByClassName(targetClass, stringTest){
+// Sets for every Dom Element with the targetClass to pass (on blur) a test that
+//checks it's value
+function setFieldTestByClassName(targetClass, valueTest){
     var domCollection = document.getElementsByClassName(targetClass);
     for (var i = 0; i < domCollection.length; i++) {
         domCollection[i].addEventListener(
-            'blur', validateField(domCollection[i], stringTest));
+            'blur', validateField(domCollection[i], valueTest));
     };
 }
 
-//Checks if the value of the form_element passes the stringTest. If it doesn't
-//pass it, adds the error_class to the DOM element; if it does, removes the
+//Checks if the value of the form_element passes the valueTest. If it doesn't,
+//adds the error_class to the DOM element; if it does, removes the
 //error class from the DOM element in case it has it.
-function validateField(form_element, stringTest){
+function validateField(form_element, valueTest){
     return function(){
-        var test_result = stringTest(form_element.value);
+        var test_result = valueTest(form_element.value);
         var error_class = 'error';
         if (test_result) {
             deleteClass(form_element, error_class);
