@@ -9,6 +9,13 @@ window.onload = function(){
     };
 };
 
+function setFieldTestByClassName(targetClass, test){
+    var domCollection = document.getElementsByClassName(targetClass);
+    for (var i = 0; i < domCollection.length; i++) {
+        domCollection[i].addEventListener(eventType, test;
+    };
+}
+
 function eventListenerToCollection(collection, eventType, callback){
     for (var i = 0; i < collection.length; i++) {
         collection[i].addEventListener(eventType, callback(collection[i]));
