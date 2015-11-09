@@ -15,20 +15,7 @@ function eventListenerToCollection(collection, eventType, callback){
     };
 }
 
-function validateField(domElement, condition){
-    function deleteError(domElement){
-        var finalClass = domElement.className
-            .replace(/(?:^|\s)error(?!\S)/g, '');
-        domElement.className = finalClass;
-    }
 
-    if (condition) {
-        deleteError(domElement);
-    } else {
-        domElement.className += ' error';
-    }
-
-}
 
 function validateAlphabetic(form_element){
     function isAlphabetic(string){
@@ -43,6 +30,20 @@ function validateAlphabetic(form_element){
         validateField(form_element, isAlphabetic(form_element.value));
         console.log(form_element.value)
     };
+}
+
+function validateField(domElement, condition){
+    function deleteError(domElement){
+        var finalClass = domElement.className
+            .replace(/(?:^|\s)error(?!\S)/g, '');
+        domElement.className = finalClass;
+    }
+
+    if (condition) {
+        deleteError(domElement);
+    } else {
+        domElement.className += ' error';
+    }
 }
 
 function test(){
