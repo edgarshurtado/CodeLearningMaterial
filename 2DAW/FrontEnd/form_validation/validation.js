@@ -15,8 +15,6 @@ function eventListenerToCollection(collection, eventType, callback){
     };
 }
 
-
-
 function validateAlphabetic(form_element){
     function isAlphabetic(string){
         if( string == null || string.length == 0 || /[0-9]+$/.test(string) ) {
@@ -25,11 +23,14 @@ function validateAlphabetic(form_element){
             return true;
         }
     }
-
     return function(){
         validateField(form_element, isAlphabetic(form_element.value));
         console.log(form_element.value)
     };
+}
+
+function isPhoneNumber(string){
+    return /^\d{9}$/.test(string);
 }
 
 function validateField(domElement, condition){
