@@ -1,6 +1,6 @@
 window.onload = function(){
-    eventListenerToCollection(
-        document.getElementsByClassName('alphabetic'), "blur", test);
+    eventListenerToCollection(document.
+            getElementsByClassName('alphabetic'), "blur",validateAlphabetic);
 
     document.getElementById('form_1068625').onsubmit = function(){
         var errorMissages = document.getElementsByClassName('error');
@@ -11,11 +11,11 @@ window.onload = function(){
 
 function eventListenerToCollection(collection, eventType, callback){
     for (var i = 0; i < collection.length; i++) {
-        collection[i].addEventListener(eventType, callback);
+        collection[i].addEventListener(eventType, callback(collection[i]));
     };
 }
 
-function validate(domElement, condition){
+function validateField(domElement, condition){
     function deleteError(domElement){
         var finalClass = domElement.className
             .replace(/(?:^|\s)error(?!\S)/g, '');
@@ -40,7 +40,7 @@ function validateAlphabetic(form_element){
     }
 
     return function(){
-        validate(form_element, isAlphabetic(form_element.value));
+        validateField(form_element, isAlphabetic(form_element.value));
         console.log(form_element.value)
     };
 }
