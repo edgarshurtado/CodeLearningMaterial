@@ -15,10 +15,13 @@ function setFieldTestByClassName(targetClass, test){
 }
 
 function validate(form_element, test){
-    console.log(form_element);
     return function(){
-        validateField(form_element, test(form_element.value));
-        console.log(form_element.value)
+        var test_result = test(form_element.value);
+        if (test_result) {
+            deleteError(form_element);
+        } else {
+            form_element.className += ' error';
+        }
     };
 }
 
@@ -34,18 +37,9 @@ function isPhoneNumber(string){
     return /^\d{9}$/.test(string);
 }
 
-function validateField(domElement, condition){
-    function deleteError(domElement){
-        var finalClass = domElement.className
-            .replace(/(?:^|\s)error(?!\S)/g, '');
-        domElement.className = finalClass;
-    }
-
-    if (condition) {
-        deleteError(domElement);
-    } else {
-        domElement.className += ' error';
-    }
+function deleteClass(domElement){
+    var finalClass = domElement.className.replace(/(?:^|\s)error(?!\S)/g, '');
+    domElement.className = finalClass;
 }
 
 function test(){
