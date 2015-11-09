@@ -1,20 +1,27 @@
 window.onload = function(){
+
     setFieldTestByClassName('alphabetic',isAlphabetic);
+
     document.getElementById('form_1068625').onsubmit = function(){
         var errorMissages = document.getElementsByClassName('error');
         alert(errorMissages.length);
-        return errorMissages.length == 0;
+        return errorMissages.length == 0; //Avoids to send the form is there is
+                                            //any error.
     };
 };
-
+// Sets for every Dom Element with the targetClass to pass on blur a test
 function setFieldTestByClassName(targetClass, stringTest){
     var domCollection = document.getElementsByClassName(targetClass);
     for (var i = 0; i < domCollection.length; i++) {
-        domCollection[i].addEventListener('blur', validate(domCollection[i], stringTest));
+        domCollection[i].addEventListener(
+            'blur', validateField(domCollection[i], stringTest));
     };
 }
 
-function validate(form_element, stringTest){
+//Checks if the value of the form_element passes the stringTest. If it doesn't
+//pass it, adds the error_class to the DOM element; if it does, removes the
+//error class from the DOM element in case it has it.
+function validateField(form_element, stringTest){
     return function(){
         var test_result = stringTest(form_element.value);
         var error_class = 'error';
@@ -29,6 +36,16 @@ function validate(form_element, stringTest){
     };
 }
 
+// Deletes a class from a DOM element
+function deleteClass(domElement, targetClass){
+    var re = new RegExp(targetClass, "g");
+    var finalClass = domElement.className.replace(re, '');
+    domElement.className = finalClass;
+}
+
+//-----------------
+//Test functions
+//-----------------
 function isAlphabetic(string){
     if( string == null || string.length == 0 || /[0-9]+$/.test(string) ) {
         return false;
@@ -40,17 +57,3 @@ function isAlphabetic(string){
 function isPhoneNumber(string){
     return /^\d{9}$/.test(string);
 }
-
-function deleteClass(domElement, error_class){
-    var re = new RegExp(error_class, "g");
-    var finalClass = domElement.className.replace(re, '');
-    domElement.className = finalClass;
-}
-
-function test(){
-    console.log(this);
-}
-
-
-
-
