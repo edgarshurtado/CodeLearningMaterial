@@ -22,6 +22,9 @@ function validate(form_element, stringTest){
             deleteClass(form_element, error_class);
         } else {
             form_element.className += " " + error_class;
+                //I had to add the blank space (" ") for add the class properly
+                //if i didn't do it like this I'd merge the adding class with
+                //the last prexistent class
         }
     };
 }
