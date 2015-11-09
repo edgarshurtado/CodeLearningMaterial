@@ -1,6 +1,12 @@
-function test(){
-    alert('it works!!!');
-}
+window.onload = function(){
+    applyOnBlur(document.getElementsByClassName('alphabetic'), validateAlphabetic);
+
+    document.getElementById('form_1068625').onsubmit = function(){
+        var errorMissages = document.getElementsByClassName('error');
+        alert(errorMissages.length);
+        return errorMissages.length == 0;
+    };
+};
 
 function applyOnBlur(collection, callback){
     for (var i = 0; i < collection.length; i++) {
@@ -39,14 +45,4 @@ function validateAlphabetic(form_element){
 
 
 
-
-window.onload = function(){
-    applyOnBlur(document.getElementsByClassName('alphabetic'), validateAlphabetic);
-
-    document.getElementById('form_1068625').onsubmit = function(){
-        var errorMissages = document.getElementsByClassName('error');
-        alert(errorMissages.length);
-        return errorMissages.length == 0;
-    };
-};
 
