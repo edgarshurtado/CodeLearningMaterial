@@ -7,20 +7,21 @@ window.onload = function(){
     };
 };
 
-function setFieldTestByClassName(targetClass, test){
+function setFieldTestByClassName(targetClass, stringTest){
     var domCollection = document.getElementsByClassName(targetClass);
     for (var i = 0; i < domCollection.length; i++) {
-        domCollection[i].addEventListener('blur', validate(domCollection[i], test));
+        domCollection[i].addEventListener('blur', validate(domCollection[i], stringTest));
     };
 }
 
-function validate(form_element, test){
+function validate(form_element, stringTest){
     return function(){
-        var test_result = test(form_element.value);
+        var test_result = stringTest(form_element.value);
+        var error_class = 'error';
         if (test_result) {
-            deleteError(form_element);
+            deleteClass(form_element, error_class);
         } else {
-            form_element.className += ' error';
+            form_element.className += " " + error_class;
         }
     };
 }
@@ -37,8 +38,9 @@ function isPhoneNumber(string){
     return /^\d{9}$/.test(string);
 }
 
-function deleteClass(domElement){
-    var finalClass = domElement.className.replace(/(?:^|\s)error(?!\S)/g, '');
+function deleteClass(domElement, error_class){
+    var re = new RegExp(error_class, "g");
+    var finalClass = domElement.className.replace(re, '');
     domElement.className = finalClass;
 }
 
