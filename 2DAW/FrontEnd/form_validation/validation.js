@@ -1,5 +1,6 @@
 window.onload = function(){
-    applyOnBlur(document.getElementsByClassName('alphabetic'), validateAlphabetic);
+    eventListenerToCollection(
+        document.getElementsByClassName('alphabetic'), "blur", test);
 
     document.getElementById('form_1068625').onsubmit = function(){
         var errorMissages = document.getElementsByClassName('error');
@@ -8,15 +9,16 @@ window.onload = function(){
     };
 };
 
-function applyOnBlur(collection, callback){
+function eventListenerToCollection(collection, eventType, callback){
     for (var i = 0; i < collection.length; i++) {
-        collection[i].onblur = callback(collection[i]);
+        collection[i].addEventListener(eventType, callback);
     };
 }
 
 function validate(domElement, condition){
     function deleteError(domElement){
-        var finalClass = domElement.className.replace(/(?:^|\s)error(?!\S)/g, '');
+        var finalClass = domElement.className
+            .replace(/(?:^|\s)error(?!\S)/g, '');
         domElement.className = finalClass;
     }
 
@@ -41,6 +43,10 @@ function validateAlphabetic(form_element){
         validate(form_element, isAlphabetic(form_element.value));
         console.log(form_element.value)
     };
+}
+
+function test(){
+    console.log(this);
 }
 
 
