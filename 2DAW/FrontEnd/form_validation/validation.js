@@ -1,13 +1,9 @@
 window.onload = function(){
 
     setFieldTestByClassName('alphabetic',isAlphabetic);
+    setFieldTestByClassName('postalcode',isPostalCode);
 
-    document.getElementById('form_1068625').onsubmit = function(){
-        var errorMissages = document.getElementsByClassName('error');
-        alert(errorMissages.length);
-        return errorMissages.length == 0; //Avoids to send the form is there is
-                                            //any error.
-    };
+    document.getElementById('form_1068625').onsubmit = validateForm;
 };
 // Sets for every Dom Element with the targetClass to pass (on blur) a test that
 //checks it's value
@@ -57,4 +53,28 @@ function isAlphabetic(string){
 
 function isPhoneNumber(string){
     return /^\d{9}$/.test(string);
+}
+
+function isPostalCode(string){
+    return isNumerical(string) && string.length === 5;
+}
+function isNumerical(string){
+    return !isNaN(string);
+}
+
+function isWebLink(string){
+    var re = new RegExp(/\..+/);
+    return re.test(string);
+}
+
+function validateForm(){
+    var errorMessage ="";
+    var nErrors = document.getElementsByClassName('error');
+    if(nErrors.length > 0){
+        errorMessage +=
+            "Tienes " + nErrors.length.toString() + " campos erróneos";
+    }
+    alert(errorMessage);
+    return errorMessage.length === 0; //Avoids to send the form is there is
+                                        //any error.
 }
