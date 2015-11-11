@@ -3,6 +3,7 @@ window.onload = function(){
     setFieldTestByClassName('alphabetic',isAlphabetic);
     setFieldTestByClassName('postalcode',isPostalCode);
     setFieldTestByClassName('url', isWebLink);
+    setFieldTestByClassName('phonenumber', isPhoneNumber)
 
     document.getElementById('form_1068625').onsubmit = validateForm;
 };
@@ -68,6 +69,22 @@ function isWebLink(string){
     return re.test(string);
 }
 
+function isEmail(string){
+    var re = new RegExp(/@.+\..+$/);
+    return re.test(string);
+}
+
+function checkboxRequired(id){
+    var checkboxGroup =
+        document.getElementById(id).getElementsByTagName("input");
+
+    for(var i = 0; i < checkboxGroup.length; i++){
+        if (checkboxGroup[i].checked) return true;
+    }
+
+    return false;
+}
+
 function checkDate(){
 
     var day = document.getElementsByName('day')[0].value;
@@ -93,12 +110,21 @@ function checkDate(){
 }
 
 function validateForm(){
-    var errorMessage ="";
+    var errorMessage =[];
     var nErrors = document.getElementsByClassName('error');
     if(nErrors.length > 0){
-        errorMessage +=
-            "Tienes " + nErrors.length.toString() + " campos erróneos";
+        errorMessage.push("Tienes " + nErrors.length.toString() + " campos " +
+                "erróneos");
     }
+
+    if(!checkDate()){
+        errorMessage.push("Fecha no válida");
+    }
+
+    if(!checkboxRequired('situacion_laboral')){
+        errorMessage.push("Debes elegir una opción en Sitación Laboral");
+    }
+
     alert(errorMessage);
     return errorMessage.length === 0; //Avoids to send the form is there is
                                         //any error.
