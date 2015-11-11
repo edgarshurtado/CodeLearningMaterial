@@ -2,6 +2,7 @@ window.onload = function(){
 
     setFieldTestByClassName('alphabetic',isAlphabetic);
     setFieldTestByClassName('postalcode',isPostalCode);
+    setFieldTestByClassName('url', isWebLink);
 
     document.getElementById('form_1068625').onsubmit = validateForm;
 };
