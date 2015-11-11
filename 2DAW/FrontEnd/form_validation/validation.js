@@ -68,6 +68,30 @@ function isWebLink(string){
     return re.test(string);
 }
 
+function checkDate(){
+
+    var day = document.getElementsByName('day')[0].value;
+    var month = document.getElementsByName('month')[0].value - 1;
+    var year= document.getElementsByName('year')[0].value;
+    
+    return isValidDate() && dateNotAhead();
+
+    function isValidDate(){
+        var month_short_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        
+        return !isNaN(Date.parse(month_short_names[month] + day.toString() +
+                year.toString()));
+    }
+
+    function dateNotAhead(){
+        var currentDateMs = Date.parse(new Date());
+        var providedDateMs = Date.parse(new Date(year, month, day));
+
+        return currentDateMs >= providedDateMs;
+    }
+}
+
 function validateForm(){
     var errorMessage ="";
     var nErrors = document.getElementsByClassName('error');
