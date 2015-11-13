@@ -49,8 +49,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+$route['upload'] = 'upload_controller';
+$route['upload/(:any)'] = 'upload_controller/$1';
+$route['email'] = 'email';
 $route['backoffice'] = 'Backoffice'; //llamada al controlador del sistema de mantenimiento
 $route['default_controller'] = 'stores';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['(:any)'] = 'stores/$1'; //lo que sea lo mapeará al nombre del método
+$route['(:any)'] = 'stores/$1'; // Redirección por defecto

@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	::selection { background-color: #E13300; color: white; }
 	::-moz-selection { background-color: #E13300; color: white; }
- 
+
 	body {
 		background-color: #fff;
 		margin: 40px;
@@ -90,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             echo "<td>";
             if(!empty($store->store_logo)) {
                 echo "<img src=".base_url()."'assets/uploads/files/'" .
-                    $store->store_logo; . "/>";
+                    $store->store_logo . "/>";
             }
 				echo "</td>";
 				echo "</tr>";

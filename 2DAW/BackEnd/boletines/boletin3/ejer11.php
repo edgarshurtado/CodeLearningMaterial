@@ -24,26 +24,27 @@
   /**
   *
   */
-  class Empleado extends Persona
+  class empleado extends persona
   {
     private $sueldo;
-    public function setSueldo($sueldo=1000)
+    public function setsueldo($sueldo=1000)
     {
       $this->sueldo = $sueldo;
     }
-    function imprimirSueldo()
+    function imprimirsueldo()
     {
-      echo "Sueldo: $this->sueldo";
+      echo "sueldo: $this->sueldo";
     }
   }
 
-  $emp1 = new Empleado();
-  $emp1->setDatos("Edgar", 26);
-  $emp1->setSueldo();
-  $emp1->imprimirDatos();
-  $emp1->imprimirSueldo();
+  $emp1 = new empleado();
+  $emp1->setdatos("edgar", 26);
+  $emp1->setsueldo();
+  $emp1->imprimirdatos();
+  $emp1->imprimirsueldo();
   echo "<br><br>";
-  $pers1 = new Persona();
-  $pers1->setDatos("Edgar", 26);
+  $pers1 = new persona();
+  $pers1->setdatos("edgar", 26);
   $pers1->imprimirDatos();
+
 ?>

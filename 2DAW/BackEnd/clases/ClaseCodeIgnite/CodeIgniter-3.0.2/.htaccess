@@ -1,5 +1,7 @@
 RewriteEngine on
-RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond $1 !^(index.php|assets|resources|robots.txt)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+#Editar para que funcione en servidor remoto
 RewriteRule ^(.*)$ index.php/$1 [L,QSA]
