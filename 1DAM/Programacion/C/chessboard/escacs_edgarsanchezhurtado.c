@@ -44,7 +44,6 @@ void printBoard(){
 	printf("\n");
 
 	for(row = 0; row < ROWS; row++){
-		//printf("  --------------------------------\n");
 		printf("%i|", row+1);
 		for(col = 0; col < COLS; col++){
 			printf("%c|", board[row][col]);
