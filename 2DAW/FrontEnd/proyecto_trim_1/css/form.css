@@ -1,0 +1,8 @@
+p {
+    text-align: left;
+    text-indent: 0 !important;
+}
+
+.error {
+    border-color : red;
+}

@@ -1,0 +1,281 @@
+/*------------------------------------------------------------*
+**  Global
+**------------------------------------------------------------*/
+html { height: 100%; }
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Tahoma, sans-serif;
+	font-size: 76%;
+	color: #888;
+	height: 100%;
+	background: #fff url(img/bg.jpg) repeat-x;
+	}
+a { text-decoration: none; color: #11A0CF; font-size: 1em; padding: 1px 2px; }
+a:hover { background-color: #f4f4f4; }
+acronym { border-bottom: 1px dotted #cc0000; cursor: help; }
+
+/*------------------------------------------------------------*
+**  Container
+**------------------------------------------------------------*/	
+#container {
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+	position: relative;
+	text-align: center;
+	}	
+	
+/*------------------------------------------------------------*
+**  Header
+**------------------------------------------------------------*/	
+#header { 
+	width: 750px; 
+	margin: 0 auto;	
+	padding: 0;
+	}
+#header div { 
+	background: url(img/headers/header2.jpg) no-repeat 10px 70px; 
+	text-align: left;
+	padding: 45px 0 97px 20px;	
+	}	
+#header h1 {
+	margin: 0; 
+	clear: both;
+	padding: 43px 0 0 40px;	
+	font-size: 4em;	
+	}
+#header h1 a { 
+	padding: 0;
+	color: #000;
+	font-family: Century Gothic, sans-serif;
+	font-weight: normal;
+	color: #000;	
+	}	
+#header h1 a:hover { background-color: transparent; }	
+* html #header h1 { padding-top: 23px; }	
+
+#header span {
+    font-size: 0.5em;
+}
+
+/*------------------------------------------------------------*
+**  Navigation
+**------------------------------------------------------------*/
+#header ul {
+	margin: 0 40px;
+	padding: 0;	
+	}
+#header li { 
+	display: inline;
+	list-style-type: none;
+	margin: 0 5px;
+	font-size: 1.2em;
+	background: url(img/nav.gif) no-repeat;
+	width: 114px;
+	height: 25px;
+	float: left;
+	text-align: center;
+	}	
+#header li a { 
+	display: block; 
+	width: 100%;
+	color: #fff;
+	padding-top: 7px;
+	}		
+#header li a.on,
+#header li a:hover { background-color: #333; color: #9c0; height: 20px; }
+
+/*------------------------------------------------------------*
+**  Content
+**------------------------------------------------------------*/
+#content {
+	width: 700px;
+	margin: 0 auto;
+	padding-bottom: 50px;
+	}
+* html #content { padding-bottom: 60px; }	
+#content:after {
+	content: "."; 
+	display: block; 
+	clear: both; 
+	height: 0;
+	visibility: hidden
+	}	
+#content h2 { 
+	font-size: 20px;
+	color: #333;
+	font-weight: normal;
+	font-size: 1.8em;	
+	margin: 0 0 20px 0;
+	clear: both;
+	}	
+#content h2 em { 
+	color: #09C; 
+	font-style: normal;
+	}
+#content p {
+	text-indent: 3em;
+	line-height: 2.5em;
+	letter-spacing: 0.1em;	
+	}	
+	
+#content ul {
+	margin: 20px 0;
+	padding: 0 0 0 10px;
+	}	
+#content li {
+	list-style-type: none;
+	background: url(img/bullet.gif) no-repeat 0px 8px;
+	padding: 0 0 0 25px;
+	line-height: 2em;
+	letter-spacing: 0.1em;	
+	}	
+#content blockquote { 
+	background-color: #FFFFF0; 
+	margin: 20px 0; 
+	padding: 10px 20px;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	}
+#content blockquote p { margin: 0; text-indent: 0; }
+
+/*------------------------------------------------------------*
+**  Thumbnails
+**------------------------------------------------------------*/
+#content ul.thumbs { 
+	margin: 20px 0;
+	padding: 0;
+	}
+#content ul.thumbs:after {
+	content: "."; 
+	display: block; 
+	clear: both; 
+	height: 0;
+	visibility: hidden
+	}	
+#content ul.thumbs li { 
+	float: left;
+	margin: 3px;
+	padding: 0;
+	background-image: none;
+	}
+#content ul.thumbs li a img { border: 5px solid #ddd; }
+#content ul.thumbs li a:hover img { border: 5px solid #333; }	
+html>body #content ul.thumbs li a { background-color: transparent; }
+	
+/*------------------------------------------------------------*
+**  left
+**------------------------------------------------------------*/
+#left {
+	float: left;
+	width: 225px;
+	text-align: left;
+	margin-right: 35px;
+	}
+
+.left {
+	float: left;
+	width: 225px;
+	text-align: left;
+	margin-right: 35px;
+}
+/*------------------------------------------------------------*
+**  right
+**------------------------------------------------------------*/
+#right {
+	float: right;
+	width: 438px;	
+	text-align: left;	
+}
+
+.right {
+	float: right;
+	width: 438px;	
+	text-align: left;	
+}
+		
+#right img {
+	width: 438px;	
+}
+
+#right h2 {
+    text-align: center;
+}
+/*------------------------------------------------------------*
+**  Footer
+**------------------------------------------------------------*/		
+#footer {	
+	position: absolute !important;
+	width: 100% !important;
+	z-index: 500 !important;
+	position: relative;	
+	padding: 10px 0;	
+	margin-top: -36px;
+	background-color: #333;		
+	color: #999;	
+	font-size: 11px;
+	border-top: 3px solid #ccc;
+	}	
+#footer p { margin: 0 10px; text-align: center; }	
+#footer a:hover { background-color: #222; }
+
+/*
+ * READ MORE
+ */
+/*TODO: Change readmore for the new no_display class */
+.readmore {
+    display:none;
+}
+
+.expandable p {
+    text-align: left;
+}
+
+/*------------------------------------------------------------*
+**  Competitions list
+**------------------------------------------------------------*/		
+
+#competitions_list li {
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: black solid 1px;
+    font-size: 1.2em;
+}
+
+#competitions_list li:hover {
+    color: #09C;
+}
+
+/*------------------------------------------------------------*
+**  Vertical NavBar. I need to get rid of the bullets
+**------------------------------------------------------------*/		
+.nav li {
+    background:none !important;
+}
+
+
+/*------------------------------------------------------------*
+** 
+**------------------------------------------------------------*/		
+
+.no_display {
+    display: none;
+}
+
+.display{
+    display: inline;
+}
+
+.glyphicon-warning-sign {
+    color: red;
+}
+
+.corredor img {
+    float: left;
+    margin-right: 15px;
+}
+
+.corredor p {
+    text-align: left;
+}
