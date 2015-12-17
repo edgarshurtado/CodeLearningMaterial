@@ -1,29 +1,48 @@
-/JAVA/ex7_2/nbproject/private/
-/JAVA/ex7_2/build/
-/JAVA/ex7_2/dist/
-/JAVA/Ex7_3/nbproject/private/
-/JAVA/Ex7_3/dist/
-/JAVA/Ex7_3/build/
-/JAVA/Ex7_4/nbproject/private/
-/JAVA/Ex7_4/build/
-/JAVA/Ex7_4/dist/
-/JAVA/Matrices_EdgarSanchezHurtado/nbproject/private/
-/JAVA/Matrices_EdgarSanchezHurtado/build/
-/JAVA/Class Exercises/Lesson 8/exercise8_1/nbproject/private/
-/JAVA/Class Exercises/Lesson 8/exercise8_1/build/
-/JAVA/Class Exercises/Lesson 8/exercise8_1/dist/
-/JAVA/NumerosEnLletres/edgarSanchezHurtadoNumerosEnLletra/nbproject/private/
-/JAVA/NumerosEnLletres/edgarSanchezHurtadoNumerosEnLletra/build/
-/JAVA/Class Exercises/Lesson 8/funcionRecursiva/subirEscaleras/nbproject/private/
-/JAVA/Class Exercises/Lesson 8/funcionRecursiva/subirEscaleras/build/
-/JAVA/EDTest/nbproject/private/
-/JAVA/Minesweeper/nbproject/private/
-/JAVA/Minesweeper/build/
-/JAVA/RegistreNotes/nbproject/private/
-/JAVA/UsefulFunctions/nbproject/private/
-/JAVA/RegistreNotes/build/
-/JAVA/Practica_Algoritmos/nbproject/private/
 
+# Created by https://www.gitignore.io/api/osx,netbeans,vim
+
+### OSX ###
 .DS_Store
-2DAW/BackEnd/proyectos/.phpintel/
-PYTHON/.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+.nb-gradle/
+
+
+### Vim ###
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
