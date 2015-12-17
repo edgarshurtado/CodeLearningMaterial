@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title></title>
+        
+    </head>
+    <body>
+        <script type="text/javascript" charset="utf-8">
+var factura = {
+
+    importeTotal : null,
+    tipoIva: null,
+    formaDePago: null,
+
+    empresa : {
+        nombre: "Empresa Random",
+        direccion: "Calle Falsa 123",
+        telefono: "96 222 222"
+    },
+
+    cliente : {
+        nombre: "John Mamón",
+        direccion: "Calle Falsa 456",
+        telefono: "96 666 666"
+    },
+
+    elementos : [
+                {
+                    descripcion: "Este es objeto 1",
+                    precio: 25,
+                    cantidad : 3
+                },
+                {
+                    descripcion: "Este es objeto 2",
+                    precio: 15,
+                    cantidad : 5
+                },
+                {
+                    descripcion: "Este es objeto 3",
+                    precio: 20,
+                    cantidad : 3
+                }
+                ],
+
+    calcImp: function(){
+        var importe = 0;
+        for(var i = 0; i < this.elementos.length; i++){
+           var elemento = this.elementos[i];
+           importe += elemento.precio * elemento.cantidad;
+        }
+
+        this.importeTotal = importe;
+    },
+
+    printImp: function(){
+        console.log(this.importeTotal);
+    }
+}
+        </script>
+    </body>
+</html>
