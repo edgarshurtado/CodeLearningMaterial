@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Ejer 4</title>
+        
+    </head>
+    <body>
+        <script type="text/javascript" charset="utf-8">
+String.prototype.truncar = function(numero){
+    return this.slice(0, numero);
+}
+
+String.prototype.truncarConCadena = function(numero, cadenaTrunc){
+    var lengthSlice = numero - cadenaTrunc.length;
+    return this.slice(0, lengthSlice) + cadenaTrunc;
+}
+        </script>
+    </body>
+</html>

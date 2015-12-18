@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Extender Array</title>
+        
+    </head>
+    <body>
+        <script type="text/javascript" charset="utf-8">
+Array.prototype.anadir = function(numero, permitirDuplicados){
+    if(permitirDuplicados || this.indexOf(numero) === -1){
+        this.push(numero);
+    }
+}
+        </script>
+    </body>
+</html>

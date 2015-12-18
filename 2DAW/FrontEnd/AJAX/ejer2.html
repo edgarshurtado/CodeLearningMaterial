@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title></title>
+        
+    </head>
+    <body>
+        <script type="text/javascript" charset="utf-8">
+
+function DatosPersonales(nombre, direccion, telefono){
+    this.nombre = nombre,
+    this.direccion = direccion,
+    this.telefono = telefono
+}
+
+function Elemento(descripcion, precio, cantidad){
+    this.descripcion = descripcion,
+    this.precio = precio,
+    this.cantidad = cantidad
+}
+
+function Factura(empresa, cliente, elementos){
+    this.importeTotal = null,
+    this.tipoIva = null,
+    this.formaDePago = null,
+    this.empresa = empresa,
+    this.cliente = cliente,
+    this.elementos = elementos
+}
+
+Factura.prototype.calcularImporte = function(){
+        var importe = 0;
+        for(var i = 0; i < this.elementos.length; i++){
+           var elemento = this.elementos[i];
+           importe += elemento.precio * elemento.cantidad;
+        }
+
+        this.importeTotal = importe;
+}
+
+Factura.prototype.printImporte = function(){
+    console.log(this.importeTotal);
+}
+
+var elementos = [
+    new Elemento("Objeto 1", 25, 3),
+    new Elemento("Objeto 2", 15, 5),
+    new Elemento("Objeto 3", 20, 3) 
+]
+
+var cliente = new DatosPersonales("Edgar", "Calle Falsa 123", "96 222 222");
+var empresa = new DatosPersonales("Empresa Random", "Calle Random", "96 222 222");
+
+
+var fact = new Factura(empresa, cliente, elementos);
+
+        </script>
+    </body>
+</html>
