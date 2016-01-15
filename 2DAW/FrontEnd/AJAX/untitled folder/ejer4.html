@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title></title>
+    </head>
+    <body>
+        <button id="newWindow" type="submit">Nueva ventana</button>
+        <script type="text/javascript" charset="utf-8">
+            
+            newWindowButton = document.getElementById("newWindow");
+
+            newWindowButton.addEventListener("click", function(){
+
+                newWindowProperties = "width=" + screen.availWidth/4 + ","
+                    + "height=" + screen.availHeight/4 +","
+                    + "left=" + (screen.availWidth/2 - screen.availWidth/8) + ","
+                    + "top=" + (screen.availHeight/2 - screen.availHeight/8);
+
+
+                var newWindow = window.open("","", newWindowProperties);
+
+
+                //newWindow.document.write( '<button type="submit" onClick="window.close()">Cerrar</button>');
+            });
+
+        </script>
+    </body>
+</html>

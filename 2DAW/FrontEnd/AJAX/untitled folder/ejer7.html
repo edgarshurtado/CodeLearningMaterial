@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Ejer 7</title>
+        
+    </head>
+    <body>
+
+    <button id="comprobar">Comprobar navegador</button>
+    <p id="mensaje"></p>
+    
+        <script type="text/javascript" charset="utf-8">
+
+var botonComprobar = document.getElementById("comprobar");
+botonComprobar.addEventListener("click", checkIfItsChrome);
+
+function checkIfItsChrome(){
+    if(navigator.userAgent.indexOf('Chrome') === -1){
+        if(window.confirm("Quieres instalarte un navegador de verdad?")){
+            window.location.replace("https://www.google.com/chrome/browser/desktop/index.html");
+        }
+    }else {
+        document.getElementById("mensaje").innerHTML = "Muy bien, usas un buen navegador";
+    }
+
+}
+        </script>
+    </body>
+</html>

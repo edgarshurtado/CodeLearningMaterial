@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ejer1</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var pluginsList = navigator.plugins;
+        var listOfPlugins = document.createElement('ol');
+
+        for (var i = pluginsList.length - 1; i >= 0; i--) {
+            // Get the plugin name
+            var pluginName = document.createTextNode(pluginsList[i].name);
+
+            //Insert the plugin name into listOfPlugins
+            var listItem = document.createElement('li');
+            listItem.appendChild(pluginName);
+            listOfPlugins.appendChild(listItem);
+        };
+        document.body.appendChild(listOfPlugins); // Add list to the body
+    </script>
+</body>
+<footer>
+
+</footer>
+</html>

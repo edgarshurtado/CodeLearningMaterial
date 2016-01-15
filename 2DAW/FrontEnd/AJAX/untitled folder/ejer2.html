@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ejer2</title>
+</head>
+<body>
+    <script type="text/javascript">
+    var pluginsList = navigator.plugins;
+    var pluginFound = false;
+    for (var i = pluginsList.length - 1; i >= 0 && !pluginFound; i--) {
+        if (pluginsList[i].name === "Native Client") {
+            alert('Silverlight in the house');
+            pluginFound = true;
+            break;
+        }
+    }
+
+    if(!pluginFound){
+        if(window.confirm("You don't have Silverlight!! Want to install it?")){
+            window.location.replace("https://www.microsoft.com/silverlight/");
+        }
+    }
+
+    </script>
+</body>
+</html>

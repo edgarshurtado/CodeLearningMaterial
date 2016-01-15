@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>ejer3</title>
+    </head>
+    <body>
+        Height: <p id="height"></p>
+        Width: <p id="width"></p>
+        <button id="newWindow" type="submit">New Window</button>
+
+        <script type="text/javascript" charset="utf-8">
+            var heightHolder = document.getElementById("height");
+            var widthHolder = document.getElementById("width");
+
+            widthHolder.innerHTML = screen.availWidth;
+            heightHolder.innerHTML = screen.availHeight;
+
+            newWindowButton = document.getElementById("newWindow");
+
+            newWindowButton.addEventListener("click", function(){
+
+                newWindowProperties = "width=" + screen.availWidth/4 + ","
+                    + "height=" + screen.availHeight/4 +","
+                    + "left=" + (screen.availWidth/2 - screen.availWidth/8) + ","
+                    + "top=" + (screen.availHeight/2 - screen.availHeight/8);
+
+
+                var newWindow = window.open("","", newWindowProperties);
+            });
+
+        </script>
+    </body>
+</html>
