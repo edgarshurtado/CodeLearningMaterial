@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class  name="Entidad.Participante" table="participantes">
+  	<id column="Dorsal" name="dorsal" type="integer" />
+	<property column="Nombre" name="nombre" />
+	<property column="Apellidos" name="apellidos" />
+	<property column="Poblacion" name="poblacion" />
+	<property column="CLUB" name="club" />
+  </class>
+  <query name="findAllParticipantes">
+	  <![CDATA[ SELECT p FROM Participante p]]>
+  </query>
+</hibernate-mapping>
