@@ -1,0 +1,20 @@
+<gin-tonic>
+    <ginebra>Gintonic de Pink 47, vainilla, enebro y limón</ginebra>
+    <imagen>http://localhost:63342/CubatasXML/assets/img/pink47.jpg</imagen>
+    <descripcion>En este post, vamos a preparar un gintonic de ginebra Pink 47, vainilla, enebro y twist de limón. Se trata de un gintonic con un sabor muy fino y agradable, con el añadido del aroma a vainilla que desprende, que resulta ser una gozada.</descripcion>
+    <cubata>
+        <ingredientes>
+            <ingrediente>Hielo</ingrediente>
+            <ingrediente>Ginebra Pink 47</ingrediente>
+            <ingrediente>Vainilla</ingrediente>
+            <ingrediente>Enebro</ingrediente>
+            <ingrediente>Limón</ingrediente>
+            <ingrediente>tónica Fever Tree</ingrediente>
+        </ingredientes>
+        <elaboracion>
+            <parrafo>Comenzamos a preparar este gintonic enfriando la copa con hielo. Una vez que tengamos la copa a la temperatura deseada, la acabamos de llenar de hielo y añadimos unos 5cl. de ginebra Pink 47. Es importante que en la copa no queden restos de agua para no alterar el gintonic.</parrafo>
+            <parrafo>Después cogemos el twist de limón y lo frotamos por el borde de la copa, para posteriormente dejarlo caer dentro. Seguidamente añadimos la ramita de vainilla y las bayas de enebro, ligeramente chafadas.</parrafo>
+            <parrafo>Finalmente añadiremos la tónica Fever Tree con mucho cuidado como es habitual y listo. </parrafo>
+        </elaboracion>
+    </cubata>
+</gin-tonic>

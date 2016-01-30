@@ -1,0 +1,17 @@
+<gin-tonic>
+    <ginebra></ginebra>
+    <descripcion></descripcion>
+    <cubata>
+        <ingredientes>
+            <ingrediente></ingrediente>
+            <ingrediente></ingrediente>
+            <ingrediente></ingrediente>
+            <ingrediente></ingrediente>
+            <ingrediente></ingrediente>
+        </ingredientes>
+        <elaboracion>
+            <parrafo></parrafo>
+            <parrafo></parrafo>
+        </elaboracion>
+    </cubata>
+</gin-tonic>

@@ -1,0 +1,18 @@
+<gin-tonic>
+    <ginebra>Gintonic de Brockmans con twist de pomelo y arándanos negros</ginebra>
+    <imagen>http://localhost:63342/CubatasXML/assets/img/brockmans.jpg</imagen>
+    <descripcion>Brockmans es una ginebra premium sofisticada con sabores intensos a naranja que se complementan a la perfección con notas a arándanos y moras. En esta receta combinaremos esta ginebra con corteza de pomelo y un par de arándanos negros.</descripcion>
+    <cubata>
+        <ingredientes>
+            <ingrediente>Hielo</ingrediente>
+            <ingrediente>50 ml ginebra Brockmans</ingrediente>
+            <ingrediente>Twist de pomelo</ingrediente>
+            <ingrediente>Arándanos negros</ingrediente>
+            <ingrediente>Tónica Premium</ingrediente>
+        </ingredientes>
+        <elaboracion>
+            <parrafo>Enfriamos un vaso ancho o copa balón con hielo. Lo removemos hasta que tengamos a la temperatura deseada la copa. A continuación desechamos el exceso de agua que se haya podido desprender del hielo y acabamos de llenar la copa con hielo. Añadimos los 50ml de ginebra Brockmans y seguidamente el twist de pomelo, presionándolo para aromatizar la copa antes de dejarlo caer en ella.</parrafo>
+            <parrafo>Finalmente añadiremos un par de arándanos negros y la tónica premium que hayamos seleccionado. Esta última la añadiremos lo más cerca del hielo posible para conservar el máximo de las propiedades de la tónica (nos podemos ayudar de una cucharilla para verter la tónica)</parrafo>
+        </elaboracion>
+    </cubata>
+</gin-tonic>

@@ -1,0 +1,15 @@
+<gin-tonic>
+    <ginebra>Gin Right</ginebra>
+    <imagen>http://localhost:63342/CubatasXML/assets/img/gin-mare.jpg</imagen>
+    <descripcion>Para preparar este gin tonic de gin Right, utilizaremos como ingredientes el cardamomo y la corteza de lima, dos de los botánicos de esta ginebra de origen sueco. La tónica que utilizaremos para finalizar nuestro gin tonic será la tónica Indi.</descripcion>
+    <ingredientes>
+        <ingrediente>Hielo</ingrediente>
+        <ingrediente>cardamomo</ingrediente>
+        <ingrediente>corteza de lima</ingrediente>
+        <ingrediente>tónica Indi</ingrediente>
+    </ingredientes>
+    <elaboracion>
+        <parrafo>Empezaremos la elaboración de este gin tonic, enfriando la copa con hielo. Este lo removeremos hasta tener las paredes de la copa empañadas, y a continuación desecharemos el hielo y el agua que se haya podido desprender de él. A continuación añadiremos unos 6cl. de gin Right, con 3 o 4 bayas de cardamomo, para justo después añadirle la corteza de lima. Esta última, con la ayuda de unas pinzas y antes de depositarla en la copa, la exprimiremos para que suelte todos los aceites esenciales que contiene su corteza y de esta manera aromatizar la copa.</parrafo>
+        <parrafo>Seguidamente, llenaremos la copa de hielo hasta el borde, y añadiremos la tónica Indi muy lentamente para conservar toda la burbuja de esta magnífica tónica, que nos proporcionará nuestro gin tonic perfecto.</parrafo>
+    </elaboracion>
+</gin-tonic>
