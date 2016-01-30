@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 28, 2016 8:13:12 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.entidad.CgStore" table="cg_store" catalog="tiendas_gandia" optimistic-lock="version">
+        <id name="storeId" type="java.lang.Integer">
+            <column name="store_id" />
+            <generator class="identity" />
+        </id>
+        <property name="storeName" type="string">
+            <column name="store_name" not-null="true" />
+        </property>
+        <property name="storeAddress" type="string">
+            <column name="store_address" not-null="true" />
+        </property>
+        <property name="storeCity" type="string">
+            <column name="store_city" length="15" not-null="true" />
+        </property>
+        <property name="storeCoordinateLatitude" type="string">
+            <column name="store_coordinate_latitude" length="45" not-null="true" />
+        </property>
+        <property name="storeCoordinateLongitude" type="string">
+            <column name="store_coordinate_longitude" length="45" not-null="true" />
+        </property>
+        <property name="storeState" type="string">
+            <column name="store_state" length="9" not-null="true" />
+        </property>
+        <property name="storePhone" type="string">
+            <column name="store_phone" length="45" />
+        </property>
+        <property name="storeZip" type="string">
+            <column name="store_zip" length="6" not-null="true" />
+        </property>
+        <property name="storeLogo" type="string">
+            <column name="store_logo" length="45" not-null="true" />
+        </property>
+        <property name="storeVisible" type="string">
+            <column name="store_visible" length="11" not-null="true" />
+        </property>
+        <property name="storeAreaId" type="int">
+            <column name="store_area_id" not-null="true" />
+        </property>
+        <property name="storeContactName" type="string">
+            <column name="store_contact_name" length="45" not-null="true" />
+        </property>
+        <property name="storeEmail" type="string">
+            <column name="store_email" length="45" />
+        </property>
+        <property name="storeWeb" type="string">
+            <column name="store_web" length="45" />
+        </property>
+        <property name="storeFacebook" type="string">
+            <column name="store_facebook" length="100" />
+        </property>
+        <property name="storeComments" type="string">
+            <column name="store_comments" length="65535" not-null="true" />
+        </property>
+        <property name="storeDate" type="timestamp">
+            <column name="store_date" length="19" not-null="true" />
+        </property>
+        <property name="storeFeatured" type="string">
+            <column name="store_featured" length="3" not-null="true" />
+        </property>
+        <property name="storeCategoryId" type="int">
+            <column name="store_category_id" not-null="true" />
+        </property>
+        <property name="storeImage1" type="string">
+            <column name="store_image_1" length="150" />
+        </property>
+        <property name="storeImage2" type="string">
+            <column name="store_image_2" length="150" />
+        </property>
+        <property name="storeImage3" type="string">
+            <column name="store_image_3" length="150" />
+        </property>
+        <property name="storeImage4" type="string">
+            <column name="store_image_4" length="150" />
+        </property>
+        <property name="storeImage5" type="string">
+            <column name="store_image_5" length="150" />
+        </property>
+    </class>
+</hibernate-mapping>

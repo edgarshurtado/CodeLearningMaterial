@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 28, 2016 8:13:12 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.entidad.CgAreaStore" table="cg_area_store" catalog="tiendas_gandia" optimistic-lock="version">
+        <id name="areaStoreId" type="java.lang.Integer">
+            <column name="area_store_id" />
+            <generator class="identity" />
+        </id>
+        <property name="areaStoreName" type="string">
+            <column name="area_store_name" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

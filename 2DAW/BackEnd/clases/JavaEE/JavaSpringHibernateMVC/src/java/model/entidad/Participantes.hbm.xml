@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 25, 2016 7:14:12 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.entidad.Participantes" table="participantes" catalog="carreras" optimistic-lock="version">
+        <id name="idParticipante" type="java.lang.Integer">
+            <column name="IdParticipante" />
+            <generator class="identity" />
+        </id>
+        <property name="dorsal" type="java.lang.Integer">
+            <column name="Dorsal" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="Apellidos" length="50" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="25" />
+        </property>
+        <property name="sexo" type="string">
+            <column name="Sexo" length="2" />
+        </property>
+        <property name="fechaNac" type="date">
+            <column name="FechaNac" length="10" />
+        </property>
+        <property name="dni" type="string">
+            <column name="DNI" length="33" />
+        </property>
+        <property name="fechaAlta" type="timestamp">
+            <column name="FechaAlta" length="19" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="50" />
+        </property>
+        <property name="poblacion" type="string">
+            <column name="Poblacion" length="50" />
+        </property>
+        <property name="provincia" type="string">
+            <column name="Provincia" length="20" />
+        </property>
+        <property name="cp" type="string">
+            <column name="CP" length="5" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
+        </property>
+        <property name="nevento" type="java.lang.Integer">
+            <column name="NEvento" />
+        </property>
+        <property name="numCarrera" type="java.lang.Integer">
+            <column name="NumCarrera" />
+        </property>
+        <property name="tiempo1" type="timestamp">
+            <column name="Tiempo1" length="19" />
+        </property>
+        <property name="tiempo2" type="timestamp">
+            <column name="Tiempo2" length="19" />
+        </property>
+        <property name="tiempo3" type="timestamp">
+            <column name="Tiempo3" length="19" />
+        </property>
+        <property name="tiempo4" type="timestamp">
+            <column name="Tiempo4" length="19" />
+        </property>
+        <property name="tiempoMeta" type="timestamp">
+            <column name="TiempoMeta" length="19" />
+        </property>
+        <property name="seg1" type="time">
+            <column name="Seg1" length="8" />
+        </property>
+        <property name="seg2" type="time">
+            <column name="Seg2" length="8" />
+        </property>
+        <property name="seg3" type="time">
+            <column name="Seg3" length="8" />
+        </property>
+        <property name="seg4" type="time">
+            <column name="Seg4" length="8" />
+        </property>
+        <property name="seg5" type="time">
+            <column name="Seg5" length="8" />
+        </property>
+        <property name="seg6" type="time">
+            <column name="Seg6" length="8" />
+        </property>
+        <property name="club" type="string">
+            <column name="CLUB" length="70" />
+        </property>
+        <property name="numClub" type="java.lang.Double">
+            <column name="NUM_CLUB" precision="22" scale="0" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="Telefono" length="15" />
+        </property>
+        <property name="grupoCate" type="string">
+            <column name="grupo_cate" length="15" />
+        </property>
+        <property name="categoria" type="string">
+            <column name="categoria" length="18" />
+        </property>
+        <property name="obserInscripcion" type="string">
+            <column name="OBSER_INSCRIPCION" length="16777215" />
+        </property>
+        <property name="posicionGeneral" type="java.lang.Integer">
+            <column name="PosicionGeneral" />
+        </property>
+        <property name="posicionCategoria" type="java.lang.Integer">
+            <column name="PosicionCategoria" />
+        </property>
+        <property name="posicionGrupoEdad" type="java.lang.Integer">
+            <column name="PosicionGrupoEdad" />
+        </property>
+        <property name="posicionClub" type="java.lang.Integer">
+            <column name="PosicionClub" />
+        </property>
+        <property name="posicionClubPorSexo" type="java.lang.Integer">
+            <column name="PosicionClubPorSexo" />
+        </property>
+        <property name="posicionPorSexo" type="java.lang.Integer">
+            <column name="PosicionPorSexo" />
+        </property>
+        <property name="descalificado" type="java.lang.Boolean">
+            <column name="Descalificado" />
+        </property>
+        <property name="motivoDescalificacion" type="string">
+            <column name="`Motivo Descalificacion`" length="80" />
+        </property>
+        <property name="posSeg1" type="java.lang.Integer">
+            <column name="PosSeg1" />
+        </property>
+        <property name="posSeg2" type="java.lang.Integer">
+            <column name="PosSeg2" />
+        </property>
+        <property name="posSeg3" type="java.lang.Integer">
+            <column name="PosSeg3" />
+        </property>
+        <property name="posSeg4" type="java.lang.Integer">
+            <column name="PosSeg4" />
+        </property>
+        <property name="velocidad" type="java.lang.Float">
+            <column name="Velocidad" precision="12" scale="0" />
+        </property>
+        <property name="velSeg1" type="java.lang.Float">
+            <column name="VelSeg1" precision="12" scale="0" />
+        </property>
+        <property name="velSeg2" type="java.lang.Float">
+            <column name="VelSeg2" precision="12" scale="0" />
+        </property>
+        <property name="velSeg3" type="java.lang.Float">
+            <column name="VelSeg3" precision="12" scale="0" />
+        </property>
+        <property name="velSeg4" type="java.lang.Float">
+            <column name="VelSeg4" precision="12" scale="0" />
+        </property>
+        <property name="estaFederado" type="java.lang.Boolean">
+            <column name="EstaFederado" />
+        </property>
+        <property name="codigoConchip" type="string">
+            <column name="CodigoConchip" length="20" />
+        </property>
+        <property name="fechaGrabacion" type="timestamp">
+            <column name="FechaGrabacion" length="19" />
+        </property>
+        <property name="bloquearTiempo" type="string">
+            <column name="BloquearTiempo" length="3" not-null="true" />
+        </property>
+        <property name="equipo" type="string">
+            <column name="Equipo" length="40" />
+        </property>
+        <property name="modalitat" type="string">
+            <column name="Modalitat" length="80" />
+        </property>
+        <property name="nlicenciaFederado" type="string">
+            <column name="NlicenciaFederado" length="30" />
+        </property>
+        <property name="retirado" type="java.lang.Boolean">
+            <column name="Retirado" />
+        </property>
+        <property name="web" type="java.lang.Boolean">
+            <column name="web" />
+        </property>
+        <property name="pais" type="string">
+            <column name="pais" />
+        </property>
+    </class>
+</hibernate-mapping>
