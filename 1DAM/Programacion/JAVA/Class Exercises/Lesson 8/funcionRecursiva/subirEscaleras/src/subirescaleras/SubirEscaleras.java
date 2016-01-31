@@ -19,7 +19,7 @@ public class SubirEscaleras {
             subirEscalera(escalones - 1);
         }
         System.out.println("Estoy en el escalón " + escalones);
-}
+    }
     
     static void bajarEscalera(int escalones){
         System.out.println("Estoy en el escalón " + (escalones -1));
