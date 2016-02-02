@@ -103,6 +103,9 @@ document.getElementById("brockmans").addEventListener("click", function(){
     cargaContenido(siteUrl("pages/brockmans.xml"), "GET",  muestraContenidoXML);
 });
 
+document.getElementById("cubata_semana").addEventListener("click", function(){
+    cargaContenido(siteUrl("pages/pink_47.xml"), "GET", muestraContenidoXML);
+});
 document.getElementById("home").addEventListener("click", function(){
     cargaContenido(siteUrl("pages/home.html"), "GET", parsearHTML);
 });
