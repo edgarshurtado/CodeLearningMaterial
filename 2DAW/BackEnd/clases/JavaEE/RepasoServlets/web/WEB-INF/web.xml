@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>MiPrimerServlet</servlet-name>
+        <servlet-class>servlets.MiPrimerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Scope1</servlet-name>
+        <servlet-class>servlets.Scope1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Scope2</servlet-name>
+        <servlet-class>servlets.Scope2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MiPrimerServlet</servlet-name>
+        <url-pattern>/MiPrimerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Scope1</servlet-name>
+        <url-pattern>/Scope1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Scope2</servlet-name>
+        <url-pattern>/Scope2</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
