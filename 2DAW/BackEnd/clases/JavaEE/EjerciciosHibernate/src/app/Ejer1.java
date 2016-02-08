@@ -20,7 +20,10 @@ public class Ejer1 {
 		// Insertar un seguro
 		Seguro seguro1 = new Seguro(3, "200P", "Edgar", "S.", "Hurtado", 26, 0, new Date());
 		
-		readSeguro(3);
+		readSeguro(2);
+
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		sessionFactory.close();
 		
 	}
 
@@ -32,21 +35,47 @@ public class Ejer1 {
 
 		session.getTransaction().commit();
 		session.close();
-		sessionFactory.close();
 
 
 	}
 
-	public static void readSeguro(int clavePrimaria){
+	public static Seguro readSeguro(int clavePrimaria){
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 
-		Seguro seguro = (Seguro)session.get(Seguro.class, 3);
-
+		Seguro seguro = (Seguro)session.get(Seguro.class, clavePrimaria);
+		
 		System.out.println(seguro.getNombre());
+		
 
 		session.close();
-		sessionFactory.close();
+
+		return seguro;
+		
+	}
+
+	public static void updateSeguro(Seguro seguro){
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		seguro.setNombre("Edgar Modificado");
+
+		session.beginTransaction();
+		session.update(seguro);
+		session.getTransaction().commit();
+
+		session.close();
+	}
+
+	public static void deleteSeguro(Seguro seguro){
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		session.beginTransaction();
+		session.delete(seguro);
+		session.getTransaction().commit();
+
+		session.close();
 		
 	}
 }
