@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My first Angular App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.0-rc.2/angular-route.min.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="#/seccion1">Sección 1</a>
+        <a href="#/seccion2">Sección 2</a>
+    </nav>
+
+    <section ng-view></section>
+
+<script>
+    angular.module("myApp", ["ngRoute"]);
+
+    angular.module("myApp").config(["$routeProvider", function($routeProvider){
+        $routeProvider
+                .when("/seccion1", {
+                    controller: "seccion1Ctr",
+                    template: "<h1>Esto es la sección 1</h1>"
+                })
+                .when("/seccion2", {
+                    controller: "seccion2Ctr",
+                    template: "<h1>Esta es la sección 2</h1>"
+                });
+    }]);
+
+    angular.module("myApp").controller("seccion1Ctr", function(){/*Code*/});
+    angular.module("myApp").controller("seccion2Ctr", function(){/*Code*/});
+</script>
+</body>
+</html>
