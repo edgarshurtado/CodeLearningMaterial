@@ -18,16 +18,35 @@ import utils.HibernateUtil;
 public class Ejer1 {
 	public static void main(String[] args) {
 		// Insertar un seguro
+		Seguro seguro1 = new Seguro(3, "200P", "Edgar", "S.", "Hurtado", 26, 0, new Date());
+		
+		readSeguro(3);
+		
+	}
+
+	public static void insertSeguro(Seguro seguro){
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-
-		Seguro seguro1 = new Seguro(3, "200P", "Edgar", "S.", "Hurtado", 26, 0, new Date());
-
-		session.save(seguro1);
+		session.save(seguro);
 
 		session.getTransaction().commit();
 		session.close();
+		sessionFactory.close();
+
+
+	}
+
+	public static void readSeguro(int clavePrimaria){
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session session = sessionFactory.openSession();
+
+		Seguro seguro = (Seguro)session.get(Seguro.class, 3);
+
+		System.out.println(seguro.getNombre());
+
+		session.close();
+		sessionFactory.close();
 		
 	}
 }
