@@ -22,6 +22,9 @@ public class Ejer1 {
 		
 		readSeguro(2);
 
+		// EL cierre de la SessionFactory ha de hacerse al final del programa debido a que en
+		// HibernateUtils sólo se instancia una vez, con lo que si lo cerramos durante la ejecución
+		// del programa, luego nos dará error al intentar volver a obtener el SessionFactory
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		sessionFactory.close();
 		
