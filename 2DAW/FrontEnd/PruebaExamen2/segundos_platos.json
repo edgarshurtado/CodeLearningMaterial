@@ -1,10 +1,5 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "sourceMap": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+  "0":["Caca de perro", "Virgen en su jugo"],
+  "1":["Gordaco al pilpil", "Vales de Juanjo"],
+  "2":["Luke, soy tu padre", "Es como si no llevara nada"]
 }
