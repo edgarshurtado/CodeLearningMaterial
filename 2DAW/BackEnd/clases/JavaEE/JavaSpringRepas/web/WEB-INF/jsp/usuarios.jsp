@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,5 +14,15 @@
 	</head>
 	<body>
 		<h1>Lista de usuarios</h1>
+		<table border="1">
+			<c:forEach var="usuario" items="${listaUsuarios}">
+				<tr>
+					<td><c:out value="${usuario.getNombre()}"></c:out> </td>
+					<td><c:out value="${usuario.getClave()}"></c:out> </td>
+					<td><c:out value="${usuario.getEmail()}"></c:out> </td>
+				</tr>
+			</c:forEach>
+		</table>
+
 	</body>
 </html>
