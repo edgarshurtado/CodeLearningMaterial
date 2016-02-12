@@ -10,6 +10,7 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
 	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+	<bean class="controllers.UsuariosController" id="UsuariosController"/>
 
 	<!--
 	Most controllers will use the ControllerClassNameHandlerMapping above, but
@@ -20,6 +21,7 @@
 		<property name="mappings">
 			<props>
 				<prop key="index.htm">indexController</prop>
+				<prop key="listadoUsuarios.htm">UsuariosController</prop>
 			</props>
 		</property>
 	</bean>
