@@ -5,8 +5,11 @@
  */
 package controllers;
 
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.UsuariosDAO;
+import model.entidad.Usuarios;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
@@ -18,7 +21,13 @@ public class UsuariosController implements Controller{
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest hsr, HttpServletResponse hsr1) throws Exception {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		ModelAndView mv = new ModelAndView("usuarios");
+
+		ArrayList<Usuarios> lista = UsuariosDAO.getAllUsers();
+
+		mv.addObject("listaUsuarios", lista); // Adjuntar JavaBean
+		
+		return mv;
 	}
 	
 }
