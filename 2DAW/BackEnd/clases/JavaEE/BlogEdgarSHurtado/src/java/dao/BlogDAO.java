@@ -24,7 +24,7 @@ public class BlogDAO {
 
 		Session session = sf.openSession();
 
-		String hql = "SELECT p from Post p";
+		String hql = "SELECT p from Post p ORDER BY post_date DESC";
 
 		listaPosts = (ArrayList < Post >)session.createQuery(hql).list();
 
@@ -42,6 +42,22 @@ public class BlogDAO {
 			.setParameter("slug", slug).uniqueResult();
 
 		return postSeleccionado;
+	}
+
+	public static void deletePost(Post p) throws Exception{
+		Session session = sf.openSession();
+
+		session.beginTransaction();
+		session.delete(p);
+		session.getTransaction().commit();
+	}
+
+	public static void newPost(Post p){
+		Session session = sf.openSession();
+
+		session.beginTransaction();
+		session.saveOrUpdate(p);
+		session.getTransaction().commit();
 	}
 	
 	

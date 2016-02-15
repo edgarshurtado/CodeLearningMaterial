@@ -6,6 +6,7 @@
 package entidad;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
 
 /**
@@ -31,15 +32,17 @@ public class Post implements Serializable{
 	@Column
 	String post_body;
 
+	@Column
+	Date post_date;
+
 	public Post() {
 	}
 
-	public Post(int post_id, String post_title, String post_slug, String post_image, String post_body) {
-		this.post_id = post_id;
+	public Post(String post_title, String post_slug, String post_body) {
 		this.post_title = post_title;
 		this.post_slug = post_slug;
-		this.post_image = post_image;
 		this.post_body = post_body;
+		this.post_date = new Date();
 	}
 
 

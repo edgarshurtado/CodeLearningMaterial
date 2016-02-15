@@ -31,8 +31,8 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="#">Borrar</a>
-					<a href="#">Editar</a>
+					<a href="BlogDeleteController?slug=<%=p.getPost_slug() %>">Borrar</a>
+					<a href="RellenarFormEditarController?slug=<%= p.getPost_slug()%>">Editar</a>
 				</td>
 			</tr>
 			
