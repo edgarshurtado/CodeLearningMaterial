@@ -24,7 +24,7 @@
 				for(Post p : listaPosts){
 					%>
 					<tr>
-						<td><%=p.getPost_title()%></td>
+						<td><a href="BlogDetalleControler?slug=<%= p.getPost_slug() %>"><%=p.getPost_title()%></a></td>
 						<td><img style="width:100px;" src="./images/<%=p.getPost_image()%>" /> </td>
 					</tr>
 			<%

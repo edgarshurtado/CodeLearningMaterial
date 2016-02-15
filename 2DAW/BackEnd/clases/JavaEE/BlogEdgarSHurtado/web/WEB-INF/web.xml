@@ -4,9 +4,17 @@
         <servlet-name>BlogController</servlet-name>
         <servlet-class>controller.BlogController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BlogDetalleControler</servlet-name>
+        <servlet-class>controller.BlogDetalleControler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BlogController</servlet-name>
         <url-pattern>/BlogController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlogDetalleControler</servlet-name>
+        <url-pattern>/BlogDetalleControler</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -31,4 +31,18 @@ public class BlogDAO {
 		return listaPosts;
 	}
 	
+	public static Post getPostById(String slug){
+		Post postSeleccionado = null;
+
+		Session session = sf.openSession();
+
+		String hql = "SELECT p FROM Post p WHERE post_slug=:slug";
+
+		postSeleccionado = (Post)session.createQuery(hql)
+			.setParameter("slug", slug).uniqueResult();
+
+		return postSeleccionado;
+	}
+	
+	
 }
