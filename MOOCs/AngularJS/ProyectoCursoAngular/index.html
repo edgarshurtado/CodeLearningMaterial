@@ -10,14 +10,17 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/peliculasCtrl.js"></script>
     <script src="scripts/controllers/seriesCtrl.js"></script>
+    <script src="scripts/controllers/navegacionCtrl.js"></script>
+    <script src="scripts/controllers/peliculasCarteleraCtrl.js"></script>
+    <script src="scripts/controllers/peliculasProximamenteCtrl.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Películas y Series</h1>
-        <nav class="navbar navbar-inverse" ng-controller="">
+        <nav class="navbar navbar-inverse" ng-controller="navegacionCtrl">
             <ul class="nav navbar-nav">
-                <li ng-class="{}"><a href="#/peliculas">Películas</a></li>
-                <li ng-class="{}"><a href="#/series">Series</a></li>
+                <li ng-class="{ 'active': rutaEsPeliculas() }"><a href="#/peliculas">Películas</a></li>
+                <li ng-class="{ 'active': rutaEsSeries() }"><a href="#/series">Series</a></li>
                 <li><a href="#">Gente</a></li>
             </ul>
         </nav>

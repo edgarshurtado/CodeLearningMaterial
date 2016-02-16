@@ -1,1 +1,8 @@
-<h2>Películas</h2>
+<nav>
+    <ul class="nav nav-pills">
+        <li ng-class="{ 'active' : rutaEsProximamente() }"><a href="#/peliculas/proximamente">Próximamente</a></li>
+        <li ng-class="{ 'active' : rutaEsCartelera() }"><a href="#/peliculas/cartelera">En cartelera</a></li>
+    </ul>
+</nav>
+
+<section app-view-segment="1"></section>
