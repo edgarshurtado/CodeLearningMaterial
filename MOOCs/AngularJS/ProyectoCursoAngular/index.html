@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Películas y series</title>
+    <link rel="stylesheet" href="styles/bootstrap.css">
     <script src="vendor/angular.min.js"></script>
     <script src="vendor/angular-route.min.js"></script>
     <script src="vendor/angular-route-segment.js"></script>
     <script src="scripts/app.js"></script>
-    <link rel="stylesheet" href="styles/bootstrap.css">
+    <script src="scripts/controllers/peliculasCtrl.js"></script>
+    <script src="scripts/controllers/seriesCtrl.js"></script>
 </head>
 <body>
+    <div class="container">
+        <h1>Películas y Series</h1>
+        <nav class="navbar navbar-inverse" ng-controller="">
+            <ul class="nav navbar-nav">
+                <li ng-class="{}"><a href="#/peliculas">Películas</a></li>
+                <li ng-class="{}"><a href="#/series">Series</a></li>
+                <li><a href="#">Gente</a></li>
+            </ul>
+        </nav>
+
+        <section app-view-segment="0"></section>
+    </div>
 
 </body>
 </html>
