@@ -1,5 +1,6 @@
 <table class="table table-striped table-hover">
     <tr ng-repeat="pelicula in peliculas">
         <td>{{pelicula.title}}</td>
+        <td>{{pelicula.release_date | date:"longDate" }}</td>
     </tr>
 </table>
