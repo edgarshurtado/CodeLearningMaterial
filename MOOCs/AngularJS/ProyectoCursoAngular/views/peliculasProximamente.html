@@ -1,6 +1,8 @@
 <table class="table table-striped table-hover">
-    <tr ng-repeat="pelicula in peliculas">
+    <!-- Para ordenar en sentido inverso pondríamos el signo `-` delante del nombre del campo. Por ejemplo:
+     `orderBy='-release_date'`-->
+    <tr ng-repeat="pelicula in peliculas | orderBy:'release_date'">
         <td>{{pelicula.title}}</td>
-        <td>{{pelicula.release_date | date:"longDate" }}</td>
+        <td>{{pelicula.release_date | date:"longDate" | fechaEstrenoFilter }}</td>
     </tr>
 </table>
