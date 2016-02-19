@@ -4,7 +4,10 @@
 
 angular.module("MisPelisSeriesApp", ["ngRoute", "route-segment", "view-segment"]);
 
-angular.module("MisPelisSeriesApp").config(["$routeSegmentProvider", function ($routeSegmentProvider) {
+angular.module("MisPelisSeriesApp").config(["$routeSegmentProvider", "$routeProvider",
+    function ($routeSegmentProvider, $routeProvider) {
+
+
 
    $routeSegmentProvider.when("/peliculas", "peliculas");
    $routeSegmentProvider.segment("peliculas", {
@@ -20,7 +23,11 @@ angular.module("MisPelisSeriesApp").config(["$routeSegmentProvider", function ($
            Peliculas: ["MovieDbApi", function(MovieDbApi){
                return MovieDbApi.consultaBD("movie/upcoming");
            }]
-       }
+      },
+      resolveFailed: [
+          alert("Ocurrió un error");
+      ]
+
    });
 
     $routeSegmentProvider.when("/peliculas/cartelera", "peliculas.cartelera");
@@ -35,5 +42,10 @@ angular.module("MisPelisSeriesApp").config(["$routeSegmentProvider", function ($
       templateUrl: "views/series.html"
    });
 
+   // Vista por defecto
+    $routeProvider.otherwise({
+        redirectTo: "/peliculas/proximamente"
+    })
 
-}]);
+
+    }]);
