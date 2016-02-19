@@ -5,7 +5,9 @@
         <td>
             <img ng-src="{{rutaImagen(pelicula.poster_path)}}" />
         </td>
-        <td>{{pelicula.title}}</td>
+        <td>
+            <a href="" ng-click="verDetalle(pelicula.id)">{{pelicula.title}}</a>
+        </td>
         <td>{{pelicula.release_date | date:"longDate" | fechaEstrenoFilter }}</td>
     </tr>
 </table>

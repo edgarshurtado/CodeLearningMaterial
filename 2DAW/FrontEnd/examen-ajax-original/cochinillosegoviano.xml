@@ -1,0 +1,23 @@
+<recetas>
+    <receta>
+        <titulo>Cochinillo Segoviano</titulo>
+        <foto>"images/cochinillosegoviano.jpg"</foto>
+        <ingredientes>
+            <ingrediente>Cochinillo de 4 kg</ingrediente>
+            <ingrediente>Sal</ingrediente>
+            <ingrediente>Manteca de cerdo</ingrediente>
+            <ingrediente>Hierbas al gusto</ingrediente>
+        </ingredientes>
+        <elaborar>
+            <paso>
+            Con la ayuda de un cuchillo (de golpe o en su defecto uno grande), marcar longitudinalmente la columna del cochinillo (por el interior). Limpiar bien la carne y sazonar. Colocar en una cazuela de barro con la piel hacia abajo, poner unos palos de laurel debajo del tostón (para que no esté en contacto con el fondo) y añadir un dedo de agua.
+            </paso>
+            <paso>
+                Precalentar el horno a 180 ºC. Introducir el cochinillo durante una hora, transcurrida la cual, sacarlo y darle la vuelta (la piel hacia arriba); pinchar la piel para que no se nos formen burbujas de aire y untar con la manteca con ayuda de un pincel. Volver a introducirlo en el horno unos 45 min más o menos, transcurridos los cuales, el cochinillo tendrá un bonito color dorado, homogéneo y la piel estará crujiente. Rectificar el punto de sal del jugo.
+            </paso>
+            <paso>
+                Para trinchar el cochinillo con un plato, éste debe salir bien crujiente.
+            </paso>
+        </elaborar>
+    </receta>
+</recetas>
