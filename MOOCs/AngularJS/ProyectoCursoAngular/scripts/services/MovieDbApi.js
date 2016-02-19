@@ -11,4 +11,8 @@ angular.module("MisPelisSeriesApp").service("MovieDbApi", ["$http", "settings", 
 
         return $http.get(requestUrl)
     }
+
+    this.obtenerRutaImagen = function(tamanyo, urlImagen) {
+        return urlImagen == null ? null : settings.rutaImagenApi + tamanyo + urlImagen;
+    }
 }])

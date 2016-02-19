@@ -2,6 +2,9 @@
     <!-- Para ordenar en sentido inverso pondríamos el signo `-` delante del nombre del campo. Por ejemplo:
      `orderBy='-release_date'`-->
     <tr ng-repeat="pelicula in peliculas">
+        <td>
+            <img ng-src="{{rutaImagen(pelicula.poster_path)}}" />
+        </td>
         <td>{{pelicula.title}}</td>
         <td>{{pelicula.release_date | date:"longDate" | fechaEstrenoFilter }}</td>
     </tr>

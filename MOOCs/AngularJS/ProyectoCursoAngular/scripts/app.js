@@ -23,11 +23,7 @@ angular.module("MisPelisSeriesApp").config(["$routeSegmentProvider", "$routeProv
            Peliculas: ["MovieDbApi", function(MovieDbApi){
                return MovieDbApi.consultaBD("movie/upcoming");
            }]
-      },
-      resolveFailed: [
-          alert("Ocurrió un error");
-      ]
-
+      }
    });
 
     $routeSegmentProvider.when("/peliculas/cartelera", "peliculas.cartelera");
