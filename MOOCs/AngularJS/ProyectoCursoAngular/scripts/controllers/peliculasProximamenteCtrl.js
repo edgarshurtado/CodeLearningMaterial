@@ -3,14 +3,7 @@
  */
 
 angular.module("MisPelisSeriesApp").controller("peliculasProximamenteCtrl",
-    ["$scope", "MovieDbApi", "$filter", function($scope, MovieDbApi, $filter){
+    ["$scope", "$filter", "Peliculas", function($scope, $filter, Peliculas){
 
-    MovieDbApi.consultaBD("movie/upcoming")
-        .then(
-            function(resultado) {
-                $scope.peliculas = $filter("orderBy")(resultado.data.results, "release_date"); //Usando filtro desde controlador
-            },
-            function(){
-                alert("Algo no ha ido bien");
-            });
+        $scope.peliculas = $filter("orderBy")(Peliculas.data.results, "release_date");
 }]);
