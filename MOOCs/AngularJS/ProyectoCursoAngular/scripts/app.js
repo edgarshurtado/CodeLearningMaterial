@@ -38,6 +38,12 @@ angular.module("MisPelisSeriesApp").config(["$routeSegmentProvider", "$routeProv
       templateUrl: "views/series.html"
    });
 
+   $routeSegmentProvider.when("/peliculas/detalle", "peliculas.detalle");
+   $routeSegmentProvider.within("peliculas").segment("detalle", {
+       controller : "peliculasDetalleCtrl",
+       templateUrl : "views/peliculasDetalle.html"
+   })
+
    // Vista por defecto
     $routeProvider.otherwise({
         redirectTo: "/peliculas/proximamente"
