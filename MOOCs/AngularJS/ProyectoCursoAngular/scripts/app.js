@@ -41,7 +41,12 @@ angular.module("MisPelisSeriesApp").config(["$routeSegmentProvider", "$routeProv
    $routeSegmentProvider.when("/peliculas/detalle", "peliculas.detalle");
    $routeSegmentProvider.within("peliculas").segment("detalle", {
        controller : "peliculasDetalleCtrl",
-       templateUrl : "views/peliculasDetalle.html"
+       templateUrl : "views/peliculasDetalle.html",
+       resolve : {
+           Pelicula: ["MovieDbApi", "$routeParams", function(MovieDbApi, $routeParams){
+               return MovieDbApi.consultaBD("movie/" + $routeParams.idPelicula)
+           }]
+       }
    })
 
    // Vista por defecto
