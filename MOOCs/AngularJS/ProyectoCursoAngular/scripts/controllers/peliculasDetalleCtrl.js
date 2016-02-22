@@ -6,8 +6,9 @@ angular.module("MisPelisSeriesApp").controller("peliculasDetalleCtrl",
     ["$scope", "Pelicula", "MovieDbApi" ,function($scope, Pelicula, MovieDbApi){
 
         $scope.pelicula = Pelicula.data;
+        debugger;
 
         $scope.rutaImagen = function(ruta) {
-            return MovieDbApi.obtenerRutaImagen(115, ruta);
+            return MovieDbApi.obtenerRutaImagen(150, ruta);
         };
 }]);
