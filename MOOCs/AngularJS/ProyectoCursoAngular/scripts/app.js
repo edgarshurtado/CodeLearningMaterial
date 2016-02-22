@@ -29,7 +29,12 @@ angular.module("MisPelisSeriesApp").config(["$routeSegmentProvider", "$routeProv
     $routeSegmentProvider.when("/peliculas/cartelera", "peliculas.cartelera");
     $routeSegmentProvider.within("peliculas").segment("cartelera", {
         controller: "peliculasCarteleraCtrl",
-        templateUrl: "views/peliculasCartelera.html"
+        templateUrl: "views/peliculasCartelera.html",
+        resolve: {
+            Peliculas: ["MovieDbApi", function(MovieDbApi){
+                return MovieDbApi.consultaBD("movie/now_playing");
+            }]
+        }
     });
 
    $routeSegmentProvider.when("/series", "series");

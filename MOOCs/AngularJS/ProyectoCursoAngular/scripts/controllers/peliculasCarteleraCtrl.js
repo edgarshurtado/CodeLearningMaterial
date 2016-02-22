@@ -2,15 +2,14 @@
  * Created by Rumil on 16/02/16.
  */
 
-angular.module("MisPelisSeriesApp").controller("peliculasCarteleraCtrl", ["$scope", "MovieDbApi", function($scope, MovieDbApi){
+angular.module("MisPelisSeriesApp").controller("peliculasCarteleraCtrl",
+    ["$scope", "$filter", "Peliculas", "$location", function($scope, $filter, Peliculas, $location){
 
-    MovieDbApi
-        .consultaBD("movie/now_playing")
-        .then(
-            function(resultado) {
-                $scope.peliculas = resultado.data.results;
-            },
-            function(){
-                alert("Algo no ha ido bien");
-            });
+        $scope.peliculas = $filter("orderBy")(Peliculas.data.results, "release_date");
+
+        $scope.verDetalle = function(id) {
+                $location.path("/peliculas/detalle").search({
+                        idPelicula : id
+                });
+        }
 }]);
