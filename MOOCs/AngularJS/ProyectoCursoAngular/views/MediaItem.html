@@ -1,0 +1,11 @@
+<tr>
+    <td>
+        <img ng-src="{{rutaImagen(datos.poster_path)}}" />
+    </td>
+    <td>
+        <a href="" ng-click="clickEnMedia(datos.id)">{{datos.title}}</a>
+    </td>
+    <td>
+        {{datos.release_date | date:"longDate" | fechaEstrenoFilter }}
+    </td>
+</tr>
