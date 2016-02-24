@@ -1,5 +1,6 @@
 <header>
     <h3>{{ pelicula.title }}</h3>
     <div votacion media="{{pelicula.vote_average}}"></div>
+    <generos coleccion="pelicula.genres"></generos>
 </header>
 <img ng-src="{{rutaImagen(pelicula.poster_path)}}" clas="img-thumbnail" />
