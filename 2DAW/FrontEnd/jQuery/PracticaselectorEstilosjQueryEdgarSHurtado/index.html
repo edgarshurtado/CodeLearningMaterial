@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="customStyles.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -84,14 +85,14 @@
                 </div>
                 <div class="col-md-6">
                     <h1>Aplicar Estilos</h1>
-                    <select name="estiloAplicar" id="">
+                    <select name="estiloAplicar" id="estilo-aplicar">
                         <option value=""> -------- </option>
-                        <option value="rojo">Cambiar fondo a rojo</option>
-                        <option value="azul">Cambiar fondo a azul</option>
-                        <option value="verde">Cambiar fondo a verde</option>
+                        <option value="red">Cambiar fondo a rojo</option>
+                        <option value="blue">Cambiar fondo a azul</option>
+                        <option value="green">Cambiar fondo a verde</option>
                     </select>
                     <br><br>
-                    <button type="submit">Aplicar</button> <button type="submit">Volver a normalidad</button>
+                    <button type="submit" id="btn_aplicar">Aplicar</button> <button type="submit" id="btn_nomalidad">Volver a normalidad</button>
                 </div>
             </div>
         </div>
@@ -596,5 +597,8 @@
     <!-- Slider -->
     <script type="text/javascript" src="js/bxslider.min.js"></script>
 	<script type="text/javascript" src="js/script.slider.js"></script>
+
+    <!-- Exercise js -->
+    <script src="js/ejercicio.js"></script>
   </body>
 </html>
