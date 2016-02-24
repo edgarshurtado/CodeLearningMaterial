@@ -2,7 +2,15 @@
  * Created by Edgar S. Hurtado on 23/02/16.
  */
 
+function deleteClasses(){
+    $('.red').removeClass('red');
+    $('.blue').removeClass('blue');
+    $('.green').removeClass('green');
+}
+
+
 $('#btn_aplicar').click(function(){
+    deleteClasses();
     var $classToApply = $('#estilo-aplicar').val();
 
     var domSeleccionado = $('[name="elementosSeleccion"]:checked');
@@ -16,7 +24,5 @@ $('#btn_aplicar').click(function(){
 });
 
 $('#btn_nomalidad').click(function(){
-    $('.red').removeClass('red');
-    $('.blue').removeClass('blue');
-    $('.green').removeClass('green');
+    deleteClasses();
 })
