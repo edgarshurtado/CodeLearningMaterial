@@ -1,13 +1,22 @@
 window.onload = function (){
-    var readmore_btns = document.getElementsByClassName("readmore-btn");
-    for (var i = 0; i < readmore_btns.length; i++){
-        readmore_btns[i].addEventListener("click", readmore);
-    }
-    var readless_btns = document.getElementsByClassName("readless-btn");
-    for (var i = 0; i < readmore_btns.length; i++){
-        readless_btns[i].addEventListener("click",readless);
-    }
 
+    // ------------- Expandable Divs ----------------------------------
+    $(".readmore-btn").click(function(){
+        // Show hided content
+        $(this).next().slideDown("slow");
+        // Hide readmore btn
+        $(this).hide();
+    });
+
+    $(".readless-btn").click(function(){
+        // Hide the shown info from the expandable div
+        $expandableDiv = $(this).parent();
+        $expandableDiv.slideUp("slow");
+        // Show again the readmore-btn for returning to the starting point
+        $expandableDiv.siblings(".readmore-btn").show();
+    })
+
+    
     setInterval(randomHeader, 5000);
 
     // Change winner images
