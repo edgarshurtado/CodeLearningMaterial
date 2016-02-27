@@ -16,7 +16,7 @@ window.onload = function (){
         $expandableDiv.siblings(".readmore-btn").show();
     })
 
-    
+
     setInterval(randomHeader, 5000);
 
     // Change winner images
@@ -59,12 +59,12 @@ function randomHeader(){
         "header5.png",
         "header6.jpg",
         ]
-    var imgHolder = document.getElementById("img_bottom");
+    var $imgHolder = $("#img_bottom");
     var regEx = new RegExp("(header[0-9]+\.[a-z]+)");//gets the header file name
 
     //Get the actual header img background
-    var bck_url = window.getComputedStyle(imgHolder, "").backgroundImage;
-    var headerActualImg = regEx.exec(bck_url)[0];
+    var backgroundProperty = $imgHolder.css("backgroundImage");
+    var headerActualImg = regEx.exec(backgroundProperty)[0];
     
     //Choose a new image diferent from the actual
     do{
@@ -73,7 +73,8 @@ function randomHeader(){
     }while(newImage === headerActualImg)
 
     //Set the image
-    imgHolder.style.backgroundImage=bck_url.replace(regEx, newImage);
+    //$imgHolder.style.backgroundImage=backgroundProperty.replace(regEx, newImage);
+    $imgHolder.css("backgroundImage", backgroundProperty.replace(regEx, newImage))
 }
 
 function readmore(){
