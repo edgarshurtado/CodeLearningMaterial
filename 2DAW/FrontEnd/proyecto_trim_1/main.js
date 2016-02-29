@@ -73,8 +73,12 @@ function randomHeader(){
     }while(newImage === headerActualImg)
 
     //Set the image
-    //$imgHolder.style.backgroundImage=backgroundProperty.replace(regEx, newImage);
-    $imgHolder.css("backgroundImage", backgroundProperty.replace(regEx, newImage))
+    //$imgHolder.css("backgroundImage", backgroundProperty.replace(regEx, newImage))
+
+    $imgHolder.fadeOut("slow", function(){
+        $imgHolder.css("backgroundImage", backgroundProperty.replace(regEx, newImage));
+        $imgHolder.fadeIn("slow");
+    })
 }
 
 function readmore(){
