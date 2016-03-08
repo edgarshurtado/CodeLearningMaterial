@@ -1,0 +1,56 @@
+﻿@model ProyectoCarreras5.Models.carrera
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>carrera</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcionCarrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcionCarrera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaCarrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaCarrera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.distanciaMetros)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.distanciaMetros)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horaInicio)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

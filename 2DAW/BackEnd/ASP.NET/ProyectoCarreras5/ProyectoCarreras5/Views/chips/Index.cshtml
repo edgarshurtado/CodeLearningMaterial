@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProyectoCarreras5.Models.chip>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoChip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tiempo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoChip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tiempo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.codigoChip }) |
+            @Html.ActionLink("Details", "Details", new { id=item.codigoChip }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.codigoChip })
+        </td>
+    </tr>
+}
+
+</table>

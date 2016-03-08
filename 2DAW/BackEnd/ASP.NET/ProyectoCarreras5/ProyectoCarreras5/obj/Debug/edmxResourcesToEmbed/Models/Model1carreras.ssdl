@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="carrerasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="carreras">
+    <Key>
+      <PropertyRef Name="idCarrera" />
+    </Key>
+    <Property Name="idCarrera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcionCarrera" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fechaCarrera" Type="datetime" Nullable="false" />
+    <Property Name="distanciaMetros" Type="int" Nullable="false" />
+    <Property Name="horaInicio" Type="time" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="chips">
+    <Key>
+      <PropertyRef Name="codigoChip" />
+    </Key>
+    <Property Name="codigoChip" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="tiempo" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="Participantes">
+    <Key>
+      <PropertyRef Name="IdParticipante" />
+    </Key>
+    <Property Name="IdParticipante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCarrera" Type="int" Nullable="false" />
+    <Property Name="chip" Type="varchar" MaxLength="13" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="dni" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="posicionGeneral" Type="int" />
+    <Property Name="tiempoOficial" Type="time" Precision="7" />
+    <Property Name="dorsal" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Participantes_carreras">
+    <End Role="carreras" Type="Self.carreras" Multiplicity="1" />
+    <End Role="Participantes" Type="Self.Participantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="carreras">
+        <PropertyRef Name="idCarrera" />
+      </Principal>
+      <Dependent Role="Participantes">
+        <PropertyRef Name="IdCarrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Participantes_chips">
+    <End Role="chips" Type="Self.chips" Multiplicity="0..1" />
+    <End Role="Participantes" Type="Self.Participantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chips">
+        <PropertyRef Name="codigoChip" />
+      </Principal>
+      <Dependent Role="Participantes">
+        <PropertyRef Name="chip" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="carrerasModelStoreContainer">
+    <EntitySet Name="carreras" EntityType="Self.carreras" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="chips" EntityType="Self.chips" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Participantes" EntityType="Self.Participantes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Participantes_carreras" Association="Self.FK_Participantes_carreras">
+      <End Role="carreras" EntitySet="carreras" />
+      <End Role="Participantes" EntitySet="Participantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Participantes_chips" Association="Self.FK_Participantes_chips">
+      <End Role="chips" EntitySet="chips" />
+      <End Role="Participantes" EntitySet="Participantes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

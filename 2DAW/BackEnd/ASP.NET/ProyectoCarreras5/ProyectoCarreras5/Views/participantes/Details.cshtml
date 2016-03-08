@@ -1,0 +1,82 @@
+﻿@model ProyectoCarreras5.Models.Participante
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Participante</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.posicionGeneral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.posicionGeneral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tiempoOficial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tiempoOficial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dorsal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dorsal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.carreras.descripcionCarrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carreras.descripcionCarrera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chips.codigoChip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chips.codigoChip)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdParticipante }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

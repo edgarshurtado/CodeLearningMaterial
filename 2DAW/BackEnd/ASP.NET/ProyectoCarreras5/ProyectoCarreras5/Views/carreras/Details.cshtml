@@ -1,0 +1,50 @@
+﻿@model ProyectoCarreras5.Models.carrera
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>carrera</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcionCarrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcionCarrera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaCarrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaCarrera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.distanciaMetros)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.distanciaMetros)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horaInicio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idCarrera }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,8 @@
+nombre: System.Web.UI.WebControls.TextBox
+pais: System.Web.UI.WebControls.TextBox
+comentario: System.Web.UI.WebControls.TextBox
+--------
+nombre: dasoijdfa
+pais: dalkfjakdjf
+comentario: añkjdfakdlsfñadf
+--------

@@ -1,0 +1,7 @@
+Datos personales<br>
+Nombre: Edgar Sanchez Hurtado<br>
+Fecha de nacimiento :10/03/2016 0:00:00<br>
+Estudios:<br>
+Algo<br>
+Experiencia:<br>
+Algo más
