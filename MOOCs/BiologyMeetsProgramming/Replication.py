@@ -1,3 +1,4 @@
+# TODO: refactor all names to match pep8 guidelines
 def PatternCount(Pattern, Text):
     # Input:  Strings Pattern and Text
     # Output: The number of times Pattern appears in Text   count = 0
