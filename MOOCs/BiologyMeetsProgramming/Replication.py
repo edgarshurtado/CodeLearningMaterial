@@ -62,6 +62,9 @@ def PatternMatching(Pattern, dna):
 
 
 def SymbolArray(Genome, symbol):
+    # Input: A genome string and a nucleotide letter
+    # Output: A symbol array in which each position has the count of half the string for the symbol starting in the
+    # array position
     array = {}
     n = len(Genome)
     ExtendedGenome = Genome + Genome[0:n//2]
