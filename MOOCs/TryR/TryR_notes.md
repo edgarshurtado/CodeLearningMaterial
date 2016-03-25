@@ -229,7 +229,7 @@ Values of types
 as.integer(types)
 [1] 2 3 1 2 1
 
-evels(types)
+levels(types)
 [2] "gems"   "gold"   "silver"
 ```
 
