@@ -1,0 +1,64 @@
+<puertos>
+    <puerto>
+        <nombre>Mont Ventoux</nombre>
+        <coding>0088</coding>
+        <imagenes>
+            <imagen>./img/gallery/ventoux/ventoux1.jpg</imagen>
+            <imagen>./img/gallery/ventoux/ventoux2.jpg</imagen>
+            <imagen>./img/gallery/ventoux/ventoux3.jpg</imagen>
+        </imagenes>
+        <alerta>
+            Posibilidad de vientos extremos en la cima
+        </alerta>
+        <datos>
+            <imagen-altimetria>img/alt/tourmalet.jpg</imagen-altimetria>
+            <longitud>22 km</longitud>
+            <altitud>1912 m</altitud>
+            <informacion-adicional>
+                <p>Phasellus et metus enim. Nam nunc ligula, ultricies eget libero nec, laoreet sodales odio. Ut mauris est, pulvinar nec lacus pellentesque, venenatis porta est. Nulla euismod arcu ut dui cursus consectetur. Pellentesque faucibus tincidunt sem, a viverra massa pharetra eu. Donec semper nec ligula sit amet convallis. In et laoreet lacus, ut porta urna. Nunc dapibus sem tortor, maximus tristique neque elementum id. Sed vehicula elit convallis, rutrum justo et, lacinia lectus. Integer eget leo eu metus sollicitudin sodales et id tellus. Duis malesuada aliquet imperdiet. Nam tempor mi leo, quis varius quam aliquam ut. Pellentesque id hendrerit purus. Nullam et molestie leo. Ut porttitor ligula ac quam faucibus pulvinar. Nulla euismod lorem ut lorem dignissim, vel euismod est accumsan.</p>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent maximus rutrum commodo. In mollis, mi non rutrum mattis, augue eros lacinia diam, id elementum sapien elit sit amet nulla. Fusce felis ligula, iaculis sit amet felis et, vulputate lacinia urna. Praesent tempus mauris ut luctus ullamcorper. Donec nibh velit, sollicitudin non scelerisque ac, efficitur sed eros.</p>
+            </informacion-adicional>
+        </datos>
+    </puerto>
+   <puerto>
+        <nombre>Angliru</nombre>
+       <coding>0040</coding>
+        <imagenes>
+            <imagen>./img/gallery/angliru/angliru1.jpg</imagen>
+            <imagen>./img/gallery/angliru/angliru2.jpg</imagen>
+            <imagen>./img/gallery/angliru/angliru3.jpg</imagen>
+        </imagenes>
+        <alerta>
+            Este puerto tiene rampas por encima de 23%, la posibilidad de poner pie en tierra es alta
+        </alerta>
+        <datos>
+            <imagen-altimetria>img/alt/envalira.jpg</imagen-altimetria>
+            <longitud>12 km</longitud>
+            <altitud>1555 m</altitud>
+            <informacion-adicional>
+                <p>Phasellus et metus enim. Nam nunc ligula, ultricies eget libero nec, laoreet sodales odio. Ut mauris est, pulvinar nec lacus pellentesque, venenatis porta est. Nulla euismod arcu ut dui cursus consectetur. Pellentesque faucibus tincidunt sem, a viverra massa pharetra eu. Donec semper nec ligula sit amet convallis. In et laoreet lacus, ut porta urna. Nunc dapibus sem tortor, maximus tristique neque elementum id. Sed vehicula elit convallis, rutrum justo et, lacinia lectus. Integer eget leo eu metus sollicitudin sodales et id tellus. Duis malesuada aliquet imperdiet. Nam tempor mi leo, quis varius quam aliquam ut. Pellentesque id hendrerit purus. Nullam et molestie leo. Ut porttitor ligula ac quam faucibus pulvinar. Nulla euismod lorem ut lorem dignissim, vel euismod est accumsan.</p>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent maximus rutrum commodo. In mollis, mi non rutrum mattis, augue eros lacinia diam, id elementum sapien elit sit amet nulla. Fusce felis ligula, iaculis sit amet felis et, vulputate lacinia urna. Praesent tempus mauris ut luctus ullamcorper. Donec nibh velit, sollicitudin non scelerisque ac, efficitur sed eros.</p>
+            </informacion-adicional>
+        </datos>
+    </puerto>
+    <puerto>
+        <nombre>Lagos de Covadonga</nombre>
+        <coding>0091</coding>
+        <imagenes>
+            <imagen>./img/gallery/covadonga/covadonga1.jpg</imagen>
+            <imagen>./img/gallery/covadonga/covadonga2.jpg</imagen>
+            <imagen>./img/gallery/covadonga/covadonga3.jpg</imagen>
+        </imagenes>
+        <alerta>
+        </alerta>
+        <datos>
+            <imagen-altimetria>img/alt/aubisque.png</imagen-altimetria>
+            <longitud>14 km</longitud>
+            <altitud>1134</altitud>
+            <informacion-adicional>
+                <p>Phasellus et metus enim. Nam nunc ligula, ultricies eget libero nec, laoreet sodales odio. Ut mauris est, pulvinar nec lacus pellentesque, venenatis porta est. Nulla euismod arcu ut dui cursus consectetur. Pellentesque faucibus tincidunt sem, a viverra massa pharetra eu. Donec semper nec ligula sit amet convallis. In et laoreet lacus, ut porta urna. Nunc dapibus sem tortor, maximus tristique neque elementum id. Sed vehicula elit convallis, rutrum justo et, lacinia lectus. Integer eget leo eu metus sollicitudin sodales et id tellus. Duis malesuada aliquet imperdiet. Nam tempor mi leo, quis varius quam aliquam ut. Pellentesque id hendrerit purus. Nullam et molestie leo. Ut porttitor ligula ac quam faucibus pulvinar. Nulla euismod lorem ut lorem dignissim, vel euismod est accumsan.</p>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent maximus rutrum commodo. In mollis, mi non rutrum mattis, augue eros lacinia diam, id elementum sapien elit sit amet nulla. Fusce felis ligula, iaculis sit amet felis et, vulputate lacinia urna. Praesent tempus mauris ut luctus ullamcorper. Donec nibh velit, sollicitudin non scelerisque ac, efficitur sed eros.</p>
+            </informacion-adicional>
+        </datos>
+    </puerto>
+</puertos>
