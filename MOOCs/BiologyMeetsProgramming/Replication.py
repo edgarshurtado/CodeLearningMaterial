@@ -64,11 +64,27 @@ def PatternMatching(Pattern, dna):
 
 def SymbolArray(Genome, symbol):
     # Input: A genome string and a nucleotide letter
-    # Output: A symbol array in which each position has the count of half the string for the symbol starting in the
-    # array position
+    # Output: A symbol array in which each position has the count of
+    # half the string for the symbol starting in the array position
     array = {}
     n = len(Genome)
     ExtendedGenome = Genome + Genome[0:n//2]
     for i in range(n):
         array[i] = PatternCount(symbol, ExtendedGenome[i:i+n//2])
     return array
+
+
+def FasterSymbolArray(genome, symbol):
+        # Input:  Strings Genome and symbol
+        # Output: FasterSymbolArray(Genome, symbol)
+        array = {}
+        n = len(genome)
+        extendedGenome = genome + genome[0:n//2]
+        array[0] = PatternCount(symbol, extendedGenome[0:n//2])
+        for i in range(1, n):
+            array[i] = array[i - 1]
+            if extendedGenome[i - 1] == symbol:
+                array[i] = array[i] - 1
+            if extendedGenome[i:i + n//2 - 1] == symbol:
+                array[i] = array[i] + 1
+        return array
