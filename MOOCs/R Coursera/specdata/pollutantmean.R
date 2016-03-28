@@ -25,3 +25,16 @@ complete <- function(directory = ".", id = 1:332){
     }
     resultDataFrame
 }
+
+corr <- function(directory = ".", threshold = 0){
+    files <- list.files()[1:332]
+    result <- numeric(0)
+    for(file in files){
+        if(nComplete(file) >= threshold){
+            data <- read.csv(file)
+            data <- data[complete.cases(data),]
+            result[length(result) + 1] <- cor(data$sulfate, data$nitrate)
+        }
+    }
+    result
+}
