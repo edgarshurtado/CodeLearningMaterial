@@ -88,3 +88,15 @@ def FasterSymbolArray(genome, symbol):
             if extendedGenome[i:i + n//2 - 1] == symbol:
                 array[i] = array[i] + 1
         return array
+
+
+def Skew(genome):
+    skew_array = {0: 0}
+    for idx, nitrogenous_base in enumerate(genome, 1):
+        if(nitrogenous_base == "G"):
+            skew_array[idx] = skew_array[idx-1] + 1
+        elif(nitrogenous_base == "C"):
+            skew_array[idx] = skew_array[idx-1] - 1
+        else:
+            skew_array[idx] = skew_array[idx-1]
+    return skew_array
