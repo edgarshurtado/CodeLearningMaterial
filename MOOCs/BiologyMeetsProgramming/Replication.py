@@ -100,3 +100,18 @@ def Skew(genome):
         else:
             skew_array[idx] = skew_array[idx-1]
     return skew_array
+
+
+def MinimumSkew(genome):
+    # Input:  A DNA string Genome
+    # Output: A list containing all integers i minimizing Skew(Prefix_i(Text))
+    # over all values of i (from 0 to |Genome|)
+    skew_array = Skew(genome)
+    minGC = min(skew_array.values())
+    positions_minGC = []
+
+    for position in range(1, len(genome)):
+        if(skew_array[position] == minGC):
+            positions_minGC.append(position)
+
+    return positions_minGC
