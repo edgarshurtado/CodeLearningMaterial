@@ -115,3 +115,22 @@ def MinimumSkew(genome):
             positions_minGC.append(position)
 
     return positions_minGC
+
+
+def HammingDistance(p, q):
+    assert len(p) == len(q)
+    hamming_number = 0
+    for i in range(len(p)):
+        if(p[i] != q[i]):
+            hamming_number += 1
+    return hamming_number
+
+
+def ApproximatePatternMatching(pattern, genome, d):
+    positions = []
+    for i in range(len(genome) - len(pattern) + 1):
+        genome_window = genome[i: i + len(pattern)]
+        if(HammingDistance(pattern, genome_window) <= d):
+            positions.append(i)
+
+    return positions
